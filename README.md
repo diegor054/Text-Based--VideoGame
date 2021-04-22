@@ -5,16 +5,7 @@
 
 ## Project Description
  > The project we want to make is a text-based role-playing game. In this game, the player will have to choose which character they want to play as which will give them different paths depending on their choice. The player will also fight many stages of enemies, which will help them unlock and level up their abilities. This project is interesting to us because maybe one day we will be working for a company that develops video games so this would be a great place to start. Also, this role-playing game allows us to express our creativity when developing the game which seems fun to us. The programming language that we plan to use is C++. We will also be using Valgrind and CMake. Valgrind is a tool that will help us debug our code and find memory leaks as we are developing it. CMake will allow us to build executables that will use to run our code. The inputs of our role-playing game will be user input that will guide where the game goes. The output for our game will be text based off the path the player chooses to take. The design patterns we plan to use are composite and decorator. We chose to go with composite because it will allow us to generate many types of characters that will build off the base class that has the basic elements of each character. A problem we are expecting is having too many characters that share many of the same elements so it may become redundant. The composite design pattern fixes that problem because we can just derive the characters from the base class and make the derived characters have the extra elements we desire. Also, this design pattern assures that each character will have the same elements so that we can implement a function such as “attack” and the opponent will for sure have a variable such as health. The second design pattern we chose was decorator. Throughout the game we expect user made decisions that will add responsibilities to their character. This can become a problem because we would have to make many more subclasses that will be similar to that one that the user currently has. However, decorator will fix that problem since we can dynamically attach responsibilities to an object without having to make another subclass.  
- > * Why is it important or interesting to you?
- > * What languages/tools/technologies do you plan to use? (This list may change over the course of the project)
- >   * [toolname](link) - Short description
- > * What will be the input/output of your project?
- > * What are the two design patterns you will be using? For each design pattern you must explain in 4-5 sentences:
- >   * Why you picked this pattern and what feature you will implement with it
- >   * What problem you anticipate encountering when implementing your project that you will solve using the design pattern
- >   * Why the chosen design pattern will lead to a good solution to that problem
- > * This description should be in enough detail that the TA/instructor can determine the complexity of the project and if it is sufficient for the team members to complete in the time allotted. 
-
+ > 
  > ## Phase II
  > In addition to completing the "Class Diagram" section below, you will need to 
  > * Set up your GitHub project board as a Kanban board for the project. It should have columns that map roughly to 
