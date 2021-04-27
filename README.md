@@ -3,8 +3,7 @@
  > Authors: Diego Rivera (https://github.com/diegor054), Zachary Dammann (https://github.com/zdamm001), Evan Churilov (https://github.com/echur002)
  
 
-## Project Description
-## Basic Description
+# Project Description
  > The project we want to make is a text-based role-playing game. 
  > 
  > In this game, the player will have to choose which character they want to play as which will give them different paths depending on their choice. The player will also fight many stages of enemies, which will help them unlock and level up their abilities. This project is interesting to us because maybe one day we will be working for a company that develops video games so this would be a great place to start. Also, this role-playing game allows us to express our creativity when developing the game which seems fun to us. The programming language that we plan to use is C++. 
