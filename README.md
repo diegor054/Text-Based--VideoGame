@@ -22,16 +22,6 @@
  
  >The second design pattern we chose was decorator. Throughout the game we expect user made decisions that will add responsibilities to their character such as being able to mass eliminate a group of enemies. This can become a problem because we would have to make many more subclasses that will be similar to that one that the user currently has. However, decorator will fix that problem since we can dynamically attach responsibilities to an object without having to make another subclass. Another example where this design patern becomes helpful is the evolution of weapons and armor. As you gain more experience that leads to levels, the weapons (and their attack damage) and armor will increase. Therefore, the decorator design pattern is an effective way to solve this problem and will allow us to make our game more action filled. 
  > 
- > ## Phase II
- > In addition to completing the "Class Diagram" section below, you will need to 
- > * Set up your GitHub project board as a Kanban board for the project. It should have columns that map roughly to 
- >   * Backlog, TODO, In progress, In testing, Done
- >   * You can change these or add more if you'd like, but we should be able to identify at least these.
- > * There is no requirement for automation in the project board but feel free to explore those options.
- > * Create an "Epic" (note) for each feature and each design pattern and assign them to the appropriate team member. Place these in the `Backlog` column
- > * Complete your first *sprint planning* meeting to plan out the next 7 days of work.
- >   * Create smaller development tasks as issues and assign them to team members. Place these in the `TODO` column.
- >   * These cards should represent roughly 7 days worth of development time for your team, taking you until your first meeting with the TA
 ## Class Diagram
  > Include a class diagram(s) for each design pattern and a description of the diagram(s). Your class diagram(s) should include all the main classes you plan for the project. This should be in sufficient detail that another group could pick up the project this point and successfully complete it. Use proper OMT notation (as discussed in the course slides). You may combine multiple design patterns into one diagram if you'd like, but it needs to be clear which portion of the diagram represents which design pattern (either in the diagram or in the description). 
  > 
