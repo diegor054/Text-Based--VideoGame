@@ -1,6 +1,8 @@
 #ifndef __BASECHARACTER_HPP__
 #define __BASECHARACTER_HPP__
 
+#include <vector>
+#include "Opponent.hpp"
 #include <string>
 using namespace std;
 
@@ -11,7 +13,7 @@ int health;
 int attackStrength;
 public:
 
-virtual void attack(vector<Opponent*> opp) = 0;
+virtual void attack(vector<Opponent*> oppList) = 0;
 void printHealth() const {
    int lines = health / 10;
    int totalLines = 10;
