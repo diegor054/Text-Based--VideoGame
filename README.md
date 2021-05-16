@@ -25,7 +25,7 @@
 ## Class Diagram
  > This OMT describes how each class is going to be implemented. There will be a class called character where the opponents and user characters will inherit functions and characteristics from it. There will also be an array of opponents that will be composed of opponent members that the user will have to eliminate. There will be various types of opponents and user characters and they will share similar traits. 
  > 
-![OMT](https://user-images.githubusercontent.com/81644719/117527120-69298180-af7e-11eb-9233-05725ea1e502.png)
+![OMT2](https://user-images.githubusercontent.com/81644719/118387301-a58a5c80-b5d2-11eb-8701-d3757a55efb3.png)
  
  > ## Phase III
  > You will need to schedule a check-in with the TA (during lab hours or office hours). Your entire team must be present. 
