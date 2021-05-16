@@ -1,7 +1,8 @@
 #ifndef __BASECHARACTER_HPP__
 #define __BASECHARACTER_HPP__
 
-#include "string"
+#include <string>
+using namespace std;
 
 class BaseCharacter{
 private:
