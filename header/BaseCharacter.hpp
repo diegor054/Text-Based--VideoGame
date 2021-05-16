@@ -12,7 +12,7 @@ string name;
 int health;  
 int attackStrength;
 public:
-
+BaseCharacter(){}  
 virtual void attack(vector<Opponent*> oppList) = 0;
 void printHealth() const {
    int lines = health / 10;
@@ -25,7 +25,7 @@ void printHealth() const {
    for(int i = 0; i < spacesLeft;i++){
 	cout << " ";
 	}
-   cout << "]  " << health << "remaining health" << endl;
+   cout << "]  " << health << " remaining health" << endl;
    
 }
 
