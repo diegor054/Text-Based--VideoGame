@@ -8,7 +8,7 @@ class Player: public BaseCharacter(){
 	int xp;
 	int playerTypeLevel;
 	public:
-	BaseCharacter(){}
+	Player(){}
 	virtual void Upgrade() = 0; //each playerType will have unique Upgrade
 	virtual	void setMaxHealth() = 0; 
 };
