@@ -3,7 +3,7 @@
 #include "Player.hpp"
 
 //implement attacker  class
-class Attacker: public BaseCharacter{
+class Attacker: public Player{
 	private:
 	string SwordType;
 	public:

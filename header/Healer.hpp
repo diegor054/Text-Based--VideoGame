@@ -4,7 +4,7 @@
 
 //implement attacker  class
 
-class Healer: public BaseCharacter{
+class Healer: public Player{
         private:
         string wandType; //goes wood, steel, gold, diamond. used just for show not any purpose. propotional to playerTypeLevel
         public:
