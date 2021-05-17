@@ -14,6 +14,9 @@ class Attacker: public Player{
 	void setMaxHealth() const override{
 	health = 100;
 	}
+	void setHealth(int x){ //used for when player is attacked
+	this->health += x;
+	}
 	void attack(vector<Opponent*> opp) override{
 	//implement
 	}
