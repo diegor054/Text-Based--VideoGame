@@ -14,7 +14,7 @@ class Attacker: public BaseCharacter{
 	void setMaxHealth() const override{
 	health = 100;
 	}
-	void attack(vector<Opponent*> opp){
+	void attack(vector<Opponent*> opp) override{
 	//implement
 	}
 
