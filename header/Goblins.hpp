@@ -1,5 +1,5 @@
 #ifndef __GOBLINS_HPP__
-#define __GOLBINS_HPP__
+#define __GOBlINS_HPP__
 
 class Goblins: public Opponent{
         private:
