@@ -1,6 +1,6 @@
 #ifndef __ATTACKER_HPP__
 #define __ATTACKER_HPP__
-#include "BaseCharacter.hpp"
+#include "Player.hpp"
 
 //implement attacker  class
 class Attacker: public BaseCharacter{

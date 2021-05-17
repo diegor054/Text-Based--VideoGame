@@ -1,6 +1,6 @@
 #ifndef __HEALER_HPP__
 #define __HEALER_HPP__
-#include "BaseCharacter.hpp"
+#include "Player.hpp"
 
 //implement attacker  class
 
