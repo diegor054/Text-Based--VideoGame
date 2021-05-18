@@ -6,11 +6,11 @@
 using namespace std;
 
 vector<string>* load(const string &);
-void save(const string &, Character*);
+void save(const string &, vector<string>*, Character*);
 
 int main() {
     string file = "data/savefile.txt";
-    vector<string>* playerInfo = load(file);
+    vector<string>* gameInfo = load(file);
     if (playerinfo.size() == 0) {
         string playerName;
         cout << "Welcome, please enter your player's name: " << flush;
@@ -42,15 +42,16 @@ vector<string>* load(const string &file) {
     return true;
 }
 
-void save(const string &file, Character* player) {
+void save(const string &file, vector<string>* gameInfo, Character* player) {
     ofstream fout(file);
     if (!fout.is_open()) {
         cout << "Error writing to " << file << endl;
         exit(EXIT_FAILURE);
     }
-    fout << "Stage: " << numStage << endl;
-    fout << "Points: " << numPoints << endl;
+    fout << "Stage: " << playerInfo.at(0) << endl;
+    fout << "Points: " << playerInfo.at(1) << endl;
     fout << "PlayerInfo: " << player.getType() << endl;
     fout.close();
+    delete gameInfo;
     return true;
 }
