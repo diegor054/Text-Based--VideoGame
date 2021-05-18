@@ -7,6 +7,7 @@ using namespace std;
 
 vector<string>* load(const string &);
 void save(const string &, vector<string>*);
+void help(string name);
 
 int main() {
     //load program
@@ -18,6 +19,7 @@ int main() {
         string playerName;
         cout << "Welcome, please enter your player's name: " << flush;
         cin >> playerName;
+	help(playerName);
     }
     
     //run program
@@ -61,3 +63,13 @@ void save(const string &file, vector<string>* gameInfo) {
     delete gameInfo;
     return true;
 }
+void help(string name){
+	cout << "Welcome to King of the Dugeon, " << name << "!" << endl;
+	cout << "You are going on a journey throughout a mysterious dugeon in hopes of finding a secret treasure that no one has ever found." << endl;
+	cout << "However, the task will not be easy 0_0." << endl;
+	cout << "There are rumors of mysterous creatures that live within the dugeon." << endl;
+	cout << "Whether those rumors are true or not, that's for you to find out." << endl;
+	cout << "Throughout your journey you may potentially have to fight armies of creatures so prepare yourself." << endl;
+	cout << "Good Luck " << name << ", may you have luck on your side and most importantly have fun." << endl;
+	}
+
