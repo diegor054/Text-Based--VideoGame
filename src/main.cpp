@@ -64,8 +64,8 @@ void save(const string &file, vector<string>* gameInfo) {
     return true;
 }
 void help(string name){
-	cout << "Welcome to King of the Dugeon, " << name << "!" << endl;
-	cout << "You are going on a journey throughout a mysterious dugeon in hopes of finding a secret treasure that no one has ever found." << endl;
+	cout << "Welcome to King of the Dungeon, " << name << "!" << endl;
+	cout << "You are going on a journey throughout a mysterious dungeon in hopes of finding a secret treasure that no one has ever found." << endl;
 	cout << "However, the task will not be easy 0_0." << endl;
 	cout << "There are rumors of mysterous creatures that live within the dugeon." << endl;
 	cout << "Whether those rumors are true or not, that's for you to find out." << endl;
