@@ -1,15 +1,17 @@
 #include <iostream> 
 #include <fstream>
 #include <string>
+#include <vector>
 
 using namespace std;
 
-bool load(const string &);
-void save(const string &);
+vector<string>* load(const string &);
+void save(const string &, Character*);
 
 int main() {
-    string file = "data/savefile.txt"
-    if (!load(file)) {
+    string file = "data/savefile.txt";
+    vector<string>* playerInfo = load(file);
+    if (playerinfo.size() == 0) {
         string playerName;
         cout << "Welcome, please enter your player's name: " << flush;
         cin >> playerName;
@@ -19,18 +21,18 @@ int main() {
     PlayerFactory pf;
     Character* player = pf.getPlayer(playerInfo);
 
-    save(file);
+    save(file, player);
     return 0;
 }
 
-bool load(const string &file) {
+vector<string>* load(const string &file) {
     ifstream fin(file);
     if (!fin.is_open()) {
         cout << "Error reading from " << file << endl;
         exit(EXIT_FAILURE);
     }
     if (fin.eof()) {
-        return false;
+        return nullptr;
     }
     string stage, points, playerInfo, temp;
     fin << temp << stage;
@@ -40,7 +42,7 @@ bool load(const string &file) {
     return true;
 }
 
-void save(const string &file) {
+void save(const string &file, Character* player) {
     ofstream fout(file);
     if (!fout.is_open()) {
         cout << "Error writing to " << file << endl;
