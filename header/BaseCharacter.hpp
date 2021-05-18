@@ -10,22 +10,24 @@ using namespace std;
 #include "Opponent.hpp"
 
 class BaseCharacter {
- private:
+ protected:
     string name;
     int health;
     int attackStrength;
+
  public:
     BaseCharacter() { }  
     virtual void attack(vector<Opponent*> oppList) = 0;
     void printHealth() const {
-    int totalLines = 10;
-    int lines = health / totalLines;
-    cout << "[";
-    for (int i = 0; i < totalLines; i++){
-	    if (i < lines) cout << '|';
-        else cout << ' ';
+        int totalLines = 10;
+        int lines = health / totalLines;
+        cout << "[";
+        for (int i = 0; i < totalLines; i++) {
+	        if (i < lines) cout << '|';
+            else cout << ' ';
+        }
+        cout << "]  " << health << " remaining health" << endl;
     }
-    cout << "]  " << health << " remaining health" << endl;
 };
 
 #endif

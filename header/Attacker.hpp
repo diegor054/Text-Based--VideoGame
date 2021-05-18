@@ -3,25 +3,32 @@
 
 #include "Player.hpp"
 
-//implement attacker  class
+//implement attacker class
 class Attacker : public Player {
-	private:
+ private:
 	string SwordType;
-	public:
-	Attacker(): health(100),xp(0), weaponType("Sword"), playerTypeLevel(0), SwordType("Bronze") {}
-	void Upgrade() override{
-	//implement
+	
+ public:
+	Attacker() {
+		health = 100;
+		xp = 0;
+		weaponType = "Sword";
+		playerTypeLevel = 0;
+		SwordType = "Bronze";
 	}
-	void setMaxHealth() const override{
-	health = 100;
+	void Upgrade() override {
+		//implement
 	}
-	void setHealth(int x){ //used for when player is attacked
-	this->health += x;
+	void setMaxHealth() override {
+	    health = 100;
 	}
-	void attack(vector<Opponent*> opp) override{
-	//implement
+	void setHealth(int x) { //used for when player is attacked
+		this->health += x;
 	}
-
+	void attack(vector<Opponent*> opp) override {
+		//implement
+	}
 };
+
 #endif
 
