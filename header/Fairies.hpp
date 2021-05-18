@@ -14,7 +14,7 @@ class Fairies: public Opponent {
 		opponentLevel = 1;
 		attackStyle = "Pixie dust";
 		health = 50;
-		name = "Fairy;
+		name = "Fairy";
 		attackStrength = 3;
 	}
     void attack(vector<Opponent*> opp) override {
@@ -29,7 +29,7 @@ class Fairies: public Opponent {
 			cout << "Fairy sprinkles you and deals " << damage << " damage!" << endl;
 		}
 		else if(num == 2) {
-			cout << "Fairy hit you hard! You lost " << damage << " health!" << endl;; 
+			cout << "Fairy hit you hard! You lost " << damage << " health!" << endl;
 		}
 		else {
 			cout << "Fairy is very mad at you and sprinkled you for " << damage << " health!" << endl;

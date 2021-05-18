@@ -2,7 +2,7 @@
 #include <fstream>
 #include <string>
 #include <vector>
-
+#include "BaseCharacter.hpp"
 using namespace std;
 
 vector<string>* load(const string &);
@@ -15,16 +15,16 @@ int main() {
     vector<string>* gameInfo = load(file);
     
     //check if new player
-    if (playerinfo == nullptr) {
+    if (gameInfo == nullptr) {
         string playerName;
         cout << "Welcome, please enter your player's name: " << flush;
         cin >> playerName;
-	help(playerName);
+       	help(playerName);
     }
     
     //run program
     PlayerFactory pf;
-    Character* player = pf.getPlayer(gameInfo->at(2));
+    BaseCharacter* player = pf.getPlayer(gameInfo->at(2));
     
     //save program
     gameInfo->at(2) = player.getType();
@@ -43,11 +43,11 @@ vector<string>* load(const string &file) {
     }
     string temp;
     vector<string>* gameInfo = new vector<string>(3);
-    fin << temp << gameInfo->at(0); //stage
-    fin << temp << gameInfo->at(1); //points
-    fin << temp; getline(fin, gameinfo->at(2)); //playerInfo
+    fin >> temp >> gameInfo->at(0); //stage
+    fin >> temp >> gameInfo->at(1); //points
+    fin >> temp; getline(fin, gameInfo->at(2)); //playerInfo
     fin.close();
-    return true;
+    return gameInfo;
 }
 
 void save(const string &file, vector<string>* gameInfo) {
@@ -61,7 +61,6 @@ void save(const string &file, vector<string>* gameInfo) {
     fout << "PlayerInfo: " << gameInfo->at(2) << endl;
     fout.close();
     delete gameInfo;
-    return true;
 }
 void help(string name){
 	cout << "Welcome to King of the Dungeon, " << name << "!" << endl;
@@ -71,5 +70,5 @@ void help(string name){
 	cout << "Whether those rumors are true or not, that's for you to find out." << endl;
 	cout << "Throughout your journey you may potentially have to fight armies of creatures so prepare yourself." << endl;
 	cout << "Good Luck " << name << ", may you have luck on your side and most importantly have fun." << endl;
-	}
+}
 
