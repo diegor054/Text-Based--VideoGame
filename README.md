@@ -25,7 +25,7 @@
 ## Class Diagram
  > This OMT describes how each class is going to be implemented. There will be a class called character where the opponents and user characters will inherit functions and characteristics from it. There will also be an array of opponents that will be composed of opponent members that the user will have to eliminate. There will be various types of opponents and user characters and they will share similar traits. The decorator pattern is used to add abilities to the player or the opponents, and these abilities can be added at run time. There will be an abstract player class which chooses which type of player based on user input. There will also be an abstract stage factory which will add different opponents to each stage based on which path they take.
  > 
-![OMT2](https://user-images.githubusercontent.com/81644719/118387301-a58a5c80-b5d2-11eb-8701-d3757a55efb3.png)
+![OMT](https://user-images.githubusercontent.com/81644719/118717710-3d5a9700-b7db-11eb-8cf5-80be6ab2477c.png)
  
  > ## Phase III
  > You will need to schedule a check-in with the TA (during lab hours or office hours). Your entire team must be present. 
