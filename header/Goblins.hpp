@@ -29,7 +29,7 @@ class Goblins: public Opponent {
 			cout << "Goblin knife you and took off " << damage << " damage!" << endl;
 		}
 		else if(num == 2) {
-			cout << "Goblin hit you hard! You lost " << damage << " health!" << endl;; 
+			cout << "Goblin hit you hard! You lost " << damage << " health!" << endl; 
 		}
 		else {
 			cout << "Goblin is very mad at you and attacked you for " << damage << " health!" << endl;
