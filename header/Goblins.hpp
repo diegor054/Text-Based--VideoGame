@@ -26,13 +26,13 @@ class Goblins: public Opponent {
 	void damageMessages(int damage) {
 		int num = (rand() % 3) + 1;
 		if(num == 1) {
-			cout << "Goblem knife you and took off " << damage << " damage!" << endl;
+			cout << "Goblin knife you and took off " << damage << " damage!" << endl;
 		}
 		else if(num == 2) {
-			cout << "Goblem hit you hard! You lost " << damage << " health!" << endl;; 
+			cout << "Goblin hit you hard! You lost " << damage << " health!" << endl;; 
 		}
 		else {
-			cout << "Goblem is very mad at you and attacked you for " << damage << " health!" << endl;
+			cout << "Goblin is very mad at you and attacked you for " << damage << " health!" << endl;
 		}
 	}
 };
