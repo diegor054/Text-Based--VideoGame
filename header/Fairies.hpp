@@ -1,5 +1,5 @@
-fndef __GOBLINS_HPP__
-#define __GOBLINS_HPP__
+#ifndef __FAIRIES_HPP__
+#define __FAIRIES_HPP__
 
 #include <iostream>
 #include <cstdlib>
