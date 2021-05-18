@@ -1,6 +1,6 @@
 #ifndef __GOBLINS_HPP__
 #define __GOBLINS_HPP__
-
+#include <cstdlib>
 class Goblins: public Opponent{
         private:
 

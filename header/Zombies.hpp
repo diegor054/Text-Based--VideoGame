@@ -1,6 +1,6 @@
 #ifndef __ZOMBIES_HPP__
 #define __ZOMBIES_HPP__
-
+#include <cstdlib>
 class Zombies: public Opponent{
 	private:
 	
