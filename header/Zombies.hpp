@@ -12,9 +12,9 @@ class Zombies: public Opponent {
  public:
     Zombies() {
         opponentLevel = 1; 
-        attackStyle = "Fist"; 
+        attackStyle = "Teeth"; 
         health = 25; 
-        name = "Zombies"; 
+        name = "Zombie"; 
         attackStrength = 5;
     }  
 	void attack(vector<Opponent*> opp) override { //the idea of making player index 0 is good but wouldnt the vector have to be BaseCharacters since player isnt an 	//opoenent
@@ -26,10 +26,10 @@ class Zombies: public Opponent {
 	void damageMessages(int damage) {
         int num = (rand() % 3) + 1;
         if(num == 1) {
-            cout << "Zombie punched you and took off " << damage << " damage!" << endl;
+            cout << "Zombie bites you and deals " << damage << " damage!" << endl;
         }
         else if(num == 2) {
-            cout << "ERRRR. Zombie hit you hard! You lost " << damage << " health!" << endl;;
+            cout << "ERRRR. Zombie bit you hard! You lost " << damage << " health!" << endl;
         }
         else {
             cout << "Zombie wants some fresh meat. He attacked you for " << damage << " health!" << endl;

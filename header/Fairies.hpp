@@ -1,4 +1,4 @@
-#ifndef __GOBLINS_HPP__
+fndef __GOBLINS_HPP__
 #define __GOBLINS_HPP__
 
 #include <iostream>
@@ -6,16 +6,16 @@
 
 #include "Opponent.hpp"
 
-class Goblins: public Opponent {
+class Fairies: public Opponent {
  private:
 
  public:
-    Goblins() {
+    Fairies() {
 		opponentLevel = 1;
-		attackStyle = "Knife";
+		attackStyle = "Pixie dust";
 		health = 50;
-		name = "Goblin";
-		attackStrength = 2;
+		name = "Fairy;
+		attackStrength = 3;
 	}
     void attack(vector<Opponent*> opp) override {
     	if(this->health > 0){
@@ -26,13 +26,13 @@ class Goblins: public Opponent {
 	void damageMessages(int damage) {
 		int num = (rand() % 3) + 1;
 		if(num == 1) {
-			cout << "Goblin knife you and took off " << damage << " damage!" << endl;
+			cout << "Fairy sprinkles you and deals " << damage << " damage!" << endl;
 		}
 		else if(num == 2) {
-			cout << "Goblin hit you hard! You lost " << damage << " health!" << endl;; 
+			cout << "Fairy hit you hard! You lost " << damage << " health!" << endl;; 
 		}
 		else {
-			cout << "Goblin is very mad at you and attacked you for " << damage << " health!" << endl;
+			cout << "Fairy is very mad at you and sprinkled you for " << damage << " health!" << endl;
 		}
 	}
 };
