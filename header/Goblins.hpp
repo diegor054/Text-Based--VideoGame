@@ -14,7 +14,7 @@ class Goblins: public Opponent {
 		opponentLevel = 1;
 		attackStyle = "Knife";
 		health = 50;
-		name = "Goblins";
+		name = "Goblin";
 		attackStrength = 2;
 	}
     void attack(vector<Opponent*> opp) override {
