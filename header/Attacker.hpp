@@ -1,9 +1,10 @@
 #ifndef __ATTACKER_HPP__
 #define __ATTACKER_HPP__
+
 #include "Player.hpp"
 
 //implement attacker  class
-class Attacker: public Player{
+class Attacker : public Player {
 	private:
 	string SwordType;
 	public:
