@@ -14,13 +14,14 @@ class BaseCharacter {
     string name;
     int health;
     int attackStrength;
+    int maxhealth;
 
  public:
     BaseCharacter() { }  
     virtual void attack(vector<Opponent*> oppList) = 0;
     void printHealth() const {
         int totalLines = 10;
-        int lines = health / totalLines;
+        int lines = (100*(health / maxhealth))/totalLines ;
         cout << "[";
         for (int i = 0; i < totalLines; i++) {
 	        if (i < lines) cout << '|';
