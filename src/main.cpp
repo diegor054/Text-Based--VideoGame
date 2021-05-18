@@ -6,11 +6,14 @@
 using namespace std;
 
 vector<string>* load(const string &);
-void save(const string &, vector<string>*, Character*);
+void save(const string &, vector<string>*);
 
 int main() {
-    string file = "data/savefile.txt";
+    //load program
+    string file = "./data/savefile.txt";
     vector<string>* gameInfo = load(file);
+    
+    //check if new player
     if (playerinfo == nullptr) {
         string playerName;
         cout << "Welcome, please enter your player's name: " << flush;
@@ -19,9 +22,11 @@ int main() {
     
     //run program
     PlayerFactory pf;
-    Character* player = pf.getPlayer(gameInfo);
-
-    save(file, player);
+    Character* player = pf.getPlayer(gameInfo->at(2));
+    
+    //save program
+    gameInfo->at(2) = player.getType();
+    save(file, gameInfo);
     return 0;
 }
 
@@ -43,15 +48,15 @@ vector<string>* load(const string &file) {
     return true;
 }
 
-void save(const string &file, vector<string>* gameInfo, Character* player) {
+void save(const string &file, vector<string>* gameInfo) {
     ofstream fout(file);
     if (!fout.is_open()) {
         cout << "Error writing to " << file << endl;
         exit(EXIT_FAILURE);
     }
-    fout << "Stage: " << playerInfo.at(0) << endl;
-    fout << "Points: " << playerInfo.at(1) << endl;
-    fout << "PlayerInfo: " << player.getType() << endl;
+    fout << "Stage: " << gameInfo->at(0) << endl;
+    fout << "Points: " << gameInfo->at(1) << endl;
+    fout << "PlayerInfo: " << gameInfo->at(2) << endl;
     fout.close();
     delete gameInfo;
     return true;
