@@ -2,12 +2,14 @@
 #include <fstream>
 #include <string>
 #include <vector>
-#include "BaseCharacter.hpp"
+
 using namespace std;
+
+#include "BaseCharacter.hpp"
 
 vector<string>* load(const string &);
 void save(const string &, vector<string>*);
-void help(string name);
+void help(const string &);
 
 int main() {
     //load program
@@ -20,6 +22,22 @@ int main() {
         cout << "Welcome, please enter your player's name: " << flush;
         cin >> playerName;
        	help(playerName);
+        string playerType;
+        bool invalidInput = true;
+        while (invalidInput) {
+            invalidInput = false;
+            cout << "Choose your player type wisely: (A) attacker or (B) healer: " << flush;
+            cin >> playerType;
+            if (toupper(playerType) == "A") {
+                playerType = "Attacker";
+            else if (toupper(playerType) == "B") {
+                playerType = "Healer";
+            }
+            else {
+                cout << "This is not a valid choice." << endl;
+                invalidInput = true;
+            }
+        }
     }
     
     //run program
@@ -62,7 +80,7 @@ void save(const string &file, vector<string>* gameInfo) {
     fout.close();
     delete gameInfo;
 }
-void help(string name){
+void help(const string &name) {
 	cout << "Welcome to King of the Dungeon, " << name << "!" << endl;
 	cout << "You are going on a journey throughout a mysterious dungeon in hopes of finding a secret treasure that no one has ever found." << endl;
 	cout << "However, the task will not be easy 0_0." << endl;
