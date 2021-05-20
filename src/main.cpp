@@ -42,10 +42,12 @@ vector<string>* load(const string &file) {
         return nullptr;
     }
     string temp;
-    vector<string>* gameInfo = new vector<string>(3);
+    vector<string>* gameInfo = new vector<string>(5);
     fin >> temp >> gameInfo->at(0); //stage
     fin >> temp >> gameInfo->at(1); //points
-    fin >> temp; getline(fin, gameInfo->at(2)); //playerInfo
+    fin >> temp >> gameInfo->at(2); //name
+    fin >> temp >> gameInfo->at(3); //type
+    fin >> temp; getline(fin, gameInfo->at(4)); //playerInfo
     fin.close();
     return gameInfo;
 }
@@ -58,7 +60,9 @@ void save(const string &file, vector<string>* gameInfo) {
     }
     fout << "Stage: " << gameInfo->at(0) << endl;
     fout << "Points: " << gameInfo->at(1) << endl;
-    fout << "PlayerInfo: " << gameInfo->at(2) << endl;
+    fout << "Name: " << gameInfo->at(2) << endl;
+    fout << "Type: " << gameInfo->at(3) << endl;
+    fout << "Abilities: " << gameInfo->at(4) << endl;
     fout.close();
     delete gameInfo;
 }
@@ -95,6 +99,6 @@ vector<string>* start() {
             invalidInput = true;
         }
     }
-    return new vector<string>{"0","0",playerName + " " + playerType};
+    return new vector<string>{"0", "0", playerName, playerType, ""};
 }
 
