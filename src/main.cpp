@@ -5,7 +5,7 @@
 
 using namespace std;
 
-#include "BaseCharacter.hpp"
+#include "header/BaseCharacter.hpp"
 
 vector<string>* load(const string &);
 void save(const string &, vector<string>*);
@@ -22,15 +22,16 @@ int main() {
         cout << "Welcome, please enter your player's name: " << flush;
         cin >> playerName;
        	help(playerName);
-        string playerType;
+        string playerType = "X";
         bool invalidInput = true;
         while (invalidInput) {
             invalidInput = false;
-            cout << "Choose your player type wisely: (A) attacker or (B) healer: " << flush;
+            cout << "Choose your player type wisely: (A) attacker or (H) healer: " << flush;
             cin >> playerType;
-            if (toupper(playerType) == "A") {
+            if (toupper(playerType.at(0)) == 'A') {
                 playerType = "Attacker";
-            else if (toupper(playerType) == "B") {
+            }
+            else if (toupper(playerType.at(0)) == 'H') {
                 playerType = "Healer";
             }
             else {
