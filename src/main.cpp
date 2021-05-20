@@ -5,11 +5,12 @@
 
 using namespace std;
 
-#include "BaseCharacter.hpp"
+#include "header/Player.hpp"
 
 vector<string>* load(const string &);
 void save(const string &, vector<string>*);
 void help(const string &);
+vector<string>* start();
 
 int main() {
     //load program
@@ -18,31 +19,18 @@ int main() {
     
     //check if new player
     if (gameInfo == nullptr) {
-        string playerName;
-        cout << "Welcome, please enter your player's name: " << flush;
-        cin >> playerName;
-       	help(playerName);
-        string playerType;
-        bool invalidInput = true;
-        while (invalidInput) {
-            invalidInput = false;
-            cout << "Choose your player type wisely: (A) attacker or (B) healer: " << flush;
-            cin >> playerType;
-            if (toupper(playerType) == "A") {
-                playerType = "Attacker";
-            else if (toupper(playerType) == "B") {
-                playerType = "Healer";
-            }
-            else {
-                cout << "This is not a valid choice." << endl;
-                invalidInput = true;
-            }
-        }
+        gameInfo = start();
     }
     
     //run program
     PlayerFactory pf;
-    BaseCharacter* player = pf.getPlayer(gameInfo->at(2));
+    Player* player;
+    if (gameInfo->at(3) == "Attacker") player = pf.getAttacker(gameInfo->at(4));
+    else if (gameInfo->at(3) == "Healer") player = pf.getHealer(gameInfo->at(4));
+    else {exit(EXIT_FAILURE);}
+    int stage = stoi(gameInfo->at(0));
+    int points = stoi(gameInfo->at(1));
+    player->setName(gameInfo->at(2));
     
     //save program
     gameInfo->at(2) = player.getType();
@@ -60,10 +48,12 @@ vector<string>* load(const string &file) {
         return nullptr;
     }
     string temp;
-    vector<string>* gameInfo = new vector<string>(3);
+    vector<string>* gameInfo = new vector<string>(5);
     fin >> temp >> gameInfo->at(0); //stage
     fin >> temp >> gameInfo->at(1); //points
-    fin >> temp; getline(fin, gameInfo->at(2)); //playerInfo
+    fin >> temp >> gameInfo->at(2); //name
+    fin >> temp >> gameInfo->at(3); //type
+    fin >> temp; getline(fin, gameInfo->at(4)); //playerInfo
     fin.close();
     return gameInfo;
 }
@@ -76,10 +66,13 @@ void save(const string &file, vector<string>* gameInfo) {
     }
     fout << "Stage: " << gameInfo->at(0) << endl;
     fout << "Points: " << gameInfo->at(1) << endl;
-    fout << "PlayerInfo: " << gameInfo->at(2) << endl;
+    fout << "Name: " << gameInfo->at(2) << endl;
+    fout << "Type: " << gameInfo->at(3) << endl;
+    fout << "Abilities: " << gameInfo->at(4) << endl;
     fout.close();
     delete gameInfo;
 }
+
 void help(const string &name) {
 	cout << "Welcome to King of the Dungeon, " << name << "!" << endl;
 	cout << "You are going on a journey throughout a mysterious dungeon in hopes of finding a secret treasure that no one has ever found." << endl;
@@ -88,5 +81,30 @@ void help(const string &name) {
 	cout << "Whether those rumors are true or not, that's for you to find out." << endl;
 	cout << "Throughout your journey you may potentially have to fight armies of creatures so prepare yourself." << endl;
 	cout << "Good Luck " << name << ", may you have luck on your side and most importantly have fun." << endl;
+}
+
+vector<string>* start() {
+    string playerName;
+    cout << "Welcome, please enter your player's name: " << flush;
+    cin >> playerName;
+    help(playerName);
+    string playerType = "X";
+    bool invalidInput = true;
+    while (invalidInput) {
+        invalidInput = false;
+        cout << "Choose your player type wisely: (A) attacker or (H) healer: " << flush;
+        cin >> playerType;
+        if (toupper(playerType.at(0)) == 'A') {
+            playerType = "Attacker";
+        }
+        else if (toupper(playerType.at(0)) == 'H') {
+            playerType = "Healer";
+        }
+        else {
+            cout << "This is not a valid choice." << endl;
+            invalidInput = true;
+        }
+    }
+    return new vector<string>{"0", "0", playerName, playerType, ""};
 }
 
