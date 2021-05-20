@@ -10,6 +10,7 @@ using namespace std;
 vector<string>* load(const string &);
 void save(const string &, vector<string>*);
 void help(const string &);
+vector<string>* start();
 
 int main() {
     //load program
@@ -18,27 +19,7 @@ int main() {
     
     //check if new player
     if (gameInfo == nullptr) {
-        string playerName;
-        cout << "Welcome, please enter your player's name: " << flush;
-        cin >> playerName;
-       	help(playerName);
-        string playerType = "X";
-        bool invalidInput = true;
-        while (invalidInput) {
-            invalidInput = false;
-            cout << "Choose your player type wisely: (A) attacker or (H) healer: " << flush;
-            cin >> playerType;
-            if (toupper(playerType.at(0)) == 'A') {
-                playerType = "Attacker";
-            }
-            else if (toupper(playerType.at(0)) == 'H') {
-                playerType = "Healer";
-            }
-            else {
-                cout << "This is not a valid choice." << endl;
-                invalidInput = true;
-            }
-        }
+        gameInfo = start();
     }
     
     //run program
@@ -81,6 +62,7 @@ void save(const string &file, vector<string>* gameInfo) {
     fout.close();
     delete gameInfo;
 }
+
 void help(const string &name) {
 	cout << "Welcome to King of the Dungeon, " << name << "!" << endl;
 	cout << "You are going on a journey throughout a mysterious dungeon in hopes of finding a secret treasure that no one has ever found." << endl;
@@ -89,5 +71,30 @@ void help(const string &name) {
 	cout << "Whether those rumors are true or not, that's for you to find out." << endl;
 	cout << "Throughout your journey you may potentially have to fight armies of creatures so prepare yourself." << endl;
 	cout << "Good Luck " << name << ", may you have luck on your side and most importantly have fun." << endl;
+}
+
+vector<string>* start() {
+    string playerName;
+    cout << "Welcome, please enter your player's name: " << flush;
+    cin >> playerName;
+    help(playerName);
+    string playerType = "X";
+    bool invalidInput = true;
+    while (invalidInput) {
+        invalidInput = false;
+        cout << "Choose your player type wisely: (A) attacker or (H) healer: " << flush;
+        cin >> playerType;
+        if (toupper(playerType.at(0)) == 'A') {
+            playerType = "Attacker";
+        }
+        else if (toupper(playerType.at(0)) == 'H') {
+            playerType = "Healer";
+        }
+        else {
+            cout << "This is not a valid choice." << endl;
+            invalidInput = true;
+        }
+    }
+    return new vector<string>{"0","0",playerName + " " + playerType};
 }
 
