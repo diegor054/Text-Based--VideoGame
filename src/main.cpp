@@ -5,7 +5,7 @@
 
 using namespace std;
 
-#include "header/BaseCharacter.hpp"
+#include "header/Player.hpp"
 
 vector<string>* load(const string &);
 void save(const string &, vector<string>*);
@@ -24,7 +24,13 @@ int main() {
     
     //run program
     PlayerFactory pf;
-    BaseCharacter* player = pf.getPlayer(gameInfo->at(2));
+    Player* player;
+    if (gameInfo->at(3) == "Attacker") player = pf.getAttacker(gameInfo->at(4));
+    else if (gameInfo->at(3) == "Healer") player = pf.getHealer(gameInfo->at(4));
+    else {exit(EXIT_FAILURE);}
+    int stage = stoi(gameInfo->at(0));
+    int points = stoi(gameInfo->at(1));
+    player->setName(gameInfo->at(2));
     
     //save program
     gameInfo->at(2) = player.getType();
