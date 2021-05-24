@@ -5,7 +5,7 @@
 
 class Ninja: public Player {
 private:
-string knifeType; //goes wood, steel, gold, diamond. used just for show not any purpose. propotional to playerTypeLevel
+string knifeType; //goes bronze, silver, gold, diamond
 public:
 Ninja() {
 health = 100;
