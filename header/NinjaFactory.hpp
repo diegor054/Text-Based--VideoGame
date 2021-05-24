@@ -9,7 +9,7 @@
 
 class NinjaFactory : public AbstractPlayerFactory {
  private:
-    string playerInfo;
+    string playerInfo = "You are the Ninja. Your agility helps you to stealthily avoid some of the enemies attacks. You also have shurikens which can damage multiple opponents at once.";
     virtual Player* addDecorators(Player* p) {
         return new AoeDecorator(new DodgeDecorator(p));
     }
