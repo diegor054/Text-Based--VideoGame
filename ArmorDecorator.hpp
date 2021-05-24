@@ -2,7 +2,8 @@
 #define __ARMOR_DECORATOR__
 
 class ArmorDecorator : public AbilityDecorator {
-
+ public:
+    ArmorDecorator(BaseCharacter* c) : AbilityDecorator(c) { }
 };
 
 #endif

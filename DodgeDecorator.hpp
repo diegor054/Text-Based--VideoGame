@@ -4,7 +4,8 @@
 #include "AbilityDecorator.hpp"
 
 class DodgeDecorator : public AbilityDecorator {
-
+ public:
+    DodgeDecorator(BaseCharacter* c) : AbilityDecorator(c) { }
 };
 
 #endif
