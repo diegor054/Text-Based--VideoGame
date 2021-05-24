@@ -90,13 +90,16 @@ vector<string>* start() {
     bool invalidInput = true;
     while (invalidInput) {
         invalidInput = false;
-        cout << "Choose your player type wisely: (A) attacker or (H) healer: " << flush;
+        cout << "Choose your player type wisely: (A) attacker, (H) healer, or (N) Ninja: " << flush;
         cin >> playerType;
         if (toupper(playerType.at(0)) == 'A') {
             playerType = "Attacker";
         }
         else if (toupper(playerType.at(0)) == 'H') {
             playerType = "Healer";
+        }
+        else if (toupper(playerType.at(0)) == 'N') {
+            playerType = "Ninja";
         }
         else {
             cout << "This is not a valid choice." << endl;
