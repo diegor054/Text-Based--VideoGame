@@ -16,6 +16,7 @@ void save(const string &, vector<string>*);
 void help(const string &);
 vector<string>* start();
 Player* getPlayer(const string &, const string &, int, bool);
+void instructions();
 
 int main() {
     //load program
@@ -33,6 +34,7 @@ int main() {
     }
 
     //run program
+    instructions();
     int stage = stoi(gameInfo->at(0));
     
     //save program
@@ -126,4 +128,24 @@ Player* getPlayer(const string &name, const string &type, int xp, bool isNew) {
         return p;
     }
     return pf->getUpgradedPlayer(name, xp);
+}
+void instructions(){
+	cout << "Would you like to see the instructions before you start?(Enter YES or NO)" << endl;
+	string a;
+	cin >> a;
+        while(a != "YES" || a != "NO"){
+	cout << "Invalid Answer. Please enter YES or NO" << endl;
+	cin >> a;
+	}
+	if(a == "YES"){
+	cout << "Throughout this game you will explore a dungeon and have to navigate throughout the halls." << endl;
+	cout << "You will be asked to go LEFT or RIGHT and face enemies depending on what directon you go." << endl;
+	cout << "You will have to eliminate all enemies before moving onto the next stage." << endl;
+	cout << "You will have the ability to leave a fight if you are running low on health." << endl;
+	cout << "Note you will gain back some health after each round." << endl;
+	}
+	if(a == "NO"){
+	return;
+	}
+	return;
 }
