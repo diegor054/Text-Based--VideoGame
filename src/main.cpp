@@ -5,7 +5,11 @@
 
 using namespace std;
 
-#include "header/Player.hpp"
+#include "../header/Player.hpp"
+#include "../header/Opponent.hpp"
+#include "../header/AttackerFactory.hpp"
+#include "../header/HealerFactory.hpp"
+#include "../header/NinjaFactory.hpp"
 
 vector<string>* load(const string &);
 void save(const string &, vector<string>*);
@@ -18,7 +22,7 @@ int main() {
     string file = "./data/savefile.txt";
     vector<string>* gameInfo = load(file);
     
-    //check if new player
+    //get player
     Player* player;
     if (gameInfo == nullptr) {
         gameInfo = start();
