@@ -107,9 +107,16 @@ vector<string>* start() {
 }
 
 Player* getPlayer(const string &name, const string &type, int xp, bool isNew) {
-    AbstractPlayerFactory pf;
+    AbstractPlayerFactory* pf;
     if (gameInfo->at(3) == "Attacker") pf = new AttackerFactory();
     else if (gameInfo->at(3) == "Healer") pf = new HealerFactory();
     else if (gameInfo->at(3) == "Ninja") pf = new NinjaFactory();
     else return nullptr;
+    if (isNew) {
+        cout << pf->getPlayerInfo() << endl;
+        Player* p = pf->getDefaultPlayer();
+        p->setName(name);
+        return p;
+    }
+    return pf->getUpgradedPlayer(name, xp);
 }
