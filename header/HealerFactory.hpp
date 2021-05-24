@@ -19,7 +19,10 @@ class HealerFactory : public AbstractPlayerFactory {
         return addDecorators(new Healer());
     }
     virtual Player* getUpgradedPlayer(const string &name, int xp) const override {
-
+        Healer* h = new Healer();
+        h->setName(name);
+        h->setXP(xp);
+        return addDecorators(h);
     }
 };
 

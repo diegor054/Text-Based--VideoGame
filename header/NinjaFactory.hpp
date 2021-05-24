@@ -19,7 +19,10 @@ class NinjaFactory : public AbstractPlayerFactory {
         return addDecorators(new Ninja());
     }
     virtual Player* getUpgradedPlayer(const string &name, int xp) const override {
-
+        Ninja* n = new Ninja();
+        n->setName(name);
+        n->setXP(xp);
+        return addDecorators(n);
     }
 };
 
