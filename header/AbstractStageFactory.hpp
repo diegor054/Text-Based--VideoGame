@@ -8,8 +8,10 @@ using namespace std;
 #include "BaseCharacter"
 
 class AbstractStageFactory {
+ private:
+    Player* player;
  public:
-    AbstractStageFactory();
+    AbstractStageFactory(Player* user) : player(user) { }
     virtual vector<BaseCharacter*> getStage1() = 0;
     virtual vector<BaseCharacter*> getStage2() = 0;
     virtual vector<BaseCharacter*> getStage3() = 0;
