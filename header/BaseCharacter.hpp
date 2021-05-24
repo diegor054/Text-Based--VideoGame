@@ -15,6 +15,7 @@ class BaseCharacter {
     int health;
     int attackStrength;
     int maxhealth;
+    string characterType;
 
  public:
     BaseCharacter() { }  
@@ -29,6 +30,10 @@ class BaseCharacter {
         }
         cout << "]  " << health << " remaining health" << endl;
     }
+    void setName(string n){ name = n; }
+    void setType(string t){ characterType t; }
+    string getName(){ return name; }
+    string getType(){ return characterType; } 
 };
 
 #endif
