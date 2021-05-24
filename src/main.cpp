@@ -11,7 +11,7 @@ vector<string>* load(const string &);
 void save(const string &, vector<string>*);
 void help(const string &);
 vector<string>* start();
-Player* getPlayer(const string &, const string &, int);
+Player* getPlayer(const string &, const string &, int, bool);
 
 int main() {
     //load program
@@ -19,13 +19,17 @@ int main() {
     vector<string>* gameInfo = load(file);
     
     //check if new player
+    Player* player;
     if (gameInfo == nullptr) {
         gameInfo = start();
+        player = getPlayer(gameInfo->at(2), gameInfo->at(3), stoi(gameInfo->at(1)), true);
     }
-    
+    else {
+        player = getPlayer(gameInfo->at(2), gameInfo->at(3), stoi(gameInfo->at(1)), false);
+    }
+
     //run program
     int stage = stoi(gameInfo->at(0));
-    Player* player = getPlayer(gameInfo->at(2), gameInfo->at(3), stoi(gameInfo->at(1)));
     
     //save program
     gameInfo->at(2) = player.getType();
@@ -102,7 +106,7 @@ vector<string>* start() {
     return new vector<string>{"0", "0", playerName, playerType};
 }
 
-Player* getPlayer(const string &name, const string &type, int xp) {
+Player* getPlayer(const string &name, const string &type, int xp, bool isNew) {
     AbstractPlayerFactory pf;
     if (gameInfo->at(3) == "Attacker") pf = new AttackerFactory();
     else if (gameInfo->at(3) == "Healer") pf = new HealerFactory();
