@@ -4,18 +4,21 @@
 #include "Attacker.hpp"
 #include "AbstractPlayerFactory.hpp"
 
+#include "CriticalDecorator.hpp"
+#include "ArmorDecorator.hpp"
+
 class AttackerFactory : public AbstractPlayerFactory {
  private:
     string playerInfo;
+    virtual Player* addDecorators(Player* p) {
+        return new CriticalDecorator(new ArmorDecorator(p));
+    }
  public:
     AttackerFactory();
     virtual Player* getDefaultPlayer() const override {
-        return new Attacker();
+        return addDecorators(new Attacker());
     }
-    virtual Player* getUpgradedPlayer(const string &name, int xp, int abilityData) const override {
-
-    }
-    virtual string getPlayerInfo() const override {
+    virtual Player* getUpgradedPlayer(const string &name, int xp) const override {
 
     }
 };

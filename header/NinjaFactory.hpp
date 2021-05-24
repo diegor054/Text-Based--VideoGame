@@ -4,18 +4,21 @@
 #include "Ninja.hpp"
 #include "AbstractPlayerFactory.hpp"
 
+#include "AoeDecorator.hpp"
+#include "DodgeDecorator.hpp"
+
 class NinjaFactory : public AbstractPlayerFactory {
  private:
     string playerInfo;
+    virtual Player* addDecorators(Player* p) {
+        return new AoeDecorator(new DodgeDecorator(p));
+    }
  public:
     NinjaFactory();
     virtual Player* getDefaultPlayer() const override {
-        return new Ninja();
+        return addDecorators(new Ninja());
     }
-    virtual Player* getUpgradedPlayer(const string &name, int xp, int abilityData) const override {
-
-    }
-    virtual string getPlayerInfo() const override {
+    virtual Player* getUpgradedPlayer(const string &name, int xp) const override {
 
     }
 };

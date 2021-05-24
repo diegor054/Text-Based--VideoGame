@@ -8,13 +8,14 @@ using namespace std;
 #include "Player.hpp"
 
 class AbstractPlayerFactory {
- private:
+ protected:
     string playerInfo;
+    virtual Player* addDecorators(Player*) = 0;
  public:
     AbstractPlayerFactory();
     virtual Player* getDefaultPlayer() = 0;
     virtual Player* getUpgradedPlayer(const string &, int, int) = 0;
-    virtual string getPlayerInfo() = 0;
+    string getPlayerInfo() { return playerInfo; }
 };
 
 #endif

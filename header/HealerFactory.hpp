@@ -4,18 +4,21 @@
 #include "Healer.hpp"
 #include "AbstractPlayerFactory.hpp"
 
+#include "DrainDecorator.hpp"
+#include "SpikesDecorator.hpp"
+
 class HealerFactory : public AbstractPlayerFactory {
  private:
     string playerInfo;
+    virtual Player* addDecorators(Player* p) {
+        return new DrainDecorator(new SpikesDecorator(p));
+    }
  public:
     HealerFactory();
     virtual Player* getDefaultPlayer() const override {
-        return new Healer();
+        return addDecorators(new Healer());
     }
-    virtual Player* getUpgradedPlayer(const string &name, int xp, int abilityData) const override {
-
-    }
-    virtual string getPlayerInfo() const override {
+    virtual Player* getUpgradedPlayer(const string &name, int xp) const override {
 
     }
 };
