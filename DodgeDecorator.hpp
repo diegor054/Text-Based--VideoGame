@@ -6,8 +6,8 @@
 class DodgeDecorator : public AbilityDecorator {
  public:
     DodgeDecorator(BaseCharacter* c) : AbilityDecorator(c) { }
-    virtual void attack(vector<BaseCharacter*> charList) {return c->attack(charList);}
-    virtual void defend(vector<BaseCharacter*> charList, int attackerIndex, int damage) {
+    virtual BaseCharacter* attack(vector<BaseCharacter*> charList) {return c->attack(charList);}
+    virtual int defend(vector<BaseCharacter*> charList, int attackerIndex, int damage) {
         if (!(rand() % 2)) {
             if (!(rand() % 2)) {
                 return c->defend(0);

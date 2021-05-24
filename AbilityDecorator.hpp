@@ -8,8 +8,8 @@ class AbilityDecorator : public BaseCharacter {
     BaseCharacter* character;
  public:
     AbilityDecorator(BaseCharacter* c) : BaseCharacter(), character(c) { }
-    virtual void attack(vector<BaseCharacter*>) = 0;
-    virtual void defend(vector<BaseCharacter*> charList, int attackerIndex, int damage) = 0;
+    virtual BaseCharacter* attack(vector<BaseCharacter*>) = 0;
+    virtual int defend(vector<BaseCharacter*> charList, int attackerIndex, int damage) = 0;
 };
 
 #endif
