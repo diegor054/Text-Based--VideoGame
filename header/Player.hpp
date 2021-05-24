@@ -12,6 +12,9 @@ class Player : public BaseCharacter {
 	Player() { }
 	virtual void Upgrade() = 0; //each playerType will have unique Upgrade
 	virtual	void setMaxHealth() = 0; 
+	void setXP(int x){ xp = x; }
+	int getXP(){ return xp; }
+	
 };
 
 #endif
