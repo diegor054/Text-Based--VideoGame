@@ -19,7 +19,7 @@ class AttackerFactory : public AbstractPlayerFactory {
         return addDecorators(new Attacker());
     }
     virtual Player* getUpgradedPlayer(const string &name, int xp) const override {
-        Attacker* a = new Healer();
+        Attacker* a = new Attacker();
         a->setName(name);
         a->setXP(xp);
         return addDecorators(a);
