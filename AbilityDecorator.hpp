@@ -9,7 +9,7 @@ class AbilityDecorator : public BaseCharacter {
  public:
     AbilityDecorator(BaseCharacter* c) : BaseCharacter(), character(c) { }
     virtual void attack(vector<BaseCharacter*>) = 0;
-    virtual void defend(int) = 0;
+    virtual void defend(vector<BaseCharacter*> charList, int attackerIndex, int damage) = 0;
 };
 
 #endif

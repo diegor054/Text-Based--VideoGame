@@ -11,7 +11,7 @@ class AoeDecorator : public AbilityDecorator {
             }
         }
     }
-    virtual void defend(int damage) {return c->defend(damage)}
+    virtual void defend(vector<BaseCharacter*> charList, int attackerIndex, int damage) {return c->defend(damage);}
 };
 
 #endif
