@@ -7,6 +7,7 @@ class DrainDecorator : public AbilityDecorator {
     virtual BaseCharacter* attack(vector<BaseCharacter*> charList) {
         BaseCharacter* victim = c.attack(charList);
         c.setHealth(c.getHealth() + victim.latestDamage() / 5);
+        return victim;
     }
     virtual int defend(vector<BaseCharacter*> charList, int attackerIndex, int damage) {return c->defend(damage);}
 };
