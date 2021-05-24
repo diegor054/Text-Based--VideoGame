@@ -6,11 +6,13 @@
 
 class AttackerFactory : public AbstractPlayerFactory {
  private:
-    string type = "Attacker";
+    string playerInfo;
  public:
     AttackerFactory();
-    virtual Player* getDefaultPlayer() const override {return new Attacker();}
-    virtual Player* getUpgradedPlayer(const string &name, const string &xp, const string &abilityData) const override {
+    virtual Player* getDefaultPlayer() const override {
+        return new Attacker();
+    }
+    virtual Player* getUpgradedPlayer(const string &name, int xp, int abilityData) const override {
 
     }
     virtual string getPlayerInfo() const override {

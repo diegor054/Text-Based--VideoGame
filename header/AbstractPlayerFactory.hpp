@@ -9,11 +9,11 @@ using namespace std;
 
 class AbstractPlayerFactory {
  private:
-    string type;
+    string playerInfo;
  public:
     AbstractPlayerFactory();
     virtual Player* getDefaultPlayer() = 0;
-    virtual Player* getUpgradedPlayer(const string &, const string &, const string &) = 0;
+    virtual Player* getUpgradedPlayer(const string &, int, int) = 0;
     virtual string getPlayerInfo() = 0;
 };
 
