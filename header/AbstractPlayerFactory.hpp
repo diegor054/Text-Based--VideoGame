@@ -1,0 +1,4 @@
+#ifndef __ABSTRACT_PLAYER_FACTORY__
+#define __ABSTRACT_PLAYER_FACTORY__
+
+#endif
