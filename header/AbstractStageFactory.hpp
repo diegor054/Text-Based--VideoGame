@@ -5,10 +5,12 @@
 
 using namespace std;
 
-#include "BaseCharacter"
+#include "BaseCharacter.hpp"
+#include "Player.hpp"
+#include "Opponent.hpp"
 
 class AbstractStageFactory {
- private:
+ protected:
     Player* player;
  public:
     AbstractStageFactory(Player* user) : player(user) { }
