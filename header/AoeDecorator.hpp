@@ -1,14 +1,16 @@
 #ifndef __AOE_DECORATOR__
 #define __AOE_DECORATOR__
 
+#include "AbilityDecorator.hpp"
+
 class AoeDecorator : public AbilityDecorator {
  public:
     AoeDecorator(BaseCharacter* c) : AbilityDecorator(c) { }
     virtual BaseCharacter* attack(vector<BaseCharacter*> charList) {
-        c.attack(charList);
-        for (int i = charList.begin() + 1; i != charList.end(); ++i) {
-            if (!(rand % 5)) {
-                charList.at(i).defend(c.attackStrength / 3);
+        this->character->attack(charList);
+        for (vector<BaseCharacter*>::iterator i = charList.begin() + 1; i != charList.end(); ++i) {
+            if (!(rand() % 5)) {
+                charList.at(i).defend(this->character->attackStrength / 3);
             }
         }
     }

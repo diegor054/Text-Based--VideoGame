@@ -31,7 +31,7 @@ class BaseCharacter {
         cout << "]  " << health << " remaining health" << endl;
     }
     void setName(string n){ name = n; }
-    void setType(string t){ characterType t; }
+    void setType(string t){ characterType = t; }
     string getName(){ return name; }
     string getType(){ return characterType; } 
 };
