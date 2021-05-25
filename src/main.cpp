@@ -19,7 +19,7 @@ void help(const string &);
 vector<string>* start();
 Player* getPlayer(const string &, const string &, int, bool);
 void instructions();
-void getStage(int stage, bool pathLeft, BaseCharacter* Player);
+vector<BaseCharacter*> getStage(int stage, bool pathLeft, BaseCharacter* Player);
 
 int main() {
     //load program
@@ -53,8 +53,9 @@ int main() {
     if(path == "R"){
         pathLeft = false;
     }
-    getStage(stage, pathLeft);
     }
+    getStage(stage, pathLeft);
+    
 
     //save program
     save(file, gameInfo);
@@ -198,7 +199,7 @@ vector<BaseCharacter*> getStage(int stage, bool pathLeft, BaseCharacter* Player)
                  return path->getStage7();
            }
            if(stage == 8){
-                return path->getStage4();
+                return path->getStage8();
           }
 	 if(stage == 9){
                  return path->getStage9();
