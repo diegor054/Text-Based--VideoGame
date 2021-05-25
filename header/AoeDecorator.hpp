@@ -8,13 +8,13 @@ class AoeDecorator : public AbilityDecorator {
     AoeDecorator(BaseCharacter* c) : AbilityDecorator(c) { }
     virtual BaseCharacter* attack(vector<BaseCharacter*> charList) {
         this->character->attack(charList);
-        for (vector<BaseCharacter*>::iterator i = charList.begin() + 1; i != charList.end(); ++i) {
+        for (vector<BaseCharacter*>::iterator it = charList.begin() + 1; it != charList.end(); ++it) {
             if (!(rand() % 5)) {
-                charList.at(i).defend(this->character->attackStrength / 3);
+                (*it)->defend(charList, 0, this->character->getAttackStrength() / 3);
             }
         }
     }
-    virtual int defend(vector<BaseCharacter*> charList, int attackerIndex, int damage) {return c->defend(damage);}
+    virtual int defend(vector<BaseCharacter*> charList, int attackerIndex, int damage) {return character->defend(charList, attackerIndex, damage);}
 };
 
 #endif
