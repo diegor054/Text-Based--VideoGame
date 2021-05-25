@@ -10,15 +10,15 @@
 class AttackerFactory : public AbstractPlayerFactory {
  private:
     string playerInfo = "You are the Attacker. You are strong, and have the chance to deal extra damage on the opponent. You also have armor which will protect you from your opponents.";
-    virtual Player* addDecorators(Player* p) {
+    virtual BaseCharacter* addDecorators(Player* p) {
         return new CriticalDecorator(new ArmorDecorator(p));
     }
  public:
     AttackerFactory();
-    virtual Player* getDefaultPlayer() const override {
+    virtual BaseCharacter* getDefaultPlayer() override {
         return addDecorators(new Attacker());
     }
-    virtual Player* getUpgradedPlayer(const string &name, int xp) const override {
+    virtual BaseCharacter* getUpgradedPlayer(const string &name, int xp) override {
         Attacker* a = new Attacker();
         a->setName(name);
         a->setXP(xp);

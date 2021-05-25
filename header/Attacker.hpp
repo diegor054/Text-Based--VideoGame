@@ -25,9 +25,10 @@ class Attacker : public Player {
 	void setHealth(int x) { //used for when player is attacked
 		this->health += x;
 	}
-	void attack(vector<Opponent*> opp) override {
+	BaseCharacter* attack(vector<BaseCharacter*> charList) override {
 		//implement
 	}
+	int defend(vector<BaseCharacter*> charList, int attackerIndex, int damage) override { return 0; } //fixme
 };
 
 #endif

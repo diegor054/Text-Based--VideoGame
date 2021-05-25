@@ -17,7 +17,7 @@ vector<string>* load(const string &);
 void save(const string &, vector<string>*);
 void help(const string &);
 vector<string>* start();
-Player* getPlayer(const string &, const string &, int, bool);
+BaseCharacter* getPlayer(const string &, const string &, int, bool);
 void instructions();
 vector<BaseCharacter*> getStage(int stage, bool pathLeft, BaseCharacter* Player);
 
@@ -27,7 +27,7 @@ int main() {
     vector<string>* gameInfo = load(file);
     
     //get player
-    Player* player;
+    BaseCharacter* player;
     if (gameInfo == nullptr) {
         gameInfo = start();
         player = getPlayer(gameInfo->at(2), gameInfo->at(3), stoi(gameInfo->at(1)), true);
@@ -135,7 +135,7 @@ vector<string>* start() {
     return new vector<string>{"0", "0", playerName, playerType};
 }
 
-Player* getPlayer(const string &name, const string &type, int xp, bool isNew) {
+BaseCharacter* getPlayer(const string &name, const string &type, int xp, bool isNew) {
     AbstractPlayerFactory* pf;
     if (type == "Attacker") pf = new AttackerFactory();
     else if (type == "Healer") pf = new HealerFactory();
@@ -143,9 +143,9 @@ Player* getPlayer(const string &name, const string &type, int xp, bool isNew) {
     else return nullptr;
     if (isNew) {
         cout << pf->getPlayerInfo() << endl;
-        Player* p = pf->getDefaultPlayer();
-        p->setName(name);
-        return p;
+        BaseCharacter* player = pf->getDefaultPlayer();
+        player->setName(name);
+        return player;
     }
     return pf->getUpgradedPlayer(name, xp);
 }
