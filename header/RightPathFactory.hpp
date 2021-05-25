@@ -5,7 +5,7 @@
 
 class RightPathFactory : public AbstractStageFactory {
  public:
-    RightPathFactory(Player* user) : AbstractStageFactory(user) { }
+    RightPathFactory(BaseCharacter* user) : AbstractStageFactory(user) { }
     virtual vector<BaseCharacter*> getStage1() override {return vector<BaseCharacter*>{player, new Goblins()};}
     virtual vector<BaseCharacter*> getStage2() override {return vector<BaseCharacter*>{player, new Goblins()};}
     virtual vector<BaseCharacter*> getStage3() override {return vector<BaseCharacter*>{player, new Goblins()};}
