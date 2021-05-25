@@ -45,7 +45,7 @@ int main() {
         cout << "Would you like to continue (C) or exit (Q)? " << flush;
         cin >> userInput;
     }
-    
+    if(!((stage - 1) % 3)){
     cout << "Which path would you like to take. Enter L or R." << endl;
     string path;
     cin >> path;
@@ -54,7 +54,8 @@ int main() {
         pathLeft = false;
     }
     getStage(stage, pathLeft);
-    
+    }
+
     //save program
     save(file, gameInfo);
     return 0;
@@ -167,24 +168,32 @@ void instructions(){
 	return;
 }
 
-void getStage(int stage, bool pathLeft){
-	if(!((stage - 1) % 3)){
-	   if(pathLeft){	
+vector<BaseCharacter*> getStage(int stage, bool pathLeft){
+	   vector<BaseCharacter*> oppList;
+	   if(pathLeft && stage == 1){	
 		LeftPathFactory l = new LeftPathFactory();
-		vector<BaseCharacter*> oppList = l.getStage1();
+	        oppList = l.getStage1();
 	   }
-	   else{
+	   if((!(pathLeft)) && stage == 1){
 	       RightPathFactory r = new RightPathFactory();
-               vector<BaseCharacter*> oppList = r.getStage1();
+                oppList = r.getStage1();
 	  }
-       }  
+	   if(pathLeft && stage == 3){
+                LeftPathFactory l = new LeftPathFactory();
+                oppList = l.getStage3();
+           }
+           if((!(pathLeft)) && stage == 3){
+               RightPathFactory r = new RightPathFactory();
+                oppList = r.getStage3();
+          }
+	 if(pathLeft && stage == 6){
+                LeftPathFactory l = new LeftPathFactory();
+                oppList = l.getStage6();
+           }
+           if((!(pathLeft)) && stage == 6){
+               RightPathFactory r = new RightPathFactory();
+                oppList = r.getStage6();
+          }
+ 	return oppList; 
 }
-
-
-
-
-
-
-
-
 
