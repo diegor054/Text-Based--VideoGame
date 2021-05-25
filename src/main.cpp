@@ -49,7 +49,7 @@ int main() {
     cout << "Which path would you like to take. Enter L or R." << endl;
     string path;
     cin >> path;
-    bool pathLeft true;
+    bool pathLeft =  true;
     if(path == "R"){
         pathLeft = false;
     }
