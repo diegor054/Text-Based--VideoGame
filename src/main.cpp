@@ -19,7 +19,7 @@ void help(const string &);
 vector<string>* start();
 Player* getPlayer(const string &, const string &, int, bool);
 void instructions();
-void getStage(int stage, bool pathLeft);
+void getStage(int stage, bool pathLeft, BaseCharacter* Player);
 
 int main() {
     //load program
@@ -168,32 +168,43 @@ void instructions(){
 	return;
 }
 
-vector<BaseCharacter*> getStage(int stage, bool pathLeft){
-	   vector<BaseCharacter*> oppList;
-	   if(pathLeft && stage == 1){	
-		LeftPathFactory l = new LeftPathFactory();
-	        oppList = l.getStage1();
+vector<BaseCharacter*> getStage(int stage, bool pathLeft, BaseCharacter* Player){
+	   AbstractStageFactory path = new AbstractStageFactory();
+	   if(pathLeft){
+	      path = new LeftPathFactory();
+	     }else{
+		path = new RightPathFactory();
+	     }
+
+	   if(stage == 1){	
+	         return path->getStage1();
 	   }
-	   if((!(pathLeft)) && stage == 1){
-	       RightPathFactory r = new RightPathFactory();
-                oppList = r.getStage1();
+	   else if(stage == 2){
+                return path->getStage2();
 	  }
-	   if(pathLeft && stage == 3){
-                LeftPathFactory l = new LeftPathFactory();
-                oppList = l.getStage3();
+	   if(stage == 3){
+                 return path->getStage3();
            }
-           if((!(pathLeft)) && stage == 3){
-               RightPathFactory r = new RightPathFactory();
-                oppList = r.getStage3();
+           if(stage == 4){
+                return path->getStage4();
           }
-	 if(pathLeft && stage == 6){
-                LeftPathFactory l = new LeftPathFactory();
-                oppList = l.getStage6();
+	 if(stage == 5){
+                 return path->getStage5();
            }
-           if((!(pathLeft)) && stage == 6){
-               RightPathFactory r = new RightPathFactory();
-                oppList = r.getStage6();
+           if(stage == 6){
+                return path->getStage6();
           }
- 	return oppList; 
+	 if(stage == 7){
+                 return path->getStage7();
+           }
+           if(stage == 8){
+                return path->getStage4();
+          }
+	 if(stage == 9){
+                 return path->getStage9();
+           }
+          if(stage == 10){
+                 return path->getStage10();
+           }
 }
 
