@@ -10,6 +10,8 @@ using namespace std;
 #include "../header/AttackerFactory.hpp"
 #include "../header/HealerFactory.hpp"
 #include "../header/NinjaFactory.hpp"
+#include "../header/LeftPathFactory.hpp"
+#include "../header/RightPathFactory.hpp"
 
 vector<string>* load(const string &);
 void save(const string &, vector<string>*);
@@ -17,6 +19,7 @@ void help(const string &);
 vector<string>* start();
 Player* getPlayer(const string &, const string &, int, bool);
 void instructions();
+void getStage(int stage, bool pathLeft);
 
 int main() {
     //load program
@@ -42,6 +45,15 @@ int main() {
         cout << "Would you like to continue (C) or exit (Q)? " << flush;
         cin >> userInput;
     }
+    
+    cout << "Which path would you like to take. Enter L or R." << endl;
+    string path;
+    cin >> path;
+    bool pathLeft true;
+    if(path == "R"){
+        pathLeft = false;
+    }
+    getStage(stage, pathLeft);
     
     //save program
     save(file, gameInfo);
@@ -154,3 +166,25 @@ void instructions(){
 	}
 	return;
 }
+
+void getStage(int stage, bool pathLeft){
+	if(!((stage - 1) % 3)){
+	   if(pathLeft){	
+		LeftPathFactory l = new LeftPathFactory();
+		vector<BaseCharacter*> oppList = l.getStage1();
+	   }
+	   else{
+	       RightPathFactory r = new RightPathFactory();
+               vector<BaseCharacter*> oppList = r.getStage1();
+	  }
+       }  
+}
+
+
+
+
+
+
+
+
+
