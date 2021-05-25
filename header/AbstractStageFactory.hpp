@@ -13,9 +13,9 @@ using namespace std;
 
 class AbstractStageFactory {
  protected:
-    Player* player;
+    BaseCharacter* player;
  public:
-    AbstractStageFactory(Player* user) : player(user) { }
+    AbstractStageFactory(BaseCharacter* user) : player(user) { }
     virtual vector<BaseCharacter*> getStage1() = 0;
     virtual vector<BaseCharacter*> getStage2() = 0;
     virtual vector<BaseCharacter*> getStage3() = 0;

@@ -5,7 +5,7 @@
 
 class LeftPathFactory : public AbstractStageFactory {
  public:
-    LeftPathFactory(Player* user) : AbstractStageFactory(user) { }
+    LeftPathFactory(BaseCharacter* user) : AbstractStageFactory(user) { }
     virtual vector<BaseCharacter*> getStage1() override {return vector<BaseCharacter*>{player, new Zombies()};}
     virtual vector<BaseCharacter*> getStage2() override {return vector<BaseCharacter*>{player, new Zombies()};}
     virtual vector<BaseCharacter*> getStage3() override {return vector<BaseCharacter*>{player, new Zombies()};}
