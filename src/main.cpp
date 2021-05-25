@@ -169,7 +169,7 @@ void instructions(){
 }
 
 vector<BaseCharacter*> getStage(int stage, bool pathLeft, BaseCharacter* Player){
-	   AbstractStageFactory path = new AbstractStageFactory();
+	   AbstractStageFactory *path;
 	   if(pathLeft){
 	      path = new LeftPathFactory();
 	     }else{
