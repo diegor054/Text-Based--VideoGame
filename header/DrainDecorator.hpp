@@ -5,11 +5,11 @@ class DrainDecorator : public AbilityDecorator {
  public:
     DrainDecorator(BaseCharacter* c) : AbilityDecorator(c) { }
     virtual BaseCharacter* attack(vector<BaseCharacter*> charList) {
-        BaseCharacter* victim = c.attack(charList);
-        c.setHealth(c.getHealth() + victim.latestDamage() / 5);
+        BaseCharacter* victim = this->character->attack(charList);
+        this->character->setHealth(character->getHealth() + victim->getLatestDamage() / 5);
         return victim;
     }
-    virtual int defend(vector<BaseCharacter*> charList, int attackerIndex, int damage) {return c->defend(damage);}
+    virtual int defend(vector<BaseCharacter*> charList, int attackerIndex, int damage) {return this->character->defend(charList, attackerIndex, damage);}
 };
 
 #endif

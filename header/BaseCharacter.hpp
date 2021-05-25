@@ -33,8 +33,11 @@ class BaseCharacter {
     }
     void setName(string n) { name = n; }
     void setType(string t) { characterType = t; }
+    void setHealth(int h) { health = h; }
     string getName() { return name; }
     string getType() { return characterType; }
+    int getHealth() { return health; }
+    int getLatestDamage() { return -1; } //fix
     int getAttackStrength() { return attackStrength; }
 };
 

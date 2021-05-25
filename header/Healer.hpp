@@ -25,9 +25,9 @@ class Healer: public Player {
 	void setHealth(int x){
 	    this->health += x;
 	}
-    void attack(vector<Opponent*> opp) override {
-        //implement
-    }
+    BaseCharacter* attack(vector<BaseCharacter*> charList) override {
+		//implement
+	}
 };
                                                              
 #endif

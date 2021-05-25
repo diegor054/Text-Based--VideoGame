@@ -17,9 +17,9 @@ class Fairies: public Opponent {
 		name = "Fairy";
 		attackStrength = 3;
 	}
-    void attack(vector<Opponent*> opp) override {
+    BaseCharacter* attack(vector<BaseCharacter*> charList) override {
     	if(this->health > 0){
-        	opp.at(0)->setHealth(attackStrength * -1);
+        	charList.at(0)->setHealth(attackStrength * -1);
         	damageMessages(attackStrength);
         }
 	}
