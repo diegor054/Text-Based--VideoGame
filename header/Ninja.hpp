@@ -26,6 +26,7 @@ class Ninja: public Player {
     BaseCharacter* attack(vector<BaseCharacter*> charList) override {
 		//implement
 	}
+    int defend(vector<BaseCharacter*> charList, int attackerIndex, int damage) override { return 0; } //fixme
 };
                                                          		    	                                                          
 #endif

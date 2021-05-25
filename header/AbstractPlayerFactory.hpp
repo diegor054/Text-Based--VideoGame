@@ -10,11 +10,11 @@ using namespace std;
 class AbstractPlayerFactory {
  protected:
     string playerInfo;
-    virtual Player* addDecorators(Player*) = 0;
+    virtual BaseCharacter* addDecorators(Player*) = 0;
  public:
     AbstractPlayerFactory();
-    virtual Player* getDefaultPlayer() = 0;
-    virtual Player* getUpgradedPlayer(const string &, int) = 0;
+    virtual BaseCharacter* getDefaultPlayer() = 0;
+    virtual BaseCharacter* getUpgradedPlayer(const string &, int) = 0;
     string getPlayerInfo() { return playerInfo; }
 };
 
