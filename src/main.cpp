@@ -54,7 +54,8 @@ int main() {
         pathLeft = false;
     }
     }
-    getStage(stage, pathLeft);
+    vector<BaseCharacter*> opponentsList;	    
+    opponentsList = getStage(stage, pathLeft, player);
     
 
     //save program
