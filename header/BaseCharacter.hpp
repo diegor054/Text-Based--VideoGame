@@ -19,7 +19,8 @@ class BaseCharacter {
 
  public:
     BaseCharacter() { }  
-    virtual void attack(vector<Opponent*> oppList) = 0;
+    virtual BaseCharacter* attack(vector<BaseCharacter*> oppList) = 0;
+    virtual int defend(vector<BaseCharacter*> charList, int attackerIndex, int damage) = 0;
     void printHealth() const {
         int totalLines = 10;
         int lines = (100*(health / maxhealth))/totalLines ;
@@ -30,10 +31,11 @@ class BaseCharacter {
         }
         cout << "]  " << health << " remaining health" << endl;
     }
-    void setName(string n){ name = n; }
-    void setType(string t){ characterType t; }
-    string getName(){ return name; }
-    string getType(){ return characterType; } 
+    void setName(string n) { name = n; }
+    void setType(string t) { characterType = t; }
+    string getName() { return name; }
+    string getType() { return characterType; }
+    int getAttackStrength() { return attackStrength; }
 };
 
 #endif

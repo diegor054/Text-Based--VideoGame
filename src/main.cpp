@@ -31,14 +31,19 @@ int main() {
     }
     else {
         player = getPlayer(gameInfo->at(2), gameInfo->at(3), stoi(gameInfo->at(1)), false);
+        cout << "Welcome back to King of the Dungeon, " << gameInfo->at(2) << "!" << endl;
     }
 
     //run program
     instructions();
     int stage = stoi(gameInfo->at(0));
+    string userInput;
+    while (userInput != "Q") {
+        cout << "Would you like to continue (C) or exit (Q)? " << flush;
+        cin >> userInput;
+    }
     
     //save program
-    gameInfo->at(2) = player.getType();
     save(file, gameInfo);
     return 0;
 }
@@ -117,9 +122,9 @@ vector<string>* start() {
 
 Player* getPlayer(const string &name, const string &type, int xp, bool isNew) {
     AbstractPlayerFactory* pf;
-    if (gameInfo->at(3) == "Attacker") pf = new AttackerFactory();
-    else if (gameInfo->at(3) == "Healer") pf = new HealerFactory();
-    else if (gameInfo->at(3) == "Ninja") pf = new NinjaFactory();
+    if (type == "Attacker") pf = new AttackerFactory();
+    else if (type == "Healer") pf = new HealerFactory();
+    else if (type == "Ninja") pf = new NinjaFactory();
     else return nullptr;
     if (isNew) {
         cout << pf->getPlayerInfo() << endl;
@@ -133,19 +138,19 @@ void instructions(){
 	cout << "Would you like to see the instructions before you start?(Enter YES or NO)" << endl;
 	string a;
 	cin >> a;
-        while(a != "YES" || a != "NO"){
-	cout << "Invalid Answer. Please enter YES or NO" << endl;
-	cin >> a;
+    while(a != "YES" || a != "NO") {
+	    cout << "Invalid Answer. Please enter YES or NO" << endl;
+	    cin >> a;
 	}
-	if(a == "YES"){
-	cout << "Throughout this game you will explore a dungeon and have to navigate throughout the halls." << endl;
-	cout << "You will be asked to go LEFT or RIGHT and face enemies depending on what directon you go." << endl;
-	cout << "You will have to eliminate all enemies before moving onto the next stage." << endl;
-	cout << "You will have the ability to leave a fight if you are running low on health." << endl;
-	cout << "Note you will gain back some health after each round." << endl;
+	if(a == "YES") {
+	    cout << "Throughout this game you will explore a dungeon and have to navigate throughout the halls." << endl;
+	    cout << "You will be asked to go LEFT or RIGHT and face enemies depending on what directon you go." << endl;
+	    cout << "You will have to eliminate all enemies before moving onto the next stage." << endl;
+	    cout << "You will have the ability to leave a fight if you are running low on health." << endl;
+	    cout << "Note you will gain back some health after each round." << endl;
 	}
-	if(a == "NO"){
-	return;
+	if(a == "NO") {
+	    return;
 	}
 	return;
 }
