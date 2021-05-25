@@ -5,9 +5,11 @@
 
 using namespace std;
 
-#include "BaseCharacter.hpp"
 #include "Player.hpp"
 #include "Opponent.hpp"
+#include "Zombies.hpp"
+#include "Goblins.hpp"
+#include "Fairies.hpp"
 
 class AbstractStageFactory {
  protected:

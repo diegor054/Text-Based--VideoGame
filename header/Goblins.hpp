@@ -23,6 +23,7 @@ class Goblins: public Opponent {
         	damageMessages(attackStrength);
         }
 	}
+	int defend(vector<BaseCharacter*> charList, int attackerIndex, int damage) override { return 0; } //fixme
 	void damageMessages(int damage) {
 		int num = (rand() % 3) + 1;
 		if(num == 1) {
