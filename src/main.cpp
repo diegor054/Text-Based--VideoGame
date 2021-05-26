@@ -23,7 +23,7 @@ vector<BaseCharacter*> getStage(int stage, bool pathLeft, BaseCharacter* Player)
 
 int main() {
     //load program
-    string file = "./data/savefile.txt";
+    string file = "data/savefile.txt";
     vector<string>* gameInfo = load(file);
     
     //get player
@@ -68,16 +68,18 @@ vector<string>* load(const string &file) {
         fout.close();
         fin.open(file);
     }
-    else if (!fin.is_open()) {
+    if (!fin.is_open()) {
         cout << "Error reading from " << file << endl;
         exit(EXIT_FAILURE);
     }
+    string temp;
+    fin >> temp;
     if (fin.eof()) {
         return nullptr;
     }
-    string temp;
+    
     vector<string>* gameInfo = new vector<string>(4);
-    fin >> temp >> gameInfo->at(0); //stage
+    fin >> gameInfo->at(0); //stage
     fin >> temp >> gameInfo->at(1); //points
     fin >> temp >> gameInfo->at(2); //name
     fin >> temp >> gameInfo->at(3); //type
