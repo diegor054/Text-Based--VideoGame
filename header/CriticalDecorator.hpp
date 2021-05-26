@@ -1,6 +1,8 @@
 #ifndef __CRITICAL_DECORATOR__
 #define __CRITICAL_DECORATOR__
 
+#include "AbilityDecorator.hpp"
+
 class CriticalDecorator : public AbilityDecorator {
  public:
     CriticalDecorator(BaseCharacter* c) : AbilityDecorator(c) { }

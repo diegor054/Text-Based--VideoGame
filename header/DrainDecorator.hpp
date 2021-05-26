@@ -1,6 +1,8 @@
 #ifndef __DRAIN_DECORATOR__
 #define __DRAIN_DECORATOR__
 
+#include "AbilityDecorator.hpp"
+
 class DrainDecorator : public AbilityDecorator {
  public:
     DrainDecorator(BaseCharacter* c) : AbilityDecorator(c) { }
