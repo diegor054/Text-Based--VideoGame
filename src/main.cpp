@@ -30,6 +30,7 @@ int main() {
     BaseCharacter* player;
     if (gameInfo == nullptr) {
         gameInfo = start();
+        instructions();
         player = getPlayer(gameInfo->at(2), gameInfo->at(3), stoi(gameInfo->at(1)), true);
     }
     else {
@@ -38,7 +39,6 @@ int main() {
     }
 
     //run program
-    instructions();
     int stage = stoi(gameInfo->at(0));
     string userInput;
     while (userInput != "Q") {
@@ -57,12 +57,14 @@ int main() {
     vector<BaseCharacter*> opponentsList = getStage(stage, pathLeft, player);
     
     //save program
+
     save(file, gameInfo);
 
     //exit program (debug until bugs resolved)
-    cout << "Game saved propery and is about to crash. " << endl;
-    cout << "Press any key to continue . . ." << endl;
-    cin >> userInput;
+    cout << "Game saved propery and is about to crash. . . " << endl;
+    cout << endl << "Crashing will commence in " << flush;
+    stage = 3;
+    while (stage >= 0) { system("read -t 1"); cout << stage << ' ' << flush; --stage; }
     return 0;
 }
 
@@ -181,8 +183,8 @@ void instructions(){
 }
 
 vector<BaseCharacter*> getStage(int stage, bool pathLeft, BaseCharacter* player){
-	AbstractStageFactory *path;
-	if (pathLeft) path = new LeftPathFactory(player);
+    AbstractStageFactory *path;
+    if (pathLeft) path = new LeftPathFactory(player);
     else path = new RightPathFactory(player);
     if(stage == 1) return path->getStage1();
     if(stage == 2) return path->getStage2();
