@@ -14,7 +14,7 @@ class HealerFactory : public AbstractPlayerFactory {
         return new DrainDecorator(new SpikesDecorator(p));
     }
  public:
-    HealerFactory();
+    HealerFactory() { };
     virtual BaseCharacter* getDefaultPlayer() override {
         return addDecorators(new Healer());
     }

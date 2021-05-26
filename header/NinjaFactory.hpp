@@ -14,7 +14,7 @@ class NinjaFactory : public AbstractPlayerFactory {
         return new AoeDecorator(new DodgeDecorator(p));
     }
  public:
-    NinjaFactory();
+    NinjaFactory() { };
     virtual BaseCharacter* getDefaultPlayer() override {
         return addDecorators(new Ninja());
     }

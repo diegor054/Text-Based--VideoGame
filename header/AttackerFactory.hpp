@@ -14,7 +14,7 @@ class AttackerFactory : public AbstractPlayerFactory {
         return new CriticalDecorator(new ArmorDecorator(p));
     }
  public:
-    AttackerFactory();
+    AttackerFactory() { };
     virtual BaseCharacter* getDefaultPlayer() override {
         return addDecorators(new Attacker());
     }

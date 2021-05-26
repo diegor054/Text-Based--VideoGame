@@ -12,7 +12,7 @@ class AbstractPlayerFactory {
     string playerInfo;
     virtual BaseCharacter* addDecorators(Player*) = 0;
  public:
-    AbstractPlayerFactory();
+    AbstractPlayerFactory() { };
     virtual BaseCharacter* getDefaultPlayer() = 0;
     virtual BaseCharacter* getUpgradedPlayer(const string &, int) = 0;
     string getPlayerInfo() { return playerInfo; }
