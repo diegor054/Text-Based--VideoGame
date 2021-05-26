@@ -64,6 +64,11 @@ int main() {
 vector<string>* load(const string &file) {
     ifstream fin(file);
     if (!fin.is_open()) {
+        ofstream fout(file);
+        fout.close();
+        fin.open(file);
+    }
+    else if (!fin.is_open()) {
         cout << "Error reading from " << file << endl;
         exit(EXIT_FAILURE);
     }
