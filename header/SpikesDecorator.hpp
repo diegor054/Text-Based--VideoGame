@@ -1,6 +1,8 @@
 #ifndef __SPIKES_DECORATOR__
 #define __SPIKES_DECORATOR__
 
+#include "AbilityDecorator.hpp"
+
 class SpikesDecorator : public AbilityDecorator {
  public:
     SpikesDecorator(BaseCharacter* c) : AbilityDecorator(c) { }
