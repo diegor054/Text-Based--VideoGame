@@ -7,8 +7,6 @@
 
 using namespace std;
 
-#include "Opponent.hpp"
-
 class BaseCharacter {
  protected:
     string name;
