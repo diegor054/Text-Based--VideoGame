@@ -58,6 +58,11 @@ int main() {
     
     //save program
     save(file, gameInfo);
+
+    //exit program (debug until bugs resolved)
+    cout << "Game saved propery and is about to crash. " << endl;
+    cout << "Press any key to continue . . ." << endl;
+    cin >> userInput;
     return 0;
 }
 
