@@ -158,7 +158,7 @@ void instructions(){
 	cout << "Would you like to see the instructions before you start?(Enter YES or NO)" << endl;
 	string a;
 	cin >> a;
-    while(a != "YES" || a != "NO") {
+    while(a != "YES" && a != "NO") {
 	    cout << "Invalid Answer. Please enter YES or NO" << endl;
 	    cin >> a;
 	}
