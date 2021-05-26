@@ -5,8 +5,8 @@
 
 using namespace std;
 
-#include "../header/Player.hpp"
 #include "../header/Opponent.hpp"
+#include "../header/Player.hpp"
 #include "../header/AttackerFactory.hpp"
 #include "../header/HealerFactory.hpp"
 #include "../header/NinjaFactory.hpp"
