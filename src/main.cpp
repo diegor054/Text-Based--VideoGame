@@ -19,7 +19,7 @@ void help(const string &);
 vector<string>* start();
 BaseCharacter* getPlayer(const string &, const string &, int, bool);
 void instructions();
-vector<BaseCharacter*> getStage(int stage, bool pathLeft, BaseCharacter* Player);
+vector<BaseCharacter*> getStage(BaseCharacter*, int, bool);
 
 int main() {
     //load program
@@ -30,6 +30,7 @@ int main() {
     BaseCharacter* player;
     if (gameInfo == nullptr) {
         gameInfo = start();
+        instructions();
         player = getPlayer(gameInfo->at(2), gameInfo->at(3), stoi(gameInfo->at(1)), true);
     }
     else {
@@ -38,31 +39,37 @@ int main() {
     }
 
     //run program
-    instructions();
     int stage = stoi(gameInfo->at(0));
     string userInput;
     while (userInput != "Q") {
         cout << "Would you like to continue (C) or exit (Q)? " << flush;
         cin >> userInput;
     }
-    bool pathLeft = true;
-    if(!((stage - 1) % 3)) {
-        cout << "Which path would you like to take. Enter L or R." << endl;
+    bool isLeftPath = true;
+    if (!((stage - 1) % 3)) {
+        cout << "Which path would you like to take. Enter L or R: " << flush;
         string path;
         cin >> path;
-        if(path == "R") {
-            pathLeft = false;
+        while (toupper(path.at(0)) != 'L' && toupper(path.at(0)) != 'R') {
+            cout << "This is not a valid choice. Enter L or R: " << flush;
+            cin >> path;
+        }
+        if(toupper(path.at(0)) == 'R') {
+            isLeftPath = false;
         }
     }
-    vector<BaseCharacter*> opponentsList = getStage(stage, pathLeft, player);
+    vector<BaseCharacter*> opponentsList = getStage(player, stage, isLeftPath);
     
     //save program
+    gameInfo->at(0) = to_string(stage);
+    //gameInfo->at(1) = player->getXP(); //fixme
     save(file, gameInfo);
 
     //exit program (debug until bugs resolved)
-    cout << "Game saved propery and is about to crash. " << endl;
-    cout << "Press any key to continue . . ." << endl;
-    cin >> userInput;
+    cout << "Game saved propery and is about to crash. . . " << endl;
+    cout << endl << "Crashing will commence in " << flush;
+    stage = 3;
+    while (stage >= 0) { system("read -t 1"); cout << stage << ' ' << flush; --stage; }
     return 0;
 }
 
@@ -107,8 +114,8 @@ void save(const string &file, vector<string>* gameInfo) {
 }
 
 void help(const string &name) {
-	cout << "Welcome to King of the Dungeon, " << name << "!" << endl;
-	cout << "You are going on a journey throughout a mysterious dungeon in hopes of finding a secret treasure that no one has ever found." << endl;
+cout << "Welcome to King of the Dungeon, " << name << "!" << endl << endl;
+cout << "You are going on a journey throughout a mysterious dungeon in hopes of finding a secret treasure that no one has ever found." << endl;
 	cout << "However, the task will not be easy 0_0." << endl;
 	cout << "There are rumors of mysterous creatures that live within the dugeon." << endl;
 	cout << "Whether those rumors are true or not, that's for you to find out." << endl;
@@ -120,13 +127,13 @@ vector<string>* start() {
     string playerName;
     cout << "Welcome, please enter your player's name: " << flush;
     cin >> playerName;
-    help(playerName);
     cout << endl;
+    help(playerName);
     string playerType = "X";
     bool invalidInput = true;
     while (invalidInput) {
         invalidInput = false;
-        cout << "Choose your player type wisely: (A) attacker, (H) healer, or (N) Ninja: " << flush;
+        cout << endl << "Choose your player type wisely: (A) attacker, (H) healer, or (N) Ninja: " << flush;
         cin >> playerType;
         if (toupper(playerType.at(0)) == 'A') {
             playerType = "Attacker";
@@ -142,7 +149,7 @@ vector<string>* start() {
             invalidInput = true;
         }
     }
-    return new vector<string>{"0", "0", playerName, playerType};
+    return new vector<string>{"1", "0", playerName, playerType};
 }
 
 BaseCharacter* getPlayer(const string &name, const string &type, int xp, bool isNew) {
@@ -159,40 +166,33 @@ BaseCharacter* getPlayer(const string &name, const string &type, int xp, bool is
     }
     return pf->getUpgradedPlayer(name, xp);
 }
-void instructions(){
-	cout << "Would you like to see the instructions before you start?(Enter YES or NO)" << endl;
-	string a;
-	cin >> a;
-    while(a != "YES" && a != "NO") {
-	    cout << "Invalid Answer. Please enter YES or NO" << endl;
-	    cin >> a;
-	}
-	if(a == "YES") {
-	    cout << "Throughout this game you will explore a dungeon and have to navigate throughout the halls." << endl;
-	    cout << "You will be asked to go LEFT or RIGHT and face enemies depending on what directon you go." << endl;
-	    cout << "You will have to eliminate all enemies before moving onto the next stage." << endl;
-	    cout << "You will have the ability to leave a fight if you are running low on health." << endl;
-	    cout << "Note you will gain back some health after each round." << endl;
-	}
-	if(a == "NO") {
-	    return;
-	}
-	return;
+void instructions() {
+    cout << "Would you like to see the instructions before you start? (Y)/(N): " << flush;
+    string userInput;
+    cin >> userInput;
+    if (toupper(userInput.at(0)) == 'Y') {
+        cout << endl << "Throughout this game you will explore a dungeon and have to navigate throughout the halls." << endl;
+        cout << "You will be asked to go LEFT or RIGHT and face enemies depending on what directon you go." << endl;
+        cout << "You will have to eliminate all enemies before moving onto the next stage." << endl;
+        cout << "You will have the ability to leave a fight if you are running low on health." << endl;
+        cout << "Note you will gain back some health after each round." << endl;
+    }
 }
 
-vector<BaseCharacter*> getStage(int stage, bool pathLeft, BaseCharacter* player){
-	AbstractStageFactory *path;
-	if (pathLeft) path = new LeftPathFactory(player);
+vector<BaseCharacter*> getStage(BaseCharacter* player, int stage, bool isLeftPath) {
+    AbstractStageFactory *path;
+    if (isLeftPath) path = new LeftPathFactory(player);
     else path = new RightPathFactory(player);
-    if(stage == 1) return path->getStage1();
-    if(stage == 2) return path->getStage2();
-    if(stage == 3) return path->getStage3();
-    if(stage == 4) return path->getStage4();
-    if(stage == 5) return path->getStage5();
-    if(stage == 6) return path->getStage6();
-    if(stage == 7) return path->getStage7();
-    if(stage == 8) return path->getStage8();
-    if(stage == 9) return path->getStage9();
-    if(stage == 10) return path->getStage10();
+    switch(stage) {
+        case 1: return path->getStage1();
+        case 2: return path->getStage2();
+        case 3: return path->getStage3();
+        case 4: return path->getStage4();
+        case 5: return path->getStage5();
+        case 6: return path->getStage6();
+        case 7: return path->getStage7();
+        case 8: return path->getStage8();
+        case 9: return path->getStage9();
+        default: return path->getStage10();
+    }
 }
-
