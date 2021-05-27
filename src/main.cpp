@@ -61,7 +61,7 @@ int main() {
     vector<BaseCharacter*> opponentsList = getStage(player, stage, isLeftPath);
     
     //save program
-    gameInfo->at(0) = stage;
+    gameInfo->at(0) = to_string(stage);
     //gameInfo->at(1) = player->getXP(); //fixme
     save(file, gameInfo);
 
@@ -114,8 +114,8 @@ void save(const string &file, vector<string>* gameInfo) {
 }
 
 void help(const string &name) {
-	cout << "Welcome to King of the Dungeon, " << name << "!" << endl;
-	cout << "You are going on a journey throughout a mysterious dungeon in hopes of finding a secret treasure that no one has ever found." << endl;
+cout << "Welcome to King of the Dungeon, " << name << "!" << endl << endl;
+cout << "You are going on a journey throughout a mysterious dungeon in hopes of finding a secret treasure that no one has ever found." << endl;
 	cout << "However, the task will not be easy 0_0." << endl;
 	cout << "There are rumors of mysterous creatures that live within the dugeon." << endl;
 	cout << "Whether those rumors are true or not, that's for you to find out." << endl;
@@ -127,13 +127,13 @@ vector<string>* start() {
     string playerName;
     cout << "Welcome, please enter your player's name: " << flush;
     cin >> playerName;
-    help(playerName);
     cout << endl;
+    help(playerName);
     string playerType = "X";
     bool invalidInput = true;
     while (invalidInput) {
         invalidInput = false;
-        cout << "Choose your player type wisely: (A) attacker, (H) healer, or (N) Ninja: " << flush;
+        cout << endl << "Choose your player type wisely: (A) attacker, (H) healer, or (N) Ninja: " << flush;
         cin >> playerType;
         if (toupper(playerType.at(0)) == 'A') {
             playerType = "Attacker";
@@ -167,11 +167,11 @@ BaseCharacter* getPlayer(const string &name, const string &type, int xp, bool is
     return pf->getUpgradedPlayer(name, xp);
 }
 void instructions() {
-    cout << "Would you like to see the instructions before you start? (Y)/(N)" << endl;
+    cout << "Would you like to see the instructions before you start? (Y)/(N): " << flush;
     string userInput;
     cin >> userInput;
     if (toupper(userInput.at(0)) == 'Y') {
-        cout << "Throughout this game you will explore a dungeon and have to navigate throughout the halls." << endl;
+        cout << endl << "Throughout this game you will explore a dungeon and have to navigate throughout the halls." << endl;
         cout << "You will be asked to go LEFT or RIGHT and face enemies depending on what directon you go." << endl;
         cout << "You will have to eliminate all enemies before moving onto the next stage." << endl;
         cout << "You will have the ability to leave a fight if you are running low on health." << endl;
