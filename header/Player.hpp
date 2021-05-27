@@ -20,7 +20,8 @@ class Player : public BaseCharacter {
 		else this->setHealth(0);
 		return damage;
 	}
-	void setMaxHealth() { health = maxHealth; }; 
+	virtual string attackMessage(BaseCharacter* opp) = 0;
+	void setMaxHealth() { health = maxHealth; }
 	void UpdateLevel() {
 		xp += currentXP;
 		currentXP = 0;

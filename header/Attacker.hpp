@@ -19,6 +19,12 @@ class Attacker : public Player {
 		SwordType = "Bronze";
 	}
 	~Attacker() = default;
+	string attackMessage(BaseCharacter* opp) {
+		return currentMessage = name + " destroyed " + opp->getName() + damageMessage(opp->getLatestDamage());
+	}
+	string defendMessage() {
+		//return name + " was deleted by " + damageMessage();
+	}
 };
 
 #endif

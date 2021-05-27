@@ -16,20 +16,30 @@ class BaseCharacter {
     int maxHealth;
     int attackStrength;
     int xp;
+    string currentMessage;
+    string damageMessage(int damage) {
+		int message = rand() % 4;
+		if (message == 0) return " and took off " + to_string(damage) + " damage!";
+		else if (message == 1) return ". You lost " + to_string(damage) + " health!"; 
+        else if (message == 2) return ". He attacked you for " + to_string(damage) + " health!";
+        else if (message == 3) return " and deals " + to_string(damage) + " damage!";
+		else return " and attacked you for " + to_string(damage) + " health!";
+	}
 
  public:
     BaseCharacter() { }  
     virtual BaseCharacter* attack(vector<BaseCharacter*> oppList) = 0;
     virtual int defend(vector<BaseCharacter*> charList, int attackerIndex, int damage) = 0;
-    void printHealth() const {
+    virtual string attackMessage(BaseCharacter* opp) = 0;
+    string getHealthBar() const {
         int totalLines = 10;
         int lines = (100 * (health / maxHealth)) / totalLines;
-        cout << '[';
+        string healthBar = "[";
         for (int i = 0; i < totalLines; i++) {
-	        if (i < lines) cout << '|';
-            else cout << ' ';
+	        if (i < lines) healthBar += "|";
+            else healthBar += " ";
         }
-        cout << ']' << endl;
+        return healthBar += "]";
     }
     void setName(string n) { name = n; }
     void setType(string t) { characterType = t; }
