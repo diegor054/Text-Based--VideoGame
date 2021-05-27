@@ -19,7 +19,7 @@ void help(const string &);
 vector<string>* start();
 BaseCharacter* getPlayer(const string &, const string &, int, bool);
 void instructions();
-vector<BaseCharacter*> getStage(int stage, bool pathLeft, BaseCharacter* Player);
+vector<BaseCharacter*> getStage(BaseCharacter*, int, bool);
 
 int main() {
     //load program
@@ -45,16 +45,20 @@ int main() {
         cout << "Would you like to continue (C) or exit (Q)? " << flush;
         cin >> userInput;
     }
-    bool pathLeft = true;
-    if(!((stage - 1) % 3)) {
-        cout << "Which path would you like to take. Enter L or R." << endl;
+    bool isLeftPath = true;
+    if (!((stage - 1) % 3)) {
+        cout << "Which path would you like to take. Enter L or R: " << flush;
         string path;
         cin >> path;
-        if(path == "R") {
-            pathLeft = false;
+        while (toupper(path.at(0)) != 'L' && toupper(path.at(0)) != 'R') {
+            cout << "This is not a valid choice. Enter L or R: " << flush;
+            cin >> path;
+        }
+        if(toupper(path.at(0)) == 'R') {
+            isLeftPath = false;
         }
     }
-    vector<BaseCharacter*> opponentsList = getStage(stage, pathLeft, player);
+    vector<BaseCharacter*> opponentsList = getStage(player, stage, isLeftPath);
     
     //save program
     gameInfo->at(0) = stage;
@@ -145,7 +149,7 @@ vector<string>* start() {
             invalidInput = true;
         }
     }
-    return new vector<string>{"0", "0", playerName, playerType};
+    return new vector<string>{"1", "0", playerName, playerType};
 }
 
 BaseCharacter* getPlayer(const string &name, const string &type, int xp, bool isNew) {
@@ -175,19 +179,20 @@ void instructions() {
     }
 }
 
-vector<BaseCharacter*> getStage(int stage, bool pathLeft, BaseCharacter* player){
+vector<BaseCharacter*> getStage(BaseCharacter* player, int stage, bool isLeftPath) {
     AbstractStageFactory *path;
-    if (pathLeft) path = new LeftPathFactory(player);
+    if (isLeftPath) path = new LeftPathFactory(player);
     else path = new RightPathFactory(player);
-    if(stage == 1) return path->getStage1();
-    if(stage == 2) return path->getStage2();
-    if(stage == 3) return path->getStage3();
-    if(stage == 4) return path->getStage4();
-    if(stage == 5) return path->getStage5();
-    if(stage == 6) return path->getStage6();
-    if(stage == 7) return path->getStage7();
-    if(stage == 8) return path->getStage8();
-    if(stage == 9) return path->getStage9();
-    if(stage == 10) return path->getStage10();
+    switch(stage) {
+        case 1: return path->getStage1();
+        case 2: return path->getStage2();
+        case 3: return path->getStage3();
+        case 4: return path->getStage4();
+        case 5: return path->getStage5();
+        case 6: return path->getStage6();
+        case 7: return path->getStage7();
+        case 8: return path->getStage8();
+        case 9: return path->getStage9();
+        default: return path->getStage10();
+    }
 }
-
