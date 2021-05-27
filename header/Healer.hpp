@@ -19,6 +19,9 @@ class Healer : public Player {
         wandType = "Wood";
     }
     ~Healer() = default;
+    string attackMessage(BaseCharacter* opp) {
+		return currentMessage = name + " had fun deleting " + opp->getName() + " with their " + wandType + " " + weaponType + damageMessage(opp->getLatestDamage());
+	}
 };
                                                              
 #endif
