@@ -7,6 +7,14 @@ class Opponent : public BaseCharacter {
  protected:
 	int opponentLevel;
 	string attackStyle;
+	string damageMessage(int damage) override {
+		int message = rand() % 4;
+		if (message == 0) return " and took off " + to_string(damage) + " damage!";
+		else if (message == 1) return ". You lost " + to_string(damage) + " health!"; 
+        else if (message == 2) return ". He attacked you for " + to_string(damage) + " health!";
+        else if (message == 3) return " and deals " + to_string(damage) + " damage!";
+		else return " and attacked you for " + to_string(damage) + " health!";
+	}
  public:
 	Opponent() { }
 	~Opponent() = default;

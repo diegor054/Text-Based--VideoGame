@@ -8,6 +8,11 @@ class Player : public BaseCharacter {
 	string weaponType;
 	int playerLevel;
 	int currentXP;
+	string damageMessage(int damage) override {
+		int message = rand() % 2;
+		if (message == 0) return ". They lost " + to_string(damage) + " health!"; 
+        else if (message == 1) return " and dealt " + to_string(damage) + " damage!";
+	}
  public:
 	Player() { }
 	~Player() = default;

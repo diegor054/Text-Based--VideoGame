@@ -18,14 +18,7 @@ class BaseCharacter {
     int xp;
     int latestDamage;
     string currentMessage;
-    string damageMessage(int damage) {
-		int message = rand() % 4;
-		if (message == 0) return " and took off " + to_string(damage) + " damage!";
-		else if (message == 1) return ". You lost " + to_string(damage) + " health!"; 
-        else if (message == 2) return ". He attacked you for " + to_string(damage) + " health!";
-        else if (message == 3) return " and deals " + to_string(damage) + " damage!";
-		else return " and attacked you for " + to_string(damage) + " health!";
-	}
+    virtual string damageMessage(int damage) = 0;
 
  public:
     BaseCharacter() { }
