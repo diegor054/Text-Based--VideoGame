@@ -3,7 +3,7 @@
 
 #include "BaseCharacter.hpp"
 
-class Opponent: public BaseCharacter {
+class Opponent : public BaseCharacter {
  protected:
 	int opponentLevel;
 	string attackStyle;

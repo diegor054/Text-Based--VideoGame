@@ -10,25 +10,32 @@ class Attacker : public Player {
 	
  public:
 	Attacker() {
-		health = 100;
-		xp = 0;
+		name = "Null";
+		characterType = "Attacker";
+		health = maxHealth = 100;
+		attackStrength = 10;
+		xp = playerLevel = 0;
 		weaponType = "Sword";
-		playerTypeLevel = 0;
 		SwordType = "Bronze";
 	}
 	void Upgrade() override {
 		//implement
 	}
 	void setMaxHealth() override {
-	    health = 100;
+	    health = maxHealth;
 	}
 	void setHealth(int x) { //used for when player is attacked
 		this->health += x;
 	}
 	BaseCharacter* attack(vector<BaseCharacter*> charList) override {
-		//implement
+		int numOpponents = charList.size() - 1;
+		int opponentIndex = rand() % numOpponents + 1;
+		charList.at(opponentIndex)->defend(charList, 0, this->attackStrength); //fixme damage
 	}
-	int defend(vector<BaseCharacter*> charList, int attackerIndex, int damage) override { return 0; } //fixme
+	int defend(vector<BaseCharacter*> charList, int attackerIndex, int damage) override { 
+		if (health - damage > 0) this->setHealth(health - damage);
+		else this->setHealth(0);
+	}
 };
 
 #endif
