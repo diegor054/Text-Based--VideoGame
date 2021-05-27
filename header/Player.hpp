@@ -10,15 +10,23 @@ class Player : public BaseCharacter {
 	int currentXP;
  public:
 	Player() { }
-	BaseCharacter* attack(vector<BaseCharacter*> charList) override {
+	~Player() = default;
+	BaseCharacter* attack(vector<BaseCharacter*> charList, int attackerIndex) override {
 		int numOpponents = charList.size() - 1;
 		int opponentIndex = rand() % numOpponents + 1;
-		charList.at(opponentIndex)->defend(charList, 0, this->attackStrength);
+		charList.at(opponentIndex)->defend(charList, attackerIndex, this->attackStrength);
+		this->currentXP += charList.at(opponentIndex)->getLatestDamage();
 	}
 	int defend(vector<BaseCharacter*> charList, int attackerIndex, int damage) override { 
-		if (health - damage > 0) this->setHealth(health - damage);
-		else this->setHealth(0);
-		return damage;
+		if (health - damage > 0) {
+			this->setHealth(health - damage);
+			return latestDamage = damage;
+		}
+		else {
+			latestDamage = health;
+			this->setHealth(0);
+			return latestDamage;
+		}
 	}
 	virtual string attackMessage(BaseCharacter* opp) = 0;
 	void setMaxHealth() { health = maxHealth; }

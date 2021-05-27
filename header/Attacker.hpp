@@ -20,10 +20,7 @@ class Attacker : public Player {
 	}
 	~Attacker() = default;
 	string attackMessage(BaseCharacter* opp) {
-		return currentMessage = name + " destroyed " + opp->getName() + damageMessage(opp->getLatestDamage());
-	}
-	string defendMessage() {
-		//return name + " was deleted by " + damageMessage();
+		return currentMessage = name + " destroyed " + opp->getName() + " with a " + SwordType + " " + weaponType + damageMessage(opp->getLatestDamage());
 	}
 };
 

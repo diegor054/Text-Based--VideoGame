@@ -16,6 +16,7 @@ class BaseCharacter {
     int maxHealth;
     int attackStrength;
     int xp;
+    int latestDamage;
     string currentMessage;
     string damageMessage(int damage) {
 		int message = rand() % 4;
@@ -27,8 +28,9 @@ class BaseCharacter {
 	}
 
  public:
-    BaseCharacter() { }  
-    virtual BaseCharacter* attack(vector<BaseCharacter*> oppList) = 0;
+    BaseCharacter() { }
+    ~BaseCharacter() = default; 
+    virtual BaseCharacter* attack(vector<BaseCharacter*> oppList, int attackerIndex) = 0;
     virtual int defend(vector<BaseCharacter*> charList, int attackerIndex, int damage) = 0;
     virtual string attackMessage(BaseCharacter* opp) = 0;
     string getHealthBar() const {
@@ -49,7 +51,7 @@ class BaseCharacter {
     string getType() { return characterType; }
     int getHealth() { return health; }
     int getXP() { return xp; }
-    int getLatestDamage() { return -1; } //fix
+    int getLatestDamage() { return latestDamage; }
     int getAttackStrength() { return attackStrength; }
 };
 
