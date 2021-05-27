@@ -57,7 +57,8 @@ int main() {
     vector<BaseCharacter*> opponentsList = getStage(stage, pathLeft, player);
     
     //save program
-
+    gameInfo->at(0) = stage;
+    //gameInfo->at(1) = player->getXP(); //fixme
     save(file, gameInfo);
 
     //exit program (debug until bugs resolved)
