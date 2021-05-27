@@ -3,30 +3,20 @@
 
 #include "Player.hpp"
 
-class Ninja: public Player {
+class Ninja : public Player {
  private:
     string knifeType; //goes bronze, silver, gold, diamond
  public:
     Ninja() {
-        health = 100;
-        xp = 0;
+        name = "Null";
+        characterType = "Healer";
+        health = maxHealth = 100;
+        attackStrength = 8;
+        xp = currentXP = playerLevel = 0;
         weaponType = "Knife";
-        playerTypeLevel = 0;
         knifeType = "Bronze";
     }
-    void Upgrade() override {
-        //implement
-    }
-    void setMaxHealth() override {
-        health = 100;
-    }
-    void setHealth(int x){
-        this->health += x;
-    }
-    BaseCharacter* attack(vector<BaseCharacter*> charList) override {
-		//implement
-	}
-    int defend(vector<BaseCharacter*> charList, int attackerIndex, int damage) override { return 0; } //fixme
+    ~Ninja() = default;
 };
                                                          		    	                                                          
 #endif
