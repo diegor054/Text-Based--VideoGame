@@ -8,7 +8,7 @@ class Player : public BaseCharacter {
 	string weaponType;
 	int playerLevel;
 	int currentXP;
-	string damageMessage(int damage) override {
+	string damageMessage(int damage) {
 		int message = rand() % 2;
 		if (message == 0) return ". They lost " + to_string(damage) + " health!"; 
         else if (message == 1) return " and dealt " + to_string(damage) + " damage!";
@@ -21,6 +21,8 @@ class Player : public BaseCharacter {
 		int opponentIndex = rand() % numOpponents + 1;
 		charList.at(opponentIndex)->defend(charList, attackerIndex, this->attackStrength);
 		this->currentXP += charList.at(opponentIndex)->getLatestDamage();
+		attackMessage(charList.at(attackerIndex));
+		return charList.at(attackerIndex);
 	}
 	int defend(vector<BaseCharacter*> charList, int attackerIndex, int damage) override { 
 		if (health - damage > 0) {
