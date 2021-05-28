@@ -21,7 +21,7 @@ class Player : public BaseCharacter {
         int opponentIndex = rand() % numOpponents + 1;
         charList.at(opponentIndex)->defend(charList, attackerIndex, this->attackStrength);
         this->currentXP += charList.at(opponentIndex)->getLatestDamage();
-        attackMessage(charList.at(attackerIndex));
+        cout << attackMessage(charList.at(attackerIndex)) << endl;
         return charList.at(attackerIndex);
     }
     int defend(vector<BaseCharacter*> charList, int attackerIndex, int damage) override { 

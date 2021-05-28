@@ -21,7 +21,7 @@ class Opponent : public BaseCharacter {
     BaseCharacter* attack(vector<BaseCharacter*> charList, int attackerIndex) override {
         int opponentIndex = 0;
         charList.at(opponentIndex)->defend(charList, attackerIndex, this->attackStrength);
-        attackMessage(charList.at(attackerIndex));
+        cout << attackMessage(charList.at(attackerIndex)) << endl;
         return charList.at(attackerIndex);
     }
     int defend(vector<BaseCharacter*> charList, int attackerIndex, int damage) override { 
