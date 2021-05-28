@@ -18,10 +18,11 @@ void save(const string &, vector<string>*);
 void help(const string &);
 vector<string>* start();
 BaseCharacter* getPlayer(const string &, const string &, int, bool);
+void getPath(bool &);
 void instructions();
 vector<BaseCharacter*> getStage(BaseCharacter*, int, bool);
-void fight(vector<BaseCharacter*> opp, int stage);
-void stageMessages(int stage, bool &leftPath);
+void fight(vector<BaseCharacter*>, int);
+void stageMessages(int, bool &);
 
 int main() {
     //load program
@@ -50,19 +51,18 @@ int main() {
     
     bool isLeftPath = true;
     while(stage < 11){
-    stageMessages(stage, isLeftPath); 
-    vector<BaseCharacter*> opponentsList = getStage(player, stage, isLeftPath);
-    fight(opponentsList, stage);
-    stage++;
+        stageMessages(stage, isLeftPath); 
+        vector<BaseCharacter*> opponentsList = getStage(player, stage, isLeftPath);
+        fight(opponentsList, stage);
+        stage++;
     }
    
     cout << "Congrats on beating the final boss. You have made everyone proud. Now go on and collect your treasure." << endl;
-    cout << "Thanks for playing" << endl;
-
+    cout << "Thanks for playing, " << player->getName() << "!" << endl;
     
     //save program
     gameInfo->at(0) = to_string(stage);
-    //gameInfo->at(1) = player->getXP(); //fixme
+    gameInfo->at(1) = player->getXP();
     save(file, gameInfo);
 
     //exit program (debug until bugs resolved)
@@ -89,7 +89,6 @@ vector<string>* load(const string &file) {
     if (fin.eof()) {
         return nullptr;
     }
-    
     vector<string>* gameInfo = new vector<string>(4);
     fin >> gameInfo->at(0); //stage
     fin >> temp >> gameInfo->at(1); //points
@@ -114,13 +113,13 @@ void save(const string &file, vector<string>* gameInfo) {
 }
 
 void help(const string &name) {
-cout << "Welcome to King of the Dungeon, " << name << "!" << endl << endl;
-cout << "You are going on a journey throughout a mysterious dungeon in hopes of finding a secret treasure that no one has ever found." << endl;
-	cout << "However, the task will not be easy 0_0." << endl;
-	cout << "There are rumors of mysterous creatures that live within the dugeon." << endl;
-	cout << "Whether those rumors are true or not, that's for you to find out." << endl;
-	cout << "Throughout your journey you may potentially have to fight armies of creatures so prepare yourself." << endl;
-	cout << "Good Luck " << name << ", may you have luck on your side and most importantly have fun." << endl;
+    cout << "Welcome to King of the Dungeon, " << name << "!" << endl << endl;
+    cout << "You are going on a journey throughout a mysterious dungeon in hopes of finding a secret treasure that no one has ever found." << endl;
+    cout << "However, the task will not be easy 0_0." << endl;
+    cout << "There are rumors of mysterous creatures that live within the dugeon." << endl;
+    cout << "Whether those rumors are true or not, that's for you to find out." << endl;
+    cout << "Throughout your journey you may potentially have to fight armies of creatures so prepare yourself." << endl;
+    cout << "Good Luck " << name << ", may you have luck on your side and most importantly have fun." << endl;
 }
 
 vector<string>* start() {
@@ -196,130 +195,117 @@ vector<BaseCharacter*> getStage(BaseCharacter* player, int stage, bool isLeftPat
         default: return path->getStage10();
     }
 }
-void fight(vector<BaseCharacter*> opp, int stage){
-	cout << "Round " << stage << " hase begun!" << endl;
-	while(opp.at(0)->getHealth() > 0){
-		opp.at(0)->attack(opp, 0);
-		int oppIndex = rand() % (opp.size() -1) + 1;
-		opp.at(oppIndex)->attack(opp, oppIndex);
-		//Menu();
-	if(opp.at(0)->getHealth() <= 0){	
-		cout << "You have been elimated." << endl;
-        	stage -= 1;
-        	//opp.at(0)->setCurrentXP(0);
-		return;
-		}
-        }
-	cout << "You have eliminated all opponents! Round " << stage << " has finished." << endl;
+
+void getPath(bool &isLeftPath) {
+    cout << "Which path would you like to take. Enter L or R: " << flush;
+    string path;
+    cin >> path;
+    while (toupper(path.at(0)) != 'L' && toupper(path.at(0)) != 'R') {
+        cout << "This is not a valid choice. Enter L or R: " << flush;
+        cin >> path;
+    }
+    if (path.at(0) == 'L') isLeftPath = true;
+    else isLeftPath = false;
 }
 
+void fight(vector<BaseCharacter*> charList, int stage) {
+    cout << "Round " << stage << " has begun!" << endl;
+    while (charList.at(0)->getHealth() > 0) {
+        charList.at(0)->attack(charList, 0);
+        int numOpponents = charList.size() - 1;
+        int opponentIndex = rand() % numOpponents + 1;
+        charList.at(opponentIndex)->attack(charList, opponentIndex);
+        //Menu();
+        if (charList.at(0)->getHealth() <= 0) {
+            cout << "You have been elimated." << endl;
+            stage -= 1;
+            //charList.at(0)->setCurrentXP(0);
+            return;
+        }
+    }
+    cout << "You have eliminated all opponents! Round " << stage << " has finished." << endl;
+}
 
-void stageMessages(int stage, bool &isLeftPath){
- if (stage == 1) {
-        cout << "You have entered the dungeon. It seems as if this place has been cleaned in centuries." << endl;
-        cout << " You walk down the dungeon for about five minutes until you reach a point where the dungeon splits off into two paths." << endl;
-        cout << "*thump*" << endl;
-        cout << "From the left path you heard a loud thump and start hearing very loud growlings." << endl;
-        cout << "*Green creature is seen from a distance to the right*" << endl;
-        cout << "You notice a green creature standing far away on the right path" << endl;
-        cout << "Which path would you like to take. Enter L or R: " << flush;
-        string path;
-        cin >> path;
-        while (toupper(path.at(0)) != 'L' && toupper(path.at(0)) != 'R') {
-            cout << "This is not a valid choice. Enter L or R: " << flush;
-            cin >> path;
-        }
-        if(toupper(path.at(0)) == 'R') {
-            isLeftPath = false;
-            cout << "You walk down the right path and see goblins standing before your eyes! They run towards you with their knives and are wanting to attack you." <<endl;
-            cout << "Prepare yourself... you are about to get in a fight." << endl;
-        }
-        else if(toupper(path.at(0)) == 'L') {
-            cout << "You walk down the left path and see zombies standing before your eyes! They run towards you and want some fresh meat!" <<endl;
-            cout << "Prepare yourself... you are about to get in a fight." << endl;
-        }
+void stageMessages(int stage, bool &isLeftPath) {
+    switch(stage) {
+        case 1:
+            cout << "You have entered the dungeon. It seems as if this place has been cleaned in centuries." << endl;
+            cout << "You walk down the dungeon for about five minutes until you reach a point where the dungeon splits off into two paths." << endl;
+            cout << "*thump*" << endl;
+            cout << "From the left path you heard a loud thump and start hearing very loud growlings." << endl;
+            cout << "*Green creature is seen from a distance to the right*" << endl;
+            cout << "You notice a green creature standing far away on the right path" << endl;
+            getPath(isLeftPath);
+            if (isLeftPath) {
+                cout << "You walk down the left path and see zombies standing before your eyes! They run towards you and want some fresh meat!" <<endl;
+                cout << "Prepare yourself... you are about to get in a fight." << endl;
+            }
+            else {
+                cout << "You walk down the right path and see goblins standing before your eyes! They run towards you with their knives and are wanting to attack you." <<endl;
+                cout << "Prepare yourself... you are about to get in a fight." << endl;
+            }
+        case 2:
+            cout << "You take a quick break to heal yourself and recover." << endl;
+            cout << "Suddenly, more opponents start to show up! This time it looks like alot more." << endl;
+        case 3:
+            cout << "You take another quick break and heal yourself." << endl;
+            cout << "You thought you were done... More Opponents start to show up. These look way more dangerous!" << endl;
+        case 4:
+            cout << "After 3 long fights, you take a break and continue to explore the dungeon. " << endl;
+            cout << "You find some human skeleton remains and realize that people have died on this exploration before." << endl;
+            cout << "Once again, you walk for about ten minutes and have to choose which path direction to take(Left or Right)." << endl;
+            cout << "*Green creature standing from afar on the left path*" << endl;
+            cout << "From the left path, you see more of those Goblins that you saw earlier." << endl;
+            cout << "*Sparkling magical dust appears*" << endl;
+            cout << "From the right side, you notice very bright dust." << endl;
+            cout << "Which path would you like to take. Enter L or R: " << flush;
+            getPath(isLeftPath);
+            if (isLeftPath) {
+                cout << "You walk down the left path and see goblins standing before your eyes! They run towards you with knives" <<endl;
+                cout << "Prepare yourself... you are about to get in a fight." << endl;
+            }
+            else {
+                cout << "You walk down the right path and see fairies standing before your eyes! They fly to you and swarm you with pixie dust." <<endl;
+                cout << "Prepare yourself... you are about to get in a fight." << endl;
+            }
+        case 5:
+            cout << "You take a quick break to heal yourself and recover." << endl;
+            cout << "Suddenly, more opponents start to show up! This time it looks like alot more." << endl;
+        case 6:
+            cout << "You take another quick break and heal yourself." << endl;
+            cout << "You thought you were done... More Opponents start to show up. These look way more dangerous!" << endl;
+        case 7:
+            cout << "After 3 more long fights, you are approaching the end. " << endl;
+            cout << "You walk more through the dungeon and have to choose which path direction to take(Left or Right) once again." << endl;
+            cout << "*Green creature standing from afar on the left path*" << endl;
+            cout << "From the left path, you see more of those Goblins that you saw earlier." << endl;
+            cout << "*Sparkling magical dust appears*" << endl;
+            cout << "From the right side, you notice very bright dust." << endl;
+            cout << "Which path would you like to take. Enter L or R: " << flush;
+            getPath(isLeftPath);
+            if (isLeftPath) {
+                cout << "You walk down the left path and see Zombies standing before your eyes! You look like a nice snack to them..." <<endl;
+                cout << "Prepare yourself... you are about to get in a fight." << endl;
+            }
+            else {
+                cout << "You walk down the right path and see fairies standing before your eyes! They fly to you and swarm you with pixie dust." <<endl;
+                cout << "Prepare yourself... you are about to get in a fight." << endl;
+            }
+        case 8:
+            cout << "You take a quick break to heal yourself and recover." << endl;
+            cout << "Suddenly, more opponents start to show up! This time it looks like alot more." << endl;
+        case 9:
+            cout << "You take another quick break and heal yourself." << endl;
+            cout << "You thought you were done... More Opponents start to show up. These look way more dangerous!" << endl;
+        case 10:
+            cout << "You walk more. You start to see gold, diamonds, emeralds, rubies... THIS IS IT. ALL YOU HAVE EVER WANTED!" << endl;
+            cout << "YOU HAVE REACHED THE TREASURE!!!" << endl;
+            cout << "However, its never this easy." << endl;
+            cout << "There is a big and powerful opponent guarding his treasure." << endl;
+            cout << "This is your final boss, your final test, your endgame." << endl;
+            cout << "It won't be easy to beat, but all the good things in life aren't easy." << endl;
+            cout << "Well, its time for a final dual. Prepare yourself and good luck." << endl;
+        default:
+            cout << "Stage " << stage << " does not exist!" << endl;
     }
-     if(stage == 2){
-    cout << "You take a quick break to heal yourself and recover." << endl;
-    cout << "Suddenly, more opponents start to show up! This time it looks like alot more." << endl;
-    }
-    if(stage == 3){
-    cout << "You take another quick break and heal yourself." << endl;
-    cout << "You thought you were done... More Opponents start to show up. These look way more dangerous!" << endl;
-    }
-
- if (stage == 4) {
-        cout << "After 3 long fights, you take a break and continue to explore the dungeon. " << endl;
-        cout << "You find some human skeleton remains and realize that people have died on this exploration before." << endl;
-        cout << "Once again, you walk for about ten minutes and have to choose which path direction to take(Left or Right)." << endl;
-        cout << "*Green creature standing from afar on the left path*" << endl;
-        cout << "From the left path, you see more of those Goblins that you saw earlier." << endl;
-        cout << "*Sparkling magical dust appears*" << endl;
-        cout << "From the right side, you notice very bright dust." << endl;
-        cout << "Which path would you like to take. Enter L or R: " << flush;
-        string path;
-        cin >> path;
-        while (toupper(path.at(0)) != 'L' && toupper(path.at(0)) != 'R') {
-            cout << "This is not a valid choice. Enter L or R: " << flush;
-            cin >> path;
-        }
-        if(toupper(path.at(0)) == 'R') {
-            isLeftPath = false;
-            cout << "You walk down the right path and see fairies standing before your eyes! They fly to you and swarm you with pixie dust." <<endl;
-            cout << "Prepare yourself... you are about to get in a fight." << endl;
-        }
-        else if(toupper(path.at(0)) == 'L') {
-            cout << "You walk down the left path and see goblins standing before your eyes! They run towards you with knives" <<endl;
-            cout << "Prepare yourself... you are about to get in a fight." << endl;
-        }
-    }
-    if(stage == 5){
-    cout << "You take a quick break to heal yourself and recover." << endl;
-    cout << "Suddenly, more opponents start to show up! This time it looks like alot more." << endl;
-    }
-    if(stage == 6){
-    cout << "You take another quick break and heal yourself." << endl;
-    cout << "You thought you were done... More Opponents start to show up. These look way more dangerous!" << endl;
-    }
- if (stage == 7) {
-        cout << "After 3 more long fights, you are approaching the end. " << endl;
-        cout << "You walk more through the dungeon and have to choose which path direction to take(Left or Right) once again." << endl;
-        cout << "*Green creature standing from afar on the left path*" << endl;
-        cout << "From the left path, you see more of those Goblins that you saw earlier." << endl;
-        cout << "*Sparkling magical dust appears*" << endl;
-        cout << "From the right side, you notice very bright dust." << endl;
-        cout << "Which path would you like to take. Enter L or R: " << flush;
-        string path;
-        cin >> path;
-   while (toupper(path.at(0)) != 'L' && toupper(path.at(0)) != 'R') {
-            cout << "This is not a valid choice. Enter L or R: " << flush;
-            cin >> path;
-        }
-   if(toupper(path.at(0)) == 'L') {
-            cout << "You walk down the right path and see fairies standing before your eyes! They fly to you and swarm you with pixie dust." <<endl;
-            cout << "Prepare yourself... you are about to get in a fight." << endl;
-        }
-   else if(toupper(path.at(0)) == 'R') {
-            isLeftPath = false;
-            cout << "You walk down the left path and see Zombies standing before your eyes! You look like a nice snack to them..." <<endl;
-            cout << "Prepare yourself... you are about to get in a fight." << endl;
-        }
-    }
-    if(stage == 8){
-    cout << "You take a quick break to heal yourself and recover." << endl;
-    cout << "Suddenly, more opponents start to show up! This time it looks like alot more." << endl;
-    }
-    if(stage == 9){
-    cout << "You take another quick break and heal yourself." << endl;
-    cout << "You thought you were done... More Opponents start to show up. These look way more dangerous!" << endl;
-    }
-    if(stage == 10){
-    cout << "You walk more. You start to see gold, diamonds, emeralds, rubies... THIS IS IT. ALL YOU HAVE EVER WANTED!" << endl;
-    cout << "YOU HAVE REACHED THE TREASURE!!!" << endl;
-    cout << "However, its never this easy." << endl;
-    cout << "There is a big and powerful opponent guarding his treasure." << endl;
-    cout << "This is your final boss, your final test, your endgame." << endl;
-    cout << "It won't be easy to beat, but all the good things in life aren't easy." << endl;
-    cout << "Well, its time for a final dual. Prepare yourself and good luck." << endl;
-    } 
-}			
+}
