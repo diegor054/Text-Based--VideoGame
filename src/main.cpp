@@ -221,7 +221,7 @@ bool fight(vector<BaseCharacter*> charList, int stage) {
                 cout << "You have been elimated." << endl;
                 stage -= 1;
                 charList.at(0)->refresh(false);
-                return;
+                return false;
             }
         }
         else if (option == "V") {
