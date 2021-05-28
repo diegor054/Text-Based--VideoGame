@@ -211,6 +211,8 @@ void getPath(bool &isLeftPath) {
 void fight(vector<BaseCharacter*> charList, int stage) {
     cout << "Round " << stage << " has begun!" << endl;
     while (charList.at(0)->getHealth() > 0) {
+        cout << "Would you like to attack (A) view enemies (V) or escape (E): " << flush;
+
         charList.at(0)->attack(charList, 0);
         int numOpponents = charList.size() - 1;
         int opponentIndex = rand() % numOpponents + 1;
@@ -219,11 +221,12 @@ void fight(vector<BaseCharacter*> charList, int stage) {
         if (charList.at(0)->getHealth() <= 0) {
             cout << "You have been elimated." << endl;
             stage -= 1;
-            //charList.at(0)->setCurrentXP(0);
+            charList.at(0)->refresh(false);
             return;
         }
     }
     cout << "You have eliminated all opponents! Round " << stage << " has finished." << endl;
+    charList.at(0)->refresh(true);
 }
 
 void stageMessages(int stage, bool &isLeftPath) {

@@ -29,6 +29,11 @@ class Opponent : public BaseCharacter {
         else this->setHealth(0);
         return damage;
     }
+    void refresh(bool keepXP) override {
+        this->latestDamage = 0;
+        this->currentMessage = "";
+        this->health = this->maxHealth;
+    }
 };
 
 #endif
