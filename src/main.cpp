@@ -61,7 +61,7 @@ int main() {
     
     //save program
     gameInfo->at(0) = to_string(stage);
-    gameInfo->at(1) = player->getXP();
+    gameInfo->at(1) = to_string(player->getXP());
     save(file, gameInfo);
 
     //exit program (debug until bugs resolved)
