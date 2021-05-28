@@ -21,7 +21,7 @@ BaseCharacter* getPlayer(const string &, const string &, int, bool);
 void instructions();
 vector<BaseCharacter*> getStage(BaseCharacter*, int, bool);
 void fight(vector<BaseCharacter*> opp, int stage);
-void stageMessages(int &stage, bool &leftPath);
+void stageMessages(int stage, bool &leftPath);
 
 int main() {
     //load program
@@ -47,50 +47,15 @@ int main() {
         cout << "Would you like to continue (C) or exit (Q)? " << flush;
         cin >> userInput;
     }
+    
     bool isLeftPath = true;
-    stageMessages(stage, isLeftPath); //stage 1
-    vector<BaseCharacter*> opponentsList = getStage(player, stage -1, isLeftPath);
-    fight(opponentsList, stage-1);
-    
-    stageMessages(stage, isLeftPath); //stage 2
-    opponentsList = getStage(player, stage-1, isLeftPath);
-    fight(opponentsList, stage-1);
-  
-    stageMessages(stage, isLeftPath);  //stage 3
-    opponentsList = getStage(player, stage-1, isLeftPath);
-    fight(opponentsList, stage-1);
-  
-    //implement would you like to continue option HERE
-    //should probably have a MAX heal here
-    stageMessages(stage, isLeftPath);//stage 4
-    opponentsList = getStage(player, stage-1, isLeftPath);
-    fight(opponentsList, stage-1);
-    
-    stageMessages(stage, isLeftPath); //stage 5
-    opponentsList = getStage(player, stage-1, isLeftPath);
-    fight(opponentsList, stage-1);
-    
-    stageMessages(stage, isLeftPath); //stage 6
-    opponentsList = getStage(player, stage-1, isLeftPath);
-    fight(opponentsList, stage-1);
-
-	//implement continue option here and probably max heal
-    stageMessages(stage, isLeftPath); //stage 7
-    opponentsList = getStage(player, stage-1, isLeftPath);
-    fight(opponentsList, stage-1);
-    
-    stageMessages(stage, isLeftPath); //stage 8
-    opponentsList = getStage(player, stage-1, isLeftPath);
-    fight(opponentsList, stage-1);
-    
-    stageMessages(stage, isLeftPath);   //stage 9
-    opponentsList = getStage(player, stage-1, isLeftPath);
-    fight(opponentsList, stage-1);
-
-    //implement continue button here
-    stageMessages(stage, isLeftPath);  //stage 10
-    opponentsList = getStage(player, stage-1, isLeftPath);
-    fight( opponentsList, stage-1);
+    while(stage < 11){
+    stageMessages(stage, isLeftPath); 
+    vector<BaseCharacter*> opponentsList = getStage(player, stage, isLeftPath);
+    fight(opponentsList, stage);
+    stage++;
+    }
+   
     cout << "Congrats on beating the final boss. You have made everyone proud. Now go on and collect your treasure." << endl;
     cout << "Thanks for playing" << endl;
 
@@ -248,7 +213,7 @@ void fight(vector<BaseCharacter*> opp, int stage){
 
 
 
-void stageMessages(int &stage, bool &isLeftPath){
+void stageMessages(int stage, bool &isLeftPath){
  if (stage == 1) {
         cout << "You have entered the dungeon. It seems as if this place has been cleaned in centuries." << endl;
         cout << " You walk down the dungeon for about five minutes until you reach a point where the dungeon splits off into two paths." << endl;
@@ -355,6 +320,5 @@ void stageMessages(int &stage, bool &isLeftPath){
     cout << "This is your final boss, your final test, your endgame." << endl;
     cout << "It won't be easy to beat, but all the good things in life aren't easy." << endl;
     cout << "Well, its time for a final dual. Prepare yourself and good luck." << endl;
-    }
-    stage++;  
+    } 
 }			
