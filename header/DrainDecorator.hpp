@@ -6,8 +6,8 @@
 class DrainDecorator : public AbilityDecorator {
  public:
     DrainDecorator(BaseCharacter* c) : AbilityDecorator(c) { }
-    virtual BaseCharacter* attack(vector<BaseCharacter*> charList) {
-        BaseCharacter* victim = this->character->attack(charList);
+    BaseCharacter* attack(vector<BaseCharacter*> charList, int attackerIndex) override {
+        BaseCharacter* victim = this->character->attack(charList, attackerIndex);
         this->character->setHealth(character->getHealth() + victim->getLatestDamage() / 5);
         return victim;
     }

@@ -19,6 +19,7 @@ class BaseCharacter {
     int latestDamage;
     string currentMessage;
     virtual string damageMessage(int damage) = 0;
+    void setAttackStrength(int a) { attackStrength = a; }
 
  public:
     BaseCharacter() { }

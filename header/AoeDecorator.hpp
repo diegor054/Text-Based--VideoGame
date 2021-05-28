@@ -6,8 +6,8 @@
 class AoeDecorator : public AbilityDecorator {
  public:
     AoeDecorator(BaseCharacter* c) : AbilityDecorator(c) { }
-    virtual BaseCharacter* attack(vector<BaseCharacter*> charList) {
-        this->character->attack(charList);
+    BaseCharacter* attack(vector<BaseCharacter*> charList, int attackerIndex) override {
+        this->character->attack(charList, attackerIndex);
         for (vector<BaseCharacter*>::iterator it = charList.begin() + 1; it != charList.end(); ++it) {
             if (!(rand() % 5)) {
                 (*it)->defend(charList, 0, this->character->getAttackStrength() / 3);

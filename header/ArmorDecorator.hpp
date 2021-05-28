@@ -6,7 +6,7 @@
 class ArmorDecorator : public AbilityDecorator {
  public:
     ArmorDecorator(BaseCharacter* c) : AbilityDecorator(c) { }
-    virtual BaseCharacter* attack(vector<BaseCharacter*> charList) {return this->character->attack(charList);}
+    BaseCharacter* attack(vector<BaseCharacter*> charList, int attackerIndex) override {return this->character->attack(charList, attackerIndex);}
     virtual int defend(vector<BaseCharacter*> charList, int attackerIndex, int damage) {
         return character->defend(charList, attackerIndex, damage / 2);
     }
