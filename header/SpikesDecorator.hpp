@@ -10,8 +10,8 @@ class SpikesDecorator : public AbilityDecorator {
     virtual int defend(vector<BaseCharacter*> charList, int attackerIndex, int damage) {
         if (rand() % 3) {
             charList.at(attackerIndex)->defend(charList, attackerIndex, attackStrength / 5);
-            // message
-        }
+            addAbilityMessage(charList.at(attackerIndex)->getName() + " was thorned for " + to_string(attackStrength / 5) + " damage whilst trying to hurt " + this->character->getName());
+        } //MESSAGE MIGHT BE BUGGED FIXME
         return this->character->defend(charList, attackerIndex, damage);
     }
 };

@@ -9,9 +9,9 @@ class DrainDecorator : public AbilityDecorator {
     BaseCharacter* attack(vector<BaseCharacter*> charList, int attackerIndex) override {
         BaseCharacter* victim = this->character->attack(charList, attackerIndex);
         this->character->setHealth(character->getHealth() + victim->getLatestDamage() / 5);
-        // message
+        addAbilityMessage(this->character->getName() + " managed to gain " + to_string(victim->getLatestDamage() / 5) + " from " + victim->getName());
         return victim;
-    }
+    }// message might be bugged FIXME
     virtual int defend(vector<BaseCharacter*> charList, int attackerIndex, int damage) {return this->character->defend(charList, attackerIndex, damage);}
 };
 

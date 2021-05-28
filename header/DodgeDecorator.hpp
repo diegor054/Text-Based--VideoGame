@@ -11,11 +11,10 @@ class DodgeDecorator : public AbilityDecorator {
         if (!(rand() % 2)) {
             if (!(rand() % 2)) {
                 return this->character->defend(charList, attackerIndex, 0);
-                //dodge message
-            }
+                addAbilityMessage(charList.at(attackerIndex)->getName() + " slipped on a banana while trying to hurt " + this->character->getName());
+            }//Code above is bugged and should override
             else {
-                return this->character->defend(charList, attackerIndex, damage/2);
-                //dodge message
+                return this->character->defend(charList, attackerIndex, damage / 2);
             }
         }
     }
