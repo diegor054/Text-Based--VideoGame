@@ -46,7 +46,7 @@ class BaseCharacter {
     int getXP() { return xp; }
     int getLatestDamage() { return latestDamage; }
     int getAttackStrength() { return attackStrength; }
-    virtual void refresh(bool keepXP);
+    virtual void refresh(bool keepXP) = 0;
 };
 
 #endif
