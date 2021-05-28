@@ -11,9 +11,11 @@ class DodgeDecorator : public AbilityDecorator {
         if (!(rand() % 2)) {
             if (!(rand() % 2)) {
                 return this->character->defend(charList, attackerIndex, 0);
+                //dodge message
             }
             else {
                 return this->character->defend(charList, attackerIndex, damage/2);
+                //dodge message
             }
         }
     }

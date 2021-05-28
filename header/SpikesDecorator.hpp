@@ -10,6 +10,7 @@ class SpikesDecorator : public AbilityDecorator {
     virtual int defend(vector<BaseCharacter*> charList, int attackerIndex, int damage) {
         if (rand() % 3) {
             charList.at(attackerIndex)->defend(charList, attackerIndex, attackStrength / 5);
+            // message
         }
         return this->character->defend(charList, attackerIndex, damage);
     }

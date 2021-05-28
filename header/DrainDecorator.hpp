@@ -9,6 +9,7 @@ class DrainDecorator : public AbilityDecorator {
     BaseCharacter* attack(vector<BaseCharacter*> charList, int attackerIndex) override {
         BaseCharacter* victim = this->character->attack(charList, attackerIndex);
         this->character->setHealth(character->getHealth() + victim->getLatestDamage() / 5);
+        // message
         return victim;
     }
     virtual int defend(vector<BaseCharacter*> charList, int attackerIndex, int damage) {return this->character->defend(charList, attackerIndex, damage);}

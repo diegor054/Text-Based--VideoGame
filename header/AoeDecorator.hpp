@@ -11,7 +11,8 @@ class AoeDecorator : public AbilityDecorator {
         for (vector<BaseCharacter*>::iterator it = charList.begin() + 1; it != charList.end(); ++it) {
             if (!(rand() % 5)) {
                 (*it)->defend(charList, 0, this->character->getAttackStrength() / 3);
-            }
+                addAbilityMessage(this->character->getName() + " managed to also hit " + (*it)->getName() + " and deal " + to_string((*it)->getLatestDamage()) + "damage.");
+            } // code above might be bugged
         }
     }
     virtual int defend(vector<BaseCharacter*> charList, int attackerIndex, int damage) {return character->defend(charList, attackerIndex, damage);}
