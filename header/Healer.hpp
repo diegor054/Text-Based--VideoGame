@@ -20,8 +20,8 @@ class Healer : public Player {
     }
     ~Healer() = default;
     string attackMessage(BaseCharacter* opp) {
-		return currentMessage = name + " had fun deleting " + opp->getName() + " with their " + wandType + " " + weaponType + damageMessage(opp->getLatestDamage());
-	}
+        return currentMessage = name + " had fun deleting " + opp->getName() + " with their " + wandType + " " + weaponType + damageMessage(opp->getLatestDamage());
+    }
 };
                                                              
 #endif

@@ -15,6 +15,9 @@ class AbilityDecorator : public BaseCharacter {
         if (currentMessage != "") currentMessage += "\n" + newMessage;
         else currentMessage = newMessage;
     }
+    void refresh(bool keepXP) override {
+        return this->character->refresh(keepXP);
+    }
 };
 
 #endif
