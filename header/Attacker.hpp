@@ -10,25 +10,18 @@ class Attacker : public Player {
 	
  public:
 	Attacker() {
-		health = 100;
-		xp = 0;
+		name = "Null";
+		characterType = "Attacker";
+		health = maxHealth = 100;
+		attackStrength = 10;
+		xp = currentXP = playerLevel = 0;
 		weaponType = "Sword";
-		playerTypeLevel = 0;
 		SwordType = "Bronze";
 	}
-	void Upgrade() override {
-		//implement
+	~Attacker() = default;
+	string attackMessage(BaseCharacter* opp) {
+		return currentMessage = name + " had fun destroying " + opp->getName() + " with their " + SwordType + " " + weaponType + damageMessage(opp->getLatestDamage());
 	}
-	void setMaxHealth() override {
-	    health = 100;
-	}
-	void setHealth(int x) { //used for when player is attacked
-		this->health += x;
-	}
-	BaseCharacter* attack(vector<BaseCharacter*> charList) override {
-		//implement
-	}
-	int defend(vector<BaseCharacter*> charList, int attackerIndex, int damage) override { return 0; } //fixme
 };
 
 #endif

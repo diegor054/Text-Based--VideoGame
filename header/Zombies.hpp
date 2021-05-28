@@ -6,36 +6,23 @@
 
 #include "Opponent.hpp"
 
-class Zombies: public Opponent {
+class Zombies : public Opponent {
  private:
 	
  public:
     Zombies() {
-        opponentLevel = 1; 
-        attackStyle = "Teeth"; 
-        health = 25; 
-        name = "Zombie"; 
-        attackStrength = 5;
+        name = characterType = "Zombie"; 
+		health = maxHealth = 25;
+		attackStrength = 5;
+		xp = opponentLevel = 0;		
+        attackStyle = "Teeth";
     }
-    BaseCharacter* attack(vector<BaseCharacter*> charList) override {//the idea of making player index 0 is good but wouldnt the vector have to be BaseCharacters since player isnt an 	//opoenent
-    	if(this->health > 0){
-        	charList.at(0)->setHealth(attackStrength * -1);
-        	damageMessages(attackStrength);
-        }
+    string attackMessage(BaseCharacter* opp) override {
+		int message = rand() % 3;
+		if (message == 0) return currentMessage = name + " bites " + opp->getName() + damageMessage(opp->getLatestDamage());
+		else if (message == 1) return currentMessage = "ERRRR. " + name + " bit " + opp->getName() + " hard" + damageMessage(opp->getLatestDamage());
+		else return currentMessage = name + " wants some fresh meat. He attacks " + opp->getName() + damageMessage(opp->getLatestDamage());
 	}
-    int defend(vector<BaseCharacter*> charList, int attackerIndex, int damage) override { return 0; } //fixme
-	void damageMessages(int damage) {
-        int num = (rand() % 3) + 1;
-        if(num == 1) {
-            cout << "Zombie bites you and deals " << damage << " damage!" << endl;
-        }
-        else if(num == 2) {
-            cout << "ERRRR. Zombie bit you hard! You lost " << damage << " health!" << endl;
-        }
-        else {
-            cout << "Zombie wants some fresh meat. He attacked you for " << damage << " health!" << endl;
-        }
-    }
 };
 
 #endif

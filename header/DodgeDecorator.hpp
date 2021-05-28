@@ -6,14 +6,15 @@
 class DodgeDecorator : public AbilityDecorator {
  public:
     DodgeDecorator(BaseCharacter* c) : AbilityDecorator(c) { }
-    virtual BaseCharacter* attack(vector<BaseCharacter*> charList) {return this->character->attack(charList);}
+    BaseCharacter* attack(vector<BaseCharacter*> charList, int attackerIndex) override {return this->character->attack(charList, attackerIndex);}
     virtual int defend(vector<BaseCharacter*> charList, int attackerIndex, int damage) {
         if (!(rand() % 2)) {
             if (!(rand() % 2)) {
                 return this->character->defend(charList, attackerIndex, 0);
-            }
+                addAbilityMessage(charList.at(attackerIndex)->getName() + " slipped on a banana while trying to hurt " + this->character->getName());
+            }//Code above is bugged and should override
             else {
-                return this->character->defend(charList, attackerIndex, damage/2);
+                return this->character->defend(charList, attackerIndex, damage / 2);
             }
         }
     }

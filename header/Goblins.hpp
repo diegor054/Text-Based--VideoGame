@@ -6,35 +6,22 @@
 
 #include "Opponent.hpp"
 
-class Goblins: public Opponent {
+class Goblins : public Opponent {
  private:
 
  public:
     Goblins() {
-		opponentLevel = 1;
-		attackStyle = "Knife";
-		health = 50;
-		name = "Goblin";
+		name = characterType = "Goblin";
+		health = maxHealth = 50;
 		attackStrength = 2;
+		xp = opponentLevel = 0;		
+		attackStyle = "Knife";		
 	}
-    BaseCharacter* attack(vector<BaseCharacter*> charList) override {
-    	if(this->health > 0){
-        	charList.at(0)->setHealth(attackStrength * -1);
-        	damageMessages(attackStrength);
-        }
-	}
-	int defend(vector<BaseCharacter*> charList, int attackerIndex, int damage) override { return 0; } //fixme
-	void damageMessages(int damage) {
-		int num = (rand() % 3) + 1;
-		if(num == 1) {
-			cout << "Goblin knife you and took off " << damage << " damage!" << endl;
-		}
-		else if(num == 2) {
-			cout << "Goblin hit you hard! You lost " << damage << " health!" << endl; 
-		}
-		else {
-			cout << "Goblin is very mad at you and attacked you for " << damage << " health!" << endl;
-		}
+	string attackMessage(BaseCharacter* opp) override {
+		int message = rand() % 3;
+		if (message == 0) return currentMessage = name + " knife " + opp->getName() + damageMessage(opp->getLatestDamage());
+		else if (message == 1) return currentMessage = name + " hit " + opp->getName() + " hard" + damageMessage(opp->getLatestDamage());
+		else return currentMessage = name + " is very mad at you and attacked " + opp->getName() + damageMessage(opp->getLatestDamage());
 	}
 };
 

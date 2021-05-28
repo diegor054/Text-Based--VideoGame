@@ -11,30 +11,17 @@ class Fairies: public Opponent {
 
  public:
     Fairies() {
-		opponentLevel = 1;
-		attackStyle = "Pixie dust";
-		health = 50;
-		name = "Fairy";
+		name = characterType = "Fairy";
+		health = maxHealth = 50;
 		attackStrength = 3;
+		xp = opponentLevel = 0;		
+		attackStyle = "Pixie dust";
 	}
-    BaseCharacter* attack(vector<BaseCharacter*> charList) override {
-    	if(this->health > 0){
-        	charList.at(0)->setHealth(attackStrength * -1);
-        	damageMessages(attackStrength);
-        }
-	}
-	int defend(vector<BaseCharacter*> charList, int attackerIndex, int damage) override { return 0; } //fixme
-	void damageMessages(int damage) {
-		int num = (rand() % 3) + 1;
-		if(num == 1) {
-			cout << "Fairy sprinkles you and deals " << damage << " damage!" << endl;
-		}
-		else if(num == 2) {
-			cout << "Fairy hit you hard! You lost " << damage << " health!" << endl;
-		}
-		else {
-			cout << "Fairy is very mad at you and sprinkled you for " << damage << " health!" << endl;
-		}
+	string attackMessage(BaseCharacter* opp) override {
+		int message = rand() % 3;
+		if (message == 0) return currentMessage = name + " sprinkles " + opp->getName() + damageMessage(opp->getLatestDamage());
+		else if (message == 1) return currentMessage = "Fairy hit " + opp->getName() + " hard" + damageMessage(opp->getLatestDamage());
+		else return currentMessage = "Fairy is very mad at you and sprinkled " + opp->getName() + damageMessage(opp->getLatestDamage());
 	}
 };
 

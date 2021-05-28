@@ -5,30 +5,23 @@
 
 //implement healer class
 
-class Healer: public Player {
+class Healer : public Player {
  private:
     string wandType; //goes wood, steel, gold, diamond. used just for show not any purpose. propotional to playerTypeLevel
  public:
     Healer() {
-        health = 200;
-        xp = 0;
+        name = "Null";
+        characterType = "Healer";
+        health = maxHealth = 200;
+        attackStrength = 8;
+        xp = currentXP = playerLevel = 0;
         weaponType = "Wand";
-        playerTypeLevel = 0;
         wandType = "Wood";
     }
-    void Upgrade() override {
-        //implement
-    }
-    void setMaxHealth() override {
-        health = 200;
-    }
-	void setHealth(int x){
-	    this->health += x;
+    ~Healer() = default;
+    string attackMessage(BaseCharacter* opp) {
+		return currentMessage = name + " had fun deleting " + opp->getName() + " with their " + wandType + " " + weaponType + damageMessage(opp->getLatestDamage());
 	}
-    BaseCharacter* attack(vector<BaseCharacter*> charList) override {
-		//implement
-	}
-    int defend(vector<BaseCharacter*> charList, int attackerIndex, int damage) override { return 0; } //fixme
 };
                                                              
 #endif
