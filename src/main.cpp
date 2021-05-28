@@ -22,6 +22,7 @@ void getPath(bool &);
 void instructions();
 vector<BaseCharacter*> getStage(BaseCharacter*, int, bool);
 void fight(vector<BaseCharacter*>, int);
+string getFightOption();
 void stageMessages(int, bool &);
 
 int main() {
@@ -211,22 +212,54 @@ void getPath(bool &isLeftPath) {
 void fight(vector<BaseCharacter*> charList, int stage) {
     cout << "Round " << stage << " has begun!" << endl;
     while (charList.at(0)->getHealth() > 0) {
-        cout << "Would you like to attack (A) view enemies (V) or escape (E): " << flush;
-
-        charList.at(0)->attack(charList, 0);
-        int numOpponents = charList.size() - 1;
-        int opponentIndex = rand() % numOpponents + 1;
-        charList.at(opponentIndex)->attack(charList, opponentIndex);
-        //Menu();
-        if (charList.at(0)->getHealth() <= 0) {
-            cout << "You have been elimated." << endl;
-            stage -= 1;
-            charList.at(0)->refresh(false);
+        string option = getFightOption();
+        if (option == "A") {
+            charList.at(0)->attack(charList, 0);
+            int numOpponents = charList.size() - 1;
+            int opponentIndex = rand() % numOpponents + 1;
+            charList.at(opponentIndex)->attack(charList, opponentIndex);
+                if (charList.at(0)->getHealth() <= 0) {
+                cout << "You have been elimated." << endl;
+                stage -= 1;
+                charList.at(0)->refresh(false);
+                return;
+            }
+        }
+        else if (option == "V") {
+            for (int i = 0; i < charList.size(); ++i) {
+                cout << charList.at(i)->getName() << ": " << charList.at(i)->getHealth() << " health. " << charList.at(i)->getHealthBar() << endl;
+            }
+        }
+        else {
+            cout << "You have fled the fight." << endl;
             return;
         }
     }
     cout << "You have eliminated all opponents! Round " << stage << " has finished." << endl;
     charList.at(0)->refresh(true);
+}
+
+string getFightOption() {
+    string choice = "X";
+    bool invalidInput = true;
+    while (invalidInput) {
+        invalidInput = false;
+        cout << "Would you like to attack (A) view enemies (V) or escape (E): " << flush;
+        cin >> choice;
+        if (toupper(choice.at(0)) == 'A') {
+            return "A";
+        }
+        else if (toupper(choice.at(0)) == 'V') {
+            return "V";
+        }
+        else if (toupper(choice.at(0)) == 'E') {
+            return "E";
+        }
+        else {
+            cout << "This is not a valid choice." << endl;
+            invalidInput = true;
+        }
+    }
 }
 
 void stageMessages(int stage, bool &isLeftPath) {
