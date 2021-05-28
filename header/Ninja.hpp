@@ -18,8 +18,8 @@ class Ninja : public Player {
     }
     ~Ninja() = default;
     string attackMessage(BaseCharacter* opp) {
-		return currentMessage = name + " had fun yeeting " + opp->getName() + " with their " + knifeType + " " + weaponType + damageMessage(opp->getLatestDamage());
-	}
+        return currentMessage = name + " had fun yeeting " + opp->getName() + " with their " + knifeType + " " + weaponType + damageMessage(opp->getLatestDamage());
+    }
 };
-                                                         		    	                                                          
+                                                                                                                                   
 #endif

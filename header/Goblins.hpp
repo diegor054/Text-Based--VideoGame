@@ -11,18 +11,18 @@ class Goblins : public Opponent {
 
  public:
     Goblins() {
-		name = characterType = "Goblin";
-		health = maxHealth = 50;
-		attackStrength = 2;
-		xp = opponentLevel = 0;		
-		attackStyle = "Knife";		
-	}
-	string attackMessage(BaseCharacter* opp) override {
-		int message = rand() % 3;
-		if (message == 0) return currentMessage = name + " knife " + opp->getName() + damageMessage(opp->getLatestDamage());
-		else if (message == 1) return currentMessage = name + " hit " + opp->getName() + " hard" + damageMessage(opp->getLatestDamage());
-		else return currentMessage = name + " is very mad at you and attacked " + opp->getName() + damageMessage(opp->getLatestDamage());
-	}
+        name = characterType = "Goblin";
+        health = maxHealth = 50;
+        attackStrength = 2;
+        xp = opponentLevel = 0;
+        attackStyle = "Knife";
+    }
+    string attackMessage(BaseCharacter* opp) override {
+        int message = rand() % 3;
+        if (message == 0) return currentMessage = name + " knife " + opp->getName() + damageMessage(opp->getLatestDamage());
+        else if (message == 1) return currentMessage = name + " hit " + opp->getName() + " hard" + damageMessage(opp->getLatestDamage());
+        else return currentMessage = name + " is very mad at you and attacked " + opp->getName() + damageMessage(opp->getLatestDamage());
+    }
 };
 
 #endif

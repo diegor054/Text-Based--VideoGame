@@ -31,7 +31,7 @@ class BaseCharacter {
         int lines = (100 * (health / maxHealth)) / totalLines;
         string healthBar = "[";
         for (int i = 0; i < totalLines; i++) {
-	        if (i < lines) healthBar += "|";
+            if (i < lines) healthBar += "|";
             else healthBar += " ";
         }
         return healthBar += "]";
