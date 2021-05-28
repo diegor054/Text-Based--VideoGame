@@ -21,7 +21,7 @@ BaseCharacter* getPlayer(const string &, const string &, int, bool);
 void getPath(bool &);
 void instructions();
 vector<BaseCharacter*> getStage(BaseCharacter*, int, bool);
-void fight(vector<BaseCharacter*>, int);
+bool fight(vector<BaseCharacter*>, int);
 string getFightOption();
 void stageMessages(int, bool &);
 
@@ -45,17 +45,15 @@ int main() {
     //run program
     int stage = stoi(gameInfo->at(0));
     string userInput;
-    while (userInput != "Q") {
+    while (userInput != "Q" && stage <= 10) {
         cout << "Would you like to continue (C) or exit (Q)? " << flush;
         cin >> userInput;
-    }
-    
-    bool isLeftPath = true;
-    while(stage < 11){
-        stageMessages(stage, isLeftPath); 
-        vector<BaseCharacter*> opponentsList = getStage(player, stage, isLeftPath);
-        fight(opponentsList, stage);
-        stage++;
+        if (userInput == "C") {
+            bool isLeftPath = true;
+            stageMessages(stage, isLeftPath); 
+            vector<BaseCharacter*> opponentsList = getStage(player, stage, isLeftPath);
+            stage += fight(opponentsList, stage);
+        }
     }
    
     cout << "Congrats on beating the final boss. You have made everyone proud. Now go on and collect your treasure." << endl;
@@ -166,6 +164,7 @@ BaseCharacter* getPlayer(const string &name, const string &type, int xp, bool is
     }
     return pf->getUpgradedPlayer(name, xp);
 }
+
 void instructions() {
     cout << "Would you like to see the instructions before you start? (Y)/(N): " << flush;
     string userInput;
@@ -209,7 +208,7 @@ void getPath(bool &isLeftPath) {
     else isLeftPath = false;
 }
 
-void fight(vector<BaseCharacter*> charList, int stage) {
+bool fight(vector<BaseCharacter*> charList, int stage) {
     cout << "Round " << stage << " has begun!" << endl;
     while (charList.at(0)->getHealth() > 0) {
         string option = getFightOption();
@@ -232,11 +231,12 @@ void fight(vector<BaseCharacter*> charList, int stage) {
         }
         else {
             cout << "You have fled the fight." << endl;
-            return;
+            return false;
         }
     }
     cout << "You have eliminated all opponents! Round " << stage << " has finished." << endl;
     charList.at(0)->refresh(true);
+    return true;
 }
 
 string getFightOption() {
