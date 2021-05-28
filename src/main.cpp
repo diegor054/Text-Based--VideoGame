@@ -198,19 +198,20 @@ vector<BaseCharacter*> getStage(BaseCharacter* player, int stage, bool isLeftPat
 }
 void fight(vector<BaseCharacter*> opp, int stage){
 	cout << "Round " << stage << " hase begun!" << endl;
-	for(int i = 1; i < opp.size(); i++){
-		while((opp.at(i)->getHealth() > 0) && (opp.at(0)->getHealth() > 0)){
-		//implement fight
-		}
-		if(opp.at(0)->getHealth() <= 0){	
+	while(opp.at(0)->getHealth() > 0){
+		opp.at(0)->attack(opp, 0);
+		int oppIndex = rand() % (opp.size() -1) + 1;
+		opp.at(oppIndex)->attack(opp, oppIndex);
+		//Menu();
+	if(opp.at(0)->getHealth() <= 0){	
 		cout << "You have been elimated." << endl;
-		//do something
+        	stage -= 1;
+        	//opp.at(0)->setCurrentXP(0);
+		return;
 		}
+        }
 	cout << "You have eliminated all opponents! Round " << stage << " has finished." << endl;
-	}
-	}
-
-
+}
 
 
 void stageMessages(int stage, bool &isLeftPath){
