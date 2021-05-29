@@ -13,7 +13,7 @@ class DrainDecorator : public AbilityDecorator {
         cout << this->currentMessage << endl;
         this->currentMessage = "";
         return victim;
-    }// message might be bugged FIXME
+    }
     virtual int defend(vector<BaseCharacter*> charList, int attackerIndex, int damage) {return this->character->defend(charList, attackerIndex, damage);}
 };
 

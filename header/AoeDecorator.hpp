@@ -12,7 +12,9 @@ class AoeDecorator : public AbilityDecorator {
             if (!(rand() % 5)) {
                 (*it)->defend(charList, 0, this->character->getAttackStrength() / 3);
                 addAbilityMessage(this->character->getName() + " managed to also hit " + (*it)->getName() + " and deal " + to_string((*it)->getLatestDamage()) + "damage.");
-            } // code above might be bugged FIXME
+                cout << this->currentMessage << endl;
+                this->currentMessage = "";
+            }
         }
         return opp;
     }
