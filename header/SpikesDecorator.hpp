@@ -11,7 +11,9 @@ class SpikesDecorator : public AbilityDecorator {
         if (rand() % 3) {
             charList.at(attackerIndex)->defend(charList, attackerIndex, attackStrength / 5);
             addAbilityMessage(charList.at(attackerIndex)->getName() + " was thorned for " + to_string(attackStrength / 5) + " damage whilst trying to hurt " + this->character->getName());
-        } //MESSAGE MIGHT BE BUGGED FIXME
+            cout << this->currentMessage << endl;
+            this->currentMessage = "";
+        }
         return this->character->defend(charList, attackerIndex, damage);
     }
 };

@@ -7,13 +7,16 @@ class AoeDecorator : public AbilityDecorator {
  public:
     AoeDecorator(BaseCharacter* c) : AbilityDecorator(c) { }
     BaseCharacter* attack(vector<BaseCharacter*> charList, int attackerIndex) override {
-        this->character->attack(charList, attackerIndex);
+        BaseCharacter* opp = this->character->attack(charList, attackerIndex);
         for (vector<BaseCharacter*>::iterator it = charList.begin() + 1; it != charList.end(); ++it) {
             if (!(rand() % 5)) {
                 (*it)->defend(charList, 0, this->character->getAttackStrength() / 3);
                 addAbilityMessage(this->character->getName() + " managed to also hit " + (*it)->getName() + " and deal " + to_string((*it)->getLatestDamage()) + "damage.");
-            } // code above might be bugged FIXME
+                cout << this->currentMessage << endl;
+                this->currentMessage = "";
+            }
         }
+        return opp;
     }
     virtual int defend(vector<BaseCharacter*> charList, int attackerIndex, int damage) {return character->defend(charList, attackerIndex, damage);}
 };

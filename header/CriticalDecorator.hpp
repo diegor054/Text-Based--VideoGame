@@ -12,6 +12,9 @@ class CriticalDecorator : public AbilityDecorator {
             setAttackStrength(temp * 1.5);
         }
         BaseCharacter* victim = this->character->attack(charList, attackerIndex);
+        addAbilityMessage(this->character->getName() + " critically hit " + victim->getName() + "!");
+        cout << this->currentMessage << endl;
+        this->currentMessage = "";
         setAttackStrength(temp);
         return victim;
     }

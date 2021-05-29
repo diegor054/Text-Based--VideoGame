@@ -22,7 +22,7 @@ class Opponent : public BaseCharacter {
         int opponentIndex = 0;
         charList.at(opponentIndex)->defend(charList, attackerIndex, this->attackStrength);
         cout << attackMessage(charList.at(opponentIndex)) << endl;
-        return charList.at(attackerIndex);
+        return charList.at(opponentIndex);
     }
     void refresh(bool keepXP) override {
         this->latestDamage = 0;
