@@ -213,6 +213,7 @@ bool fight(vector<BaseCharacter*> charList, int stage) {
     while (charList.at(0)->getHealth() > 0) {
         string option = getFightOption();
         if (option == "A") {
+	    int numLeft = charList.size() -2;
             charList.at(0)->attack(charList, 0);
             int numOpponents = charList.size() - 1;
             int opponentIndex = rand() % numOpponents + 1;
@@ -226,7 +227,14 @@ bool fight(vector<BaseCharacter*> charList, int stage) {
      	        if(charList.at(opponentIndex)->getHealth() == 0){
 		cout << "An Enemy Has Been Eliminated" << endl;
 		charList.erase(charList.begin() + opponentIndex);
+		numLeft -= 1;
 	   }
+	       if(numLeft == 0){
+		 cout << "You have eliminated all opponents! Round " << stage << " has finished." << endl;
+	         charList.at(0)->refresh(true);
+   		 return true;
+		}
+
         }
         else if (option == "V") {
             for (int i = 0; i < charList.size(); ++i) {
