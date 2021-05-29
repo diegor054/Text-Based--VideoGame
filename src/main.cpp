@@ -61,7 +61,7 @@ int main() {
     
     //save program
     gameInfo->at(0) = to_string(stage);
-    gameInfo->at(1) = player->getXP();
+    gameInfo->at(1) = to_string(player->getXP());
     save(file, gameInfo);
 
     //exit program (debug until bugs resolved)
@@ -280,12 +280,15 @@ void stageMessages(int stage, bool &isLeftPath) {
                 cout << "You walk down the right path and see goblins standing before your eyes! They run towards you with their knives and are wanting to attack you." <<endl;
                 cout << "Prepare yourself... you are about to get in a fight." << endl;
             }
+            break;
         case 2:
             cout << "You take a quick break to heal yourself and recover." << endl;
             cout << "Suddenly, more opponents start to show up! This time it looks like alot more." << endl;
+            break;
         case 3:
             cout << "You take another quick break and heal yourself." << endl;
             cout << "You thought you were done... More Opponents start to show up. These look way more dangerous!" << endl;
+            break;
         case 4:
             cout << "After 3 long fights, you take a break and continue to explore the dungeon. " << endl;
             cout << "You find some human skeleton remains and realize that people have died on this exploration before." << endl;
@@ -304,12 +307,15 @@ void stageMessages(int stage, bool &isLeftPath) {
                 cout << "You walk down the right path and see fairies standing before your eyes! They fly to you and swarm you with pixie dust." <<endl;
                 cout << "Prepare yourself... you are about to get in a fight." << endl;
             }
+            break;
         case 5:
             cout << "You take a quick break to heal yourself and recover." << endl;
             cout << "Suddenly, more opponents start to show up! This time it looks like alot more." << endl;
+            break;
         case 6:
             cout << "You take another quick break and heal yourself." << endl;
             cout << "You thought you were done... More Opponents start to show up. These look way more dangerous!" << endl;
+            break;
         case 7:
             cout << "After 3 more long fights, you are approaching the end. " << endl;
             cout << "You walk more through the dungeon and have to choose which path direction to take(Left or Right) once again." << endl;
@@ -327,12 +333,15 @@ void stageMessages(int stage, bool &isLeftPath) {
                 cout << "You walk down the right path and see fairies standing before your eyes! They fly to you and swarm you with pixie dust." <<endl;
                 cout << "Prepare yourself... you are about to get in a fight." << endl;
             }
+            break;
         case 8:
             cout << "You take a quick break to heal yourself and recover." << endl;
             cout << "Suddenly, more opponents start to show up! This time it looks like alot more." << endl;
+            break;
         case 9:
             cout << "You take another quick break and heal yourself." << endl;
             cout << "You thought you were done... More Opponents start to show up. These look way more dangerous!" << endl;
+            break;
         case 10:
             cout << "You walk more. You start to see gold, diamonds, emeralds, rubies... THIS IS IT. ALL YOU HAVE EVER WANTED!" << endl;
             cout << "YOU HAVE REACHED THE TREASURE!!!" << endl;
@@ -341,7 +350,9 @@ void stageMessages(int stage, bool &isLeftPath) {
             cout << "This is your final boss, your final test, your endgame." << endl;
             cout << "It won't be easy to beat, but all the good things in life aren't easy." << endl;
             cout << "Well, its time for a final dual. Prepare yourself and good luck." << endl;
+            break;
         default:
             cout << "Stage " << stage << " does not exist!" << endl;
+            break;
     }
 }
