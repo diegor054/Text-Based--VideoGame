@@ -24,11 +24,6 @@ class Opponent : public BaseCharacter {
         cout << attackMessage(charList.at(opponentIndex)) << endl;
         return charList.at(attackerIndex);
     }
-    int defend(vector<BaseCharacter*> charList, int attackerIndex, int damage) override { 
-        if (health - damage > 0) this->setHealth(health - damage);
-        else this->setHealth(0);
-        return damage;
-    }
     void refresh(bool keepXP) override {
         this->latestDamage = 0;
         this->currentMessage = "";

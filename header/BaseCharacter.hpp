@@ -24,7 +24,17 @@ class BaseCharacter {
     BaseCharacter() { }
     ~BaseCharacter() = default; 
     virtual BaseCharacter* attack(vector<BaseCharacter*> oppList, int attackerIndex) = 0;
-    virtual int defend(vector<BaseCharacter*> charList, int attackerIndex, int damage) = 0;
+    virtual int defend(vector<BaseCharacter*> charList, int attackerIndex, int damage) { 
+        if (health - damage > 0) {
+            this->setHealth(health - damage);
+            return latestDamage = damage;
+        }
+        else {
+            latestDamage = health;
+            this->setHealth(0);
+            return latestDamage;
+        }
+    }
     virtual string attackMessage(BaseCharacter* opp) = 0;
     virtual string getHealthBar() const {
         int totalLines = 10;

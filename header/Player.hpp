@@ -24,17 +24,6 @@ class Player : public BaseCharacter {
         cout << attackMessage(charList.at(opponentIndex)) << endl;
         return charList.at(attackerIndex);
     }
-    int defend(vector<BaseCharacter*> charList, int attackerIndex, int damage) override { 
-        if (health - damage > 0) {
-            this->setHealth(health - damage);
-            return latestDamage = damage;
-        }
-        else {
-            latestDamage = health;
-            this->setHealth(0);
-            return latestDamage;
-        }
-    }
     virtual string attackMessage(BaseCharacter* opp) = 0;
     void setMaxHealth() { health = maxHealth; }
     void UpdateLevel() {
