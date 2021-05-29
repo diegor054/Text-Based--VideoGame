@@ -22,7 +22,7 @@ class Player : public BaseCharacter {
         charList.at(opponentIndex)->defend(charList, attackerIndex, this->attackStrength);
         this->currentXP += charList.at(opponentIndex)->getLatestDamage();
         cout << attackMessage(charList.at(opponentIndex)) << endl;
-        return charList.at(attackerIndex);
+        return charList.at(opponentIndex);
     }
     virtual string attackMessage(BaseCharacter* opp) = 0;
     void setMaxHealth() { health = maxHealth; }
