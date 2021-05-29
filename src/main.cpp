@@ -223,6 +223,10 @@ bool fight(vector<BaseCharacter*> charList, int stage) {
                 charList.at(0)->refresh(false);
                 return false;
             }
+     	        if(charList.at(opponentIndex)->getHealth() == 0){
+		cout << "An Enemy Has Been Eliminated" << endl;
+		charList.erase(charList.begin() + opponentIndex);
+	   }
         }
         else if (option == "V") {
             for (int i = 0; i < charList.size(); ++i) {
