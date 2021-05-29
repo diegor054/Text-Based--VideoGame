@@ -21,7 +21,7 @@ BaseCharacter* getPlayer(const string &, const string &, int, bool);
 void getPath(bool &);
 void instructions();
 vector<BaseCharacter*> getStage(BaseCharacter*, int, bool);
-bool fight(vector<BaseCharacter*>, int);
+bool fight(vector<BaseCharacter*>, int &);
 string getFightOption();
 void stageMessages(int, bool &);
 
@@ -208,33 +208,28 @@ void getPath(bool &isLeftPath) {
     else isLeftPath = false;
 }
 
-bool fight(vector<BaseCharacter*> charList, int stage) {
+bool fight(vector<BaseCharacter*> charList, int& stage) {
     cout << "Round " << stage << " has begun!" << endl;
     while (charList.at(0)->getHealth() > 0) {
         string option = getFightOption();
         if (option == "A") {
-	    int numLeft = charList.size() -2;
+            int numLeft = charList.size() - 1;
             charList.at(0)->attack(charList, 0);
+            for (int i = 1; i < charList.size(); ++i) {
+                if (charList.at(i)->getHealth() == 0) {
+                    cout << charList.at(i)->getName() + " Has Been Eliminated." << endl;
+                    charList.erase(charList.begin() + i);
+                    numLeft -= 1;
+                }
+            }
+            if (numLeft == 0) {
+                cout << "You have eliminated all opponents! Round " << stage << " has finished." << endl;
+                charList.at(0)->refresh(true);
+                return true;
+            }
             int numOpponents = charList.size() - 1;
             int opponentIndex = rand() % numOpponents + 1;
             charList.at(opponentIndex)->attack(charList, opponentIndex);
-                if (charList.at(0)->getHealth() <= 0) {
-                cout << "You have been elimated." << endl;
-                stage -= 1;
-                charList.at(0)->refresh(false);
-                return false;
-            }
-     	        if(charList.at(opponentIndex)->getHealth() == 0){
-		cout << "An Enemy Has Been Eliminated" << endl;
-		charList.erase(charList.begin() + opponentIndex);
-		numLeft -= 1;
-	   }
-	       if(numLeft == 0){
-		 cout << "You have eliminated all opponents! Round " << stage << " has finished." << endl;
-	         charList.at(0)->refresh(true);
-   		 return true;
-		}
-
         }
         else if (option == "V") {
             for (int i = 0; i < charList.size(); ++i) {
@@ -246,9 +241,10 @@ bool fight(vector<BaseCharacter*> charList, int stage) {
             return false;
         }
     }
-    cout << "You have eliminated all opponents! Round " << stage << " has finished." << endl;
-    charList.at(0)->refresh(true);
-    return true;
+    cout << "You have been elimated." << endl;
+    stage -= 1;
+    charList.at(0)->refresh(false);
+    return false;
 }
 
 string getFightOption() {
