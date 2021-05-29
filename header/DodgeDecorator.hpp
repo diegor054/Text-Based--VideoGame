@@ -17,6 +17,7 @@ class DodgeDecorator : public AbilityDecorator {
                 return this->character->defend(charList, attackerIndex, damage / 2);
             }
         }
+        else return this->character->defend(charList, attackerIndex, damage);
     }
 };
 
