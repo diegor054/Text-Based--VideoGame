@@ -26,9 +26,9 @@ class BaseCharacter {
     virtual BaseCharacter* attack(vector<BaseCharacter*> oppList, int attackerIndex) = 0;
     virtual int defend(vector<BaseCharacter*> charList, int attackerIndex, int damage) = 0;
     virtual string attackMessage(BaseCharacter* opp) = 0;
-    string getHealthBar() const {
+    virtual string getHealthBar() const {
         int totalLines = 10;
-        int lines = (100 * (health / maxHealth)) / totalLines;
+        int lines = ((100.0 * health) / maxHealth) / totalLines;
         string healthBar = "[";
         for (int i = 0; i < totalLines; i++) {
             if (i < lines) healthBar += "|";

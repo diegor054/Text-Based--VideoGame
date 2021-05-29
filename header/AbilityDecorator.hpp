@@ -10,7 +10,8 @@ class AbilityDecorator : public BaseCharacter {
     AbilityDecorator(BaseCharacter* c) : BaseCharacter(), character(c) { }
     virtual BaseCharacter* attack(vector<BaseCharacter*> charList, int attackerIndex) = 0;
     virtual int defend(vector<BaseCharacter*> charList, int attackerIndex, int damage) = 0;
-    string attackMessage(BaseCharacter* opp) override { return this->character->attackMessage(opp); }
+    string attackMessage(BaseCharacter* opp) override { return this->character->attackMessage(opp) + "\n" + this->currentMessage; }
+    string getHealthBar() const override { return this->character->getHealthBar(); }
     void setName(string n) override { return this->character->setName(n); }
     void setType(string t) override { return this->character->setType(t); }
     void setHealth(int h) override { return this->character->setHealth(h); }
