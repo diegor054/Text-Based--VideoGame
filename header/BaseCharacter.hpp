@@ -36,16 +36,16 @@ class BaseCharacter {
         }
         return healthBar += "]";
     }
-    void setName(string n) { name = n; }
-    void setType(string t) { characterType = t; }
-    void setHealth(int h) { health = h; }
-    void setXP(int x) { xp = x; }
-    string getName() { return name; }
-    string getType() { return characterType; }
-    int getHealth() { return health; }
-    int getXP() { return xp; }
-    int getLatestDamage() { return latestDamage; }
-    int getAttackStrength() { return attackStrength; }
+    virtual void setName(string n) { name = n; }
+    virtual void setType(string t) { characterType = t; }
+    virtual void setHealth(int h) { health = h; }
+    virtual void setXP(int x) { xp = x; }
+    virtual string getName() { return name; }
+    virtual string getType() { return characterType; }
+    virtual int getHealth() { return health; }
+    virtual int getXP() { return xp; }
+    virtual int getLatestDamage() { return latestDamage; }
+    virtual int getAttackStrength() { return attackStrength; }
     virtual void refresh(bool keepXP) = 0;
 };
 
