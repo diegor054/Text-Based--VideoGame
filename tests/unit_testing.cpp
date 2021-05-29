@@ -20,4 +20,12 @@ TEST(AttackerTest, defaultAttacker) {
     EXPECT_EQ(temp->Type(), "Attacker");
     delete temp;
 }
+TEST(HealerTest, defaultHealer) {
+    Healer* temp = new Healer();
+    EXPECT_EQ(temp->getHealth(), 200);
+    EXPECT_EQ(temp->getXP() , 0);
+    EXPECT_EQ(temp->getAttackStrength(), 8);
+    EXPECT_EQ(temp->Type(), "Healer");
+    delete temp;
+}
 
