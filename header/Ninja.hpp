@@ -9,7 +9,7 @@ class Ninja : public Player {
  public:
     Ninja() {
         name = "Null";
-        characterType = "Healer";
+        characterType = "Ninja";
         health = maxHealth = 100;
         attackStrength = 8;
         xp = currentXP = playerLevel = 0;

@@ -10,6 +10,9 @@
 #include "../header/Zombies.hpp"
 #include "../header/Goblins.hpp"
 #include "../header/Fairies.hpp"
+#include "../header/BaseCharacter.hpp"
+
+#include <vector>
 using namespace std;
 
 TEST(AttackerTest, defaultAttacker) {
@@ -30,7 +33,7 @@ TEST(HealerTest, defaultHealer) {
 }
 TEST(NinjaTest, defaultNinja) {
     Ninja* temp = new Ninja();
-    EXPECT_EQ(temp->getHealth(), 200);
+    EXPECT_EQ(temp->getHealth(), 100);
     EXPECT_EQ(temp->getXP() , 0);
     EXPECT_EQ(temp->getAttackStrength(), 8);
     EXPECT_EQ(temp->getType(), "Ninja");
@@ -61,13 +64,16 @@ TEST(ZombieTest, defaultZombie) {
     EXPECT_EQ(temp->getType(), "Zombie");
     delete temp;
 }
-TEST(AttackerTest, attackerFight) {
-    Zombies* temp = new Zombies(); 
-    Attacker* a = new Attacker();
-    a.attack(temp);
-    EXPECT_EQ(temp->getHealth(), 15);
-    delete temp;
-    delete a;
+TEST(CriticalTest, testingDamageDone) {
+    BaseCharacter* temp = new CriticalDecorator(new Attacker());
+    vector<BaseCharacter*>vec{temp, new Zombies(), new Zombies(), new Zombies(), new Zombies()};
+    while(temp->getLatestDamage() == temp->getAttackStrength()){
+	temp->attack(vec, 0);
+    }
+    EXPECT_EQ(temp->getLatestDamage(), 15);
+    for(int i = 0; i < vec.size(); i++){
+	delete vec.at(i);
+	}
 }
 
 
