@@ -8,7 +8,7 @@ class CriticalDecorator : public AbilityDecorator {
     CriticalDecorator(BaseCharacter* c) : AbilityDecorator(c) { }
     BaseCharacter* attack(vector<BaseCharacter*> charList, int attackerIndex) override {
         int temp = getAttackStrength();
-        if ((rand() % 100 + 1) <= (0.186 + 0.102 * this->getLevel() + 6.28 * pow(10, -3) * pow(this->getLevel(), 2) + 20)) {
+        if ((rand() % 100 + 1) <= ((0.1492 + sqrt(0.02512 * this->getLevel() + 0.00573168))/0.01256)) {
             setAttackStrength(temp * 1.5);
         }
         BaseCharacter* victim = this->character->attack(charList, attackerIndex);
