@@ -16,10 +16,12 @@ class AbilityDecorator : public BaseCharacter {
     void setType(string t) override { return this->character->setType(t); }
     void setHealth(int h) override { return this->character->setHealth(h); }
     void setXP(int x) override { return this->character->setXP(x); }
+    void setOutputStatus(bool o) override { return this->character->setOutputStatus(o); }
     string getName() override { return this->character->getName(); }
     string getType() override { return this->character->getType(); }
     int getHealth() override { return this->character->getHealth(); }
     int getXP() override { return this->character->getXP(); }
+    bool getOutputStatus() override { return this->character->getOutputStatus(); }
     int getLatestDamage() override { return this->character->getLatestDamage(); }
     int getAttackStrength() override { return this->character->getAttackStrength(); }
     void addAbilityMessage(const string &newMessage) {
