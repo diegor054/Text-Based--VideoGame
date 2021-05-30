@@ -9,9 +9,9 @@ class AoeDecorator : public AbilityDecorator {
     BaseCharacter* attack(vector<BaseCharacter*> charList, int attackerIndex) override {
         BaseCharacter* opp = this->character->attack(charList, attackerIndex);
         for (vector<BaseCharacter*>::iterator it = charList.begin() + 1; it != charList.end(); ++it) {
-            if (!(rand() % 5)) {
+            if (!(rand() % 5) && (*it) != opp) {
                 (*it)->defend(charList, 0, this->character->getAttackStrength() / 3);
-                addAbilityMessage(this->character->getName() + " managed to also hit " + (*it)->getName() + " and deal " + to_string((*it)->getLatestDamage()) + "damage.");
+                addAbilityMessage(this->character->getName() + " managed to also hit " + (*it)->getName() + " and deal " + to_string((*it)->getLatestDamage()) + " damage.");
                 cout << this->currentMessage << endl;
                 this->currentMessage = "";
             }

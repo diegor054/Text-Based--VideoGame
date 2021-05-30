@@ -10,16 +10,20 @@ class DodgeDecorator : public AbilityDecorator {
     virtual int defend(vector<BaseCharacter*> charList, int attackerIndex, int damage) {
         if (!(rand() % 2)) {
             if (!(rand() % 2)) {
+                this->setOutputStatus(false);
+                int dmg = this->character->defend(charList, attackerIndex, 0);
+                this->setOutputStatus(true);
                 addAbilityMessage(charList.at(attackerIndex)->getName() + " slipped on a banana while trying to hurt " + this->character->getName());
                 cout << this->currentMessage << endl;
                 this->currentMessage = "";
-                return this->character->defend(charList, attackerIndex, 0);
+                return dmg;
             }
             else {
-                addAbilityMessage(charList.at(attackerIndex)->getName() + " slipped on a puddle while trying to hurt " + this->character->getName());
+                int dmg = this->character->defend(charList, attackerIndex, damage / 2);
+                addAbilityMessage(charList.at(attackerIndex)->getName() + " slipped on a puddle and barely scraped " + this->character->getName());
                 cout << this->currentMessage << endl;
                 this->currentMessage = "";
-                return this->character->defend(charList, attackerIndex, damage / 2);
+                return dmg;
             }
         }
         else return this->character->defend(charList, attackerIndex, damage);

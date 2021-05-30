@@ -12,6 +12,7 @@ class Player : public BaseCharacter {
         int message = rand() % 2;
         if (message == 0) return ". They lost " + to_string(damage) + " health!"; 
         else if (message == 1) return " and dealt " + to_string(damage) + " damage!";
+        else return ". They only have " + to_string(damage) + " health left."; 
     }
  public:
     Player() { }
@@ -21,7 +22,7 @@ class Player : public BaseCharacter {
         int opponentIndex = rand() % numOpponents + 1;
         charList.at(opponentIndex)->defend(charList, attackerIndex, this->attackStrength);
         this->currentXP += charList.at(opponentIndex)->getLatestDamage();
-        cout << attackMessage(charList.at(opponentIndex)) << endl;
+        if (this->getOutputStatus()) cout << attackMessage(charList.at(opponentIndex)) << endl;
         return charList.at(opponentIndex);
     }
     virtual string attackMessage(BaseCharacter* opp) = 0;
