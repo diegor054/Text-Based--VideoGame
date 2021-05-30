@@ -45,3 +45,36 @@ TEST(FairyTest, defaultFairy) {
     EXPECT_EQ(temp->getType(), "Fairy");
     delete temp;
 }
+TEST(GoblinTest, defaultGoblin) {
+    Goblins* temp = new Goblins();
+    EXPECT_EQ(temp->getHealth(), 50);
+    EXPECT_EQ(temp->getXP() , 0);
+    EXPECT_EQ(temp->getAttackStrength(), 2);
+    EXPECT_EQ(temp->getType(), "Goblin");
+    delete temp;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
