@@ -23,6 +23,7 @@ class Player : public BaseCharacter {
         charList.at(opponentIndex)->defend(charList, attackerIndex, this->attackStrength);
         this->currentXP += charList.at(opponentIndex)->getLatestDamage();
         if (this->getOutputStatus()) cout << attackMessage(charList.at(opponentIndex)) << endl;
+        this->setOutputStatus(true);
         return charList.at(opponentIndex);
     }
     virtual string attackMessage(BaseCharacter* opp) = 0;
