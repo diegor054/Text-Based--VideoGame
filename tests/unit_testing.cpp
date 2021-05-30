@@ -94,10 +94,6 @@ TEST(ninjaTest, testingDamageDone) {
         }
 }
 
-
-
-
-
 TEST(CriticalTest, testingDamageDone) {
     BaseCharacter* temp = new CriticalDecorator(new Attacker());
     vector<BaseCharacter*>vec{temp, new Zombies(), new Zombies(), new Zombies(), new Zombies()};
@@ -111,7 +107,6 @@ TEST(CriticalTest, testingDamageDone) {
 	}
 }
 
-
 TEST(ArmorDecoratorTest, testingDamageTaken) {
     BaseCharacter* temp = new ArmorDecorator(new Attacker());
     vector<BaseCharacter*>vec{temp, new Zombies()};
@@ -123,7 +118,17 @@ TEST(ArmorDecoratorTest, testingDamageTaken) {
 	}
 }
 
-
+TEST(DrainDecoratorTest, testingDamageTaken) {
+    BaseCharacter* temp = new DrainDecorator(new Attacker());
+    vector<BaseCharacter*>vec{temp, new Zombies()};
+    vec.at(1)->attack(vec, 1);
+    int result = (temp->getHealth() + (vec.at(1)->getLatestAttack() / 5));
+    temp->attack(vec, 0);
+    EXPECT_EQ(temp->getHealth(), result);
+    for(int i = 0; i < vec.size(); i++){
+	delete vec.at(i);
+	}
+}
 
 
 
