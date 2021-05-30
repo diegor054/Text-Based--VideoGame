@@ -14,10 +14,13 @@ class BaseCharacter {
     string characterType;
     int health;
     int maxHealth;
+    int baseHealth;
     int attackStrength;
+    int baseAttackStrength;
     int xp;
     int latestDamage;
     string currentMessage;
+    bool outputMessages = true;
     void setAttackStrength(int a) { attackStrength = a; }
 
  public:
@@ -50,12 +53,15 @@ class BaseCharacter {
     virtual void setType(string t) { characterType = t; }
     virtual void setHealth(int h) { health = h; }
     virtual void setXP(int x) { xp = x; }
+    virtual void setOutputStatus(bool o) { outputMessages = o; }
     virtual string getName() { return name; }
     virtual string getType() { return characterType; }
     virtual int getHealth() { return health; }
     virtual int getXP() { return xp; }
+    virtual bool getOutputStatus() { return outputMessages; }
     virtual int getLatestDamage() { return latestDamage; }
     virtual int getAttackStrength() { return attackStrength; }
+    virtual int getLevel() = 0;
     virtual void refresh(bool keepXP) = 0;
 };
 

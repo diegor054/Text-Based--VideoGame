@@ -8,9 +8,9 @@ class SpikesDecorator : public AbilityDecorator {
     SpikesDecorator(BaseCharacter* c) : AbilityDecorator(c) { }
     BaseCharacter* attack(vector<BaseCharacter*> charList, int attackerIndex) override {return this->character->attack(charList, attackerIndex);}
     virtual int defend(vector<BaseCharacter*> charList, int attackerIndex, int damage) {
-        if (rand() % 3) {
-            charList.at(attackerIndex)->defend(charList, attackerIndex, attackStrength / 5);
-            addAbilityMessage(charList.at(attackerIndex)->getName() + " was thorned for " + to_string(attackStrength / 5) + " damage whilst trying to hurt " + this->character->getName());
+        if (rand() % 2) {
+            charList.at(attackerIndex)->defend(charList, attackerIndex, (attackStrength * 0.186 + 0.102 * this->getLevel() + 6.28 * pow(10, -3) * pow(this->getLevel(), 2) + 10) / 100);
+            addAbilityMessage(charList.at(attackerIndex)->getName() + " was thorned for " + to_string((attackStrength * 0.186 + 0.102 * this->getLevel() + 6.28 * pow(10, -3) * pow(this->getLevel(), 2) + 10) / 100) + " damage whilst trying to hurt " + this->character->getName());
             cout << this->currentMessage << endl;
             this->currentMessage = "";
         }

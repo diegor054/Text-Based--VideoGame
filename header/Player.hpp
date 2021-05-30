@@ -12,6 +12,7 @@ class Player : public BaseCharacter {
         int message = rand() % 2;
         if (message == 0) return ". They lost " + to_string(damage) + " health!"; 
         else if (message == 1) return " and dealt " + to_string(damage) + " damage!";
+        else return ". They only have " + to_string(damage) + " health left."; 
     }
  public:
     Player() { }
@@ -21,16 +22,19 @@ class Player : public BaseCharacter {
         int opponentIndex = rand() % numOpponents + 1;
         charList.at(opponentIndex)->defend(charList, attackerIndex, this->attackStrength);
         this->currentXP += charList.at(opponentIndex)->getLatestDamage();
-        cout << attackMessage(charList.at(opponentIndex)) << endl;
+        if (this->getOutputStatus()) cout << attackMessage(charList.at(opponentIndex)) << endl;
         return charList.at(opponentIndex);
     }
     virtual string attackMessage(BaseCharacter* opp) = 0;
     void setMaxHealth() { health = maxHealth; }
+    int getLevel() override { return this->playerLevel; }
     void UpdateLevel() {
         xp += currentXP;
         currentXP = 0;
-        playerLevel = -3.01 + 0.867 * log(xp); //L0 = 0, L1 = 100, L2 = 333, L3 = 1000, L4 = 3333 ...
+        playerLevel = 0.317 * pow(xp, 0.343);
         if (playerLevel < 0) playerLevel = 0;
+        health = maxHealth = baseHealth * (1 + 0.1 * pow(playerLevel, 1.6));
+        attackStrength = baseAttackStrength * (1 + 0.1 * pow(playerLevel, 1.6));
     }
     void refresh(bool keepXP) override {
         if (keepXP) UpdateLevel();
