@@ -14,8 +14,11 @@ class BaseCharacter {
     string characterType;
     int health;
     int maxHealth;
+    int baseHealth;
     int attackStrength;
+    int baseAttackStrength;
     int xp;
+    int level;
     int latestDamage;
     string currentMessage;
     bool outputMessages = true;
