@@ -255,19 +255,20 @@ string getFightOption() {
         cout << "Would you like to attack (A) view enemies (V) or escape (E): " << flush;
         cin >> choice;
         if (toupper(choice.at(0)) == 'A') {
-            return "A";
+            choice = "A";
         }
         else if (toupper(choice.at(0)) == 'V') {
-            return "V";
+            choice = "V";
         }
         else if (toupper(choice.at(0)) == 'E') {
-            return "E";
+            choice = "E";
         }
         else {
             cout << "This is not a valid choice." << endl;
             invalidInput = true;
         }
     }
+    return choice;
 }
 
 void stageMessages(int stage, bool &isLeftPath) {
