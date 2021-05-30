@@ -64,9 +64,22 @@ TEST(ZombieTest, defaultZombie) {
     EXPECT_EQ(temp->getType(), "Zombie");
     delete temp;
 }
+TEST(AttackerTest, testingDamageDone) {
+    BaseCharacter* temp = new CriticalDecorator(new Attacker());
+    vector<BaseCharacter*>vec{temp, new Zombies()};
+     temp->attack(vec, 0);
+    EXPECT_EQ(vec.at(1)->getHealth(), 15);
+    for(int i = 0; i < vec.size(); i++){
+        delete vec.at(i);
+        }
+}
+
+
+
 TEST(CriticalTest, testingDamageDone) {
     BaseCharacter* temp = new CriticalDecorator(new Attacker());
     vector<BaseCharacter*>vec{temp, new Zombies(), new Zombies(), new Zombies(), new Zombies()};
+     temp->attack(vec, 0);
     while(temp->getLatestDamage() == temp->getAttackStrength()){
 	temp->attack(vec, 0);
     }
