@@ -53,7 +53,14 @@ TEST(GoblinTest, defaultGoblin) {
     EXPECT_EQ(temp->getType(), "Goblin");
     delete temp;
 }
-
+TEST(ZombieTest, defaultZombie) {
+    Zombies* temp = new Zombies();
+    EXPECT_EQ(temp->getHealth(), 25);
+    EXPECT_EQ(temp->getXP() , 0);
+    EXPECT_EQ(temp->getAttackStrength(), 5);
+    EXPECT_EQ(temp->getType(), "Zombie");
+    delete temp;
+}
 
 
 
