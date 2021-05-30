@@ -10,7 +10,7 @@ class DodgeDecorator : public AbilityDecorator {
     virtual int defend(vector<BaseCharacter*> charList, int attackerIndex, int damage) {
         if ((rand() % 100 + 1) <= (1.87 * pow(10, -3) * pow(this->getLevel(), 2.16) + 20)) {
             if (!(rand() % 3)) {
-                this->setOutputStatus(false);
+                charList.at(attackerIndex)->setOutputStatus(false);
                 int dmg = this->character->defend(charList, attackerIndex, 0);
                 addAbilityMessage(charList.at(attackerIndex)->getName() + " slipped on a banana while trying to hurt " + this->character->getName());
                 cout << this->currentMessage << endl;
