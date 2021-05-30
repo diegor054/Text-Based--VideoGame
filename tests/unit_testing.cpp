@@ -99,10 +99,10 @@ TEST(CriticalTest, testingDamageDone) {
     vector<BaseCharacter*>vec{temp, new Zombies()};
      BaseCharacter* victim;
      victim = vec.at(0)->attack(vec, 0);
-    while(victim->getLatestDamage() == (vec.at(0)->getAttackStrength() * (1.5))){
+    while(victim->getLatestDamage() == (vec.at(0)->getAttackStrength())){
           victim->refresh(false);
-	 victim = vec.at(0)->attack(vec,0);
-    }
+	 victim = vec.at(0)->attack(vec,0);   
+ }
     EXPECT_EQ(victim->getLatestDamage(), temp->getAttackStrength() * (1.5));
     for(int i = 0; i < vec.size(); i++){
 	delete vec.at(i);
