@@ -74,8 +74,6 @@ TEST(AttackerTest, testingDamageDone) {
         }
 }
 
-
-
 TEST(HealerTest, testingDamageDone) {
     BaseCharacter* temp = new Healer();
     vector<BaseCharacter*>vec{temp, new Zombies()};
@@ -85,6 +83,17 @@ TEST(HealerTest, testingDamageDone) {
         delete vec.at(i);
         }
 }
+
+TEST(ninjaTest, testingDamageDone) {
+    BaseCharacter* temp = new Ninja();
+    vector<BaseCharacter*>vec{temp, new Zombies()};
+     temp->attack(vec, 0);
+    EXPECT_EQ(vec.at(1)->getHealth(), 17);
+    for(int i = 0; i < vec.size(); i++){
+        delete vec.at(i);
+        }
+}
+
 
 
 
