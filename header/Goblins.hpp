@@ -18,6 +18,16 @@ class Goblins : public Opponent {
         refresh(false);
         attackStyle = "Knife";
     }
+    Goblins(int level) {
+        name = characterType = "Goblin";
+        baseHealth = 50;
+        baseAttackStrength = 2;
+        xp = opponentLevel = level;
+        health = maxHealth = baseHealth * (1 + 0.1 * pow(opponentLevel, 1.6));
+        attackStrength = baseAttackStrength * (1 + 0.1 * pow(opponentLevel, 1.6));
+        refresh(false);
+        attackStyle = "Knife";
+    }
     string attackMessage(BaseCharacter* opp) override {
         int message = rand() % 3;
         if (message == 0) return currentMessage = name + " knife " + opp->getName() + damageMessage(opp->getLatestDamage());

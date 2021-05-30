@@ -18,6 +18,16 @@ class Zombies : public Opponent {
         refresh(false);
         attackStyle = "Teeth";
     }
+    Zombies(int level) {
+        name = characterType = "Zombie"; 
+        baseHealth = 25;
+        baseAttackStrength = 5;
+        xp = opponentLevel = level;
+        health = maxHealth = baseHealth * (1 + 0.1 * pow(opponentLevel, 1.6));
+        attackStrength = baseAttackStrength * (1 + 0.1 * pow(opponentLevel, 1.6));
+        refresh(false);
+        attackStyle = "Teeth";
+    }
     string attackMessage(BaseCharacter* opp) override {
         int message = rand() % 3;
         if (message == 0) return currentMessage = name + " bites " + opp->getName() + damageMessage(opp->getLatestDamage());
