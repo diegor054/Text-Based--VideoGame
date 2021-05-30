@@ -32,6 +32,8 @@ class Player : public BaseCharacter {
         currentXP = 0;
         playerLevel = 0.317 * pow(xp, 0.343);
         if (playerLevel < 0) playerLevel = 0;
+        health = maxHealth = baseHealth * (1 + 0.1 * pow(playerLevel, 1.6));
+        attackStrength = baseAttackStrength * (1 + 0.1 * pow(playerLevel, 1.6));
     }
     void refresh(bool keepXP) override {
         if (keepXP) UpdateLevel();
