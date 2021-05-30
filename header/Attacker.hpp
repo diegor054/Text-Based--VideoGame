@@ -12,9 +12,10 @@ class Attacker : public Player {
     Attacker() {
         name = "Null";
         characterType = "Attacker";
-        health = maxHealth = 100;
-        attackStrength = 10;
+        health = maxHealth = baseHealth = 100;
+        attackStrength = baseAttackStrength = 10;
         xp = currentXP = playerLevel = 0;
+        refresh(false);
         weaponType = "Sword";
         SwordType = "Bronze";
     }

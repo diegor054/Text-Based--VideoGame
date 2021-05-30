@@ -10,9 +10,10 @@ class Ninja : public Player {
     Ninja() {
         name = "Null";
         characterType = "Healer";
-        health = maxHealth = 100;
-        attackStrength = 8;
+        health = maxHealth = baseHealth = 100;
+        attackStrength = baseAttackStrength = 8;
         xp = currentXP = playerLevel = 0;
+        refresh(false);
         weaponType = "Knife";
         knifeType = "Bronze";
     }

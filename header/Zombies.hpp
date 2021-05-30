@@ -12,9 +12,10 @@ class Zombies : public Opponent {
  public:
     Zombies() {
         name = characterType = "Zombie"; 
-        health = maxHealth = 25;
-        attackStrength = 5;
+        health = maxHealth = baseHealth = 25;
+        attackStrength = baseAttackStrength = 5;
         xp = opponentLevel = 0;
+        refresh(false);
         attackStyle = "Teeth";
     }
     string attackMessage(BaseCharacter* opp) override {

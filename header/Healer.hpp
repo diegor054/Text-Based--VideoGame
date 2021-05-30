@@ -12,9 +12,10 @@ class Healer : public Player {
     Healer() {
         name = "Null";
         characterType = "Healer";
-        health = maxHealth = 200;
-        attackStrength = 8;
+        health = maxHealth = baseHealth = 200;
+        attackStrength = baseAttackStrength = 8;
         xp = currentXP = playerLevel = 0;
+        refresh(false);
         weaponType = "Wand";
         wandType = "Wood";
     }
