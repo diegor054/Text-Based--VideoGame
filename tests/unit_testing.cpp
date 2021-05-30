@@ -100,11 +100,8 @@ TEST(CriticalTest, testingDamageDone) {
      BaseCharacter* victim;
      victim = vec.at(0)->attack(vec, 0);
     while(victim->getLatestDamage() == (vec.at(0)->getAttackStrength() * (1.5))){
-         // if (victim->getLatestDamage() == (vec.at(0)->getAttackStrength() * (1.5))) {
-          
-          //}
+          victim->refresh(false);
 	 victim = vec.at(0)->attack(vec,0);
-	 victim->refresh(false);
     }
     EXPECT_EQ(victim->getLatestDamage(), temp->getAttackStrength() * (1.5));
     for(int i = 0; i < vec.size(); i++){
