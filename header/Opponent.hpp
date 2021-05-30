@@ -22,6 +22,7 @@ class Opponent : public BaseCharacter {
         int opponentIndex = 0;
         charList.at(opponentIndex)->defend(charList, attackerIndex, this->attackStrength);
         if (this->getOutputStatus()) cout << attackMessage(charList.at(opponentIndex)) << endl;
+        this->setOutputStatus(true);
         return charList.at(opponentIndex);
     }
     int getLevel() override { return this->opponentLevel; }

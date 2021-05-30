@@ -12,7 +12,6 @@ class DodgeDecorator : public AbilityDecorator {
             if (!(rand() % 3)) {
                 this->setOutputStatus(false);
                 int dmg = this->character->defend(charList, attackerIndex, 0);
-                this->setOutputStatus(true);
                 addAbilityMessage(charList.at(attackerIndex)->getName() + " slipped on a banana while trying to hurt " + this->character->getName());
                 cout << this->currentMessage << endl;
                 this->currentMessage = "";
