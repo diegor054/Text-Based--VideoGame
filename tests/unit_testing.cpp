@@ -61,7 +61,14 @@ TEST(ZombieTest, defaultZombie) {
     EXPECT_EQ(temp->getType(), "Zombie");
     delete temp;
 }
-
+TEST(AttackerTest, attackerFight) {
+    Zombies* temp = new Zombies(); 
+    Attacker* a = new Attacker();
+    a.attack(temp);
+    EXPECT_EQ(temp->getHealth(), 15);
+    delete temp;
+    delete a;
+}
 
 
 
