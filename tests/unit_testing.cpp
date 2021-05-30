@@ -97,11 +97,13 @@ TEST(ninjaTest, testingDamageDone) {
 TEST(CriticalTest, testingDamageDone) {
     BaseCharacter* temp = new CriticalDecorator(new Attacker());
     vector<BaseCharacter*>vec{temp, new Zombies(), new Zombies(), new Zombies(), new Zombies()};
-     temp->attack(vec, 0);
-    while(temp->getLatestDamage() == temp->getAttackStrength()){
-	temp->attack(vec, 0);
+    bool happened = false; 
+    for (int i = 1; i < vec.size(); ++i) {
+          if (vec.at(0)->getLatestDamage() != 10) {
+          happened = true;
+          }
     }
-    EXPECT_EQ(temp->getLatestDamage(), 15);
+    ASSERT_EQ(happened, true);
     for(int i = 0; i < vec.size(); i++){
 	delete vec.at(i);
 	}
