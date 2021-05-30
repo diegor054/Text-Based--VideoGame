@@ -19,6 +19,17 @@ class Attacker : public Player {
         weaponType = "Sword";
         SwordType = "Bronze";
     }
+    Attacker(string &name_, int xp_) {
+        name = name_;
+        characterType = "Attacker";
+        health = maxHealth = baseHealth = 100;
+        attackStrength = baseAttackStrength = 10;
+        xp = playerLevel = 0;
+        currentXP = xp_;
+        refresh(true);
+        weaponType = "Sword";
+        SwordType = "Bronze";
+    }
     ~Attacker() = default;
     string attackMessage(BaseCharacter* opp) {
         return currentMessage = name + " had fun destroying " + opp->getName() + " with their " + SwordType + " " + weaponType + damageMessage(opp->getLatestDamage());

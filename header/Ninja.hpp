@@ -9,11 +9,22 @@ class Ninja : public Player {
  public:
     Ninja() {
         name = "Null";
-        characterType = "Healer";
+        characterType = "Ninja";
         health = maxHealth = baseHealth = 100;
         attackStrength = baseAttackStrength = 8;
         xp = currentXP = playerLevel = 0;
         refresh(false);
+        weaponType = "Knife";
+        knifeType = "Bronze";
+    }
+    Ninja(string &name_, int xp_) {
+        name = name_;
+        characterType = "Ninja";
+        health = maxHealth = baseHealth = 100;
+        attackStrength = baseAttackStrength = 8;
+        xp = playerLevel = 0;
+        currentXP = xp_;
+        refresh(true);
         weaponType = "Knife";
         knifeType = "Bronze";
     }

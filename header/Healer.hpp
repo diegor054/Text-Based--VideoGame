@@ -19,6 +19,17 @@ class Healer : public Player {
         weaponType = "Wand";
         wandType = "Wood";
     }
+    Healer(string &name_, int xp_) {
+        name = name_;
+        characterType = "Healer";
+        health = maxHealth = baseHealth = 200;
+        attackStrength = baseAttackStrength = 8;
+        xp = playerLevel = 0;
+        currentXP = xp_;
+        refresh(true);
+        weaponType = "wand";
+        wandType = "Wood";
+    }
     ~Healer() = default;
     string attackMessage(BaseCharacter* opp) {
         return currentMessage = name + " had fun deleting " + opp->getName() + " with their " + wandType + " " + weaponType + damageMessage(opp->getLatestDamage());
