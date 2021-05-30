@@ -12,9 +12,20 @@ class Goblins : public Opponent {
  public:
     Goblins() {
         name = characterType = "Goblin";
-        health = maxHealth = 50;
-        attackStrength = 2;
+        health = maxHealth = baseHealth = 50;
+        attackStrength = baseAttackStrength = 2;
         xp = opponentLevel = 0;
+        refresh(false);
+        attackStyle = "Knife";
+    }
+    Goblins(int level) {
+        name = characterType = "Goblin";
+        baseHealth = 50;
+        baseAttackStrength = 2;
+        xp = opponentLevel = level;
+        health = maxHealth = baseHealth * (1 + 0.1 * pow(opponentLevel, 1.6));
+        attackStrength = baseAttackStrength * (1 + 0.1 * pow(opponentLevel, 1.6));
+        refresh(false);
         attackStyle = "Knife";
     }
     string attackMessage(BaseCharacter* opp) override {

@@ -14,7 +14,9 @@ class BaseCharacter {
     string characterType;
     int health;
     int maxHealth;
+    int baseHealth;
     int attackStrength;
+    int baseAttackStrength;
     int xp;
     int latestDamage;
     string currentMessage;
@@ -59,6 +61,7 @@ class BaseCharacter {
     virtual bool getOutputStatus() { return outputMessages; }
     virtual int getLatestDamage() { return latestDamage; }
     virtual int getAttackStrength() { return attackStrength; }
+    virtual int getLevel() = 0;
     virtual void refresh(bool keepXP) = 0;
 };
 

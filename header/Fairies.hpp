@@ -12,9 +12,20 @@ class Fairies: public Opponent {
  public:
     Fairies() {
         name = characterType = "Fairy";
-        health = maxHealth = 50;
-        attackStrength = 3;
+        health = maxHealth = baseHealth = 50;
+        attackStrength = baseAttackStrength = 3;
         xp = opponentLevel = 0;
+        refresh(false);
+        attackStyle = "Pixie dust";
+    }
+    Fairies(int level) {
+        name = characterType = "Fairy";
+        baseHealth = 50;
+        baseAttackStrength = 3;
+        xp = opponentLevel = level;
+        health = maxHealth = baseHealth * (1 + 0.1 * pow(opponentLevel, 1.6));
+        attackStrength = baseAttackStrength * (1 + 0.1 * pow(opponentLevel, 1.6));
+        refresh(false);
         attackStyle = "Pixie dust";
     }
     string attackMessage(BaseCharacter* opp) override {
