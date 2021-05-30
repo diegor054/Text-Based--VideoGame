@@ -90,6 +90,17 @@ TEST(CriticalTest, testingDamageDone) {
 }
 
 
+TEST(ArmorDecoratorTest, testingDamageTaken) {
+    BaseCharacter* temp = new ArmorDecorator(new Attacker());
+    vector<BaseCharacter*>vec{temp, new Zombies()};
+    int result = (temp->getHealth() - (vec.at(1)->getAttackStrength() / 2));
+    vec.at(1)->attack(vec, 1);
+    EXPECT_EQ(temp->getHealth(), result);
+    for(int i = 0; i < vec.size(); i++){
+	delete vec.at(i);
+	}
+}
+
 
 
 
