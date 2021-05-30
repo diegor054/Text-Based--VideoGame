@@ -17,7 +17,7 @@ TEST(AttackerTest, defaultAttacker) {
     EXPECT_EQ(temp->getHealth(), 100);
     EXPECT_EQ(temp->getXP() , 0);
     EXPECT_EQ(temp->getAttackStrength(), 10);
-    EXPECT_EQ(temp->Type(), "Attacker");
+    EXPECT_EQ(temp->getType(), "Attacker");
     delete temp;
 }
 TEST(HealerTest, defaultHealer) {
@@ -25,7 +25,14 @@ TEST(HealerTest, defaultHealer) {
     EXPECT_EQ(temp->getHealth(), 200);
     EXPECT_EQ(temp->getXP() , 0);
     EXPECT_EQ(temp->getAttackStrength(), 8);
-    EXPECT_EQ(temp->Type(), "Healer");
+    EXPECT_EQ(temp->getType(), "Healer");
     delete temp;
 }
-
+TEST(NinjaTest, defaultNinja) {
+    Ninja* temp = new Ninja();
+    EXPECT_EQ(temp->getHealth(), 200);
+    EXPECT_EQ(temp->getXP() , 0);
+    EXPECT_EQ(temp->getAttackStrength(), 8);
+    EXPECT_EQ(temp->getType(), "Healer");
+    delete temp;
+}
