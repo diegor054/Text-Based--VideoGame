@@ -27,6 +27,7 @@ class Player : public BaseCharacter {
     }
     virtual string attackMessage(BaseCharacter* opp) = 0;
     void setMaxHealth() { health = maxHealth; }
+    int getLevel() override { return this->playerLevel; }
     void UpdateLevel() {
         xp += currentXP;
         currentXP = 0;

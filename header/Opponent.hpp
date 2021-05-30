@@ -24,6 +24,7 @@ class Opponent : public BaseCharacter {
         if (this->getOutputStatus()) cout << attackMessage(charList.at(opponentIndex)) << endl;
         return charList.at(opponentIndex);
     }
+    int getLevel() override { return this->opponentLevel; }
     void refresh(bool keepXP) override {
         this->latestDamage = 0;
         this->currentMessage = "";

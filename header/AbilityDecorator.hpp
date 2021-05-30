@@ -24,6 +24,7 @@ class AbilityDecorator : public BaseCharacter {
     bool getOutputStatus() override { return this->character->getOutputStatus(); }
     int getLatestDamage() override { return this->character->getLatestDamage(); }
     int getAttackStrength() override { return this->character->getAttackStrength(); }
+    int getLevel() override { return this->character->getLevel(); }
     void addAbilityMessage(const string &newMessage) {
         if (currentMessage != "") currentMessage += "\n" + newMessage;
         else currentMessage = newMessage;

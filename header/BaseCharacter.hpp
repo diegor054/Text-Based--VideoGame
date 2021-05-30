@@ -18,7 +18,6 @@ class BaseCharacter {
     int attackStrength;
     int baseAttackStrength;
     int xp;
-    int level;
     int latestDamage;
     string currentMessage;
     bool outputMessages = true;
@@ -62,6 +61,7 @@ class BaseCharacter {
     virtual bool getOutputStatus() { return outputMessages; }
     virtual int getLatestDamage() { return latestDamage; }
     virtual int getAttackStrength() { return attackStrength; }
+    virtual int getLevel() = 0;
     virtual void refresh(bool keepXP) = 0;
 };
 
