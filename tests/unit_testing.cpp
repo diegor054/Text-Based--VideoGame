@@ -99,10 +99,10 @@ TEST(CriticalTest, testingDamageDone) {
     vector<BaseCharacter*>vec{temp, new Zombies()};
      BaseCharacter* victim;
      victim = vec.at(0)->attack(vec, 0);
-    while(victim->getLatestDamage() != (vec.at(0)->getAttackStrength() * (1.5))){
-          if (victim->getLatestDamage() == (vec.at(0)->getAttackStrength() * (1.5))) {
-          break;
-          }
+    while(victim->getLatestDamage() == (vec.at(0)->getAttackStrength() * (1.5))){
+         // if (victim->getLatestDamage() == (vec.at(0)->getAttackStrength() * (1.5))) {
+          
+          //}
 	 victim = vec.at(0)->attack(vec,0);
 	 victim->refresh(false);
     }
