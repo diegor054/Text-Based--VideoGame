@@ -97,15 +97,16 @@ TEST(ninjaTest, testingDamageDone) {
 TEST(CriticalTest, testingDamageDone) {
     BaseCharacter* temp = new CriticalDecorator(new Attacker());
     vector<BaseCharacter*>vec{temp, new Zombies()};
-     vec.at(0)->attack(vec,0);
-    while(vec.at(0)->getLatestDamage() != (vec.at(0)->getAttackStrength() * (1.5))){
-          if (vec.at(0)->getLatestDamage() == (vec.at(0)->getAttackStrength() * (1.5))) {
+     BaseCharacter* victim;
+     victim = vec.at(0)->attack(vec, 0);
+    while(victim->getLatestDamage() != (vec.at(0)->getAttackStrength() * (1.5))){
+          if (victim->getLatestDamage() == (vec.at(0)->getAttackStrength() * (1.5))) {
           break;
           }
-	 vec.at(0)->attack(vec,0);
-	 vec.at(1)->refresh(false);
+	 victim = vec.at(0)->attack(vec,0);
+	 victim->refresh(false);
     }
-    EXPECT_EQ(temp->getLatestDamage(), temp->getAttackStrength() * (1.5));
+    EXPECT_EQ(victim->getLatestDamage(), temp->getAttackStrength() * (1.5));
     for(int i = 0; i < vec.size(); i++){
 	delete vec.at(i);
 	}
