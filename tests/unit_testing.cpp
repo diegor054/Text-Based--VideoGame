@@ -175,20 +175,22 @@ TEST(DodgeDecoratorTest, testDamageDodged){
         }
 }
    
-   
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+TEST(AoeDecoratorTest, testDamageDone){
+    BaseCharacter* temp = new AoeDecorator(new Attacker());
+    vector<BaseCharacter*>vec{temp, new Zombies(), new Zombies(), new Zombies(), new Zombies()};
+    bool attackLanded = false;
+    while(!attackLanded){
+	 temp->attack(vec, 0);
+         for(int i = 1; i < vec.size();i++){
+	 if(vec.at(i)->getLatestDamage() != 0){
+	   EXPECT_EQ(vec.at(i)->getHealth(), vec.at(i)->getHealth() - (temp->getAttackStrength() /3));
+	attackLanded = true;
+        }
+        }
+   }
+   for(int i = 0; i < vec.size(); i++){
+      delete vec.at(i);
+   }
+}
 
