@@ -55,20 +55,15 @@ int main() {
             stage += fight(opponentsList, stage);
         }
     }
-   
-    cout << "Congrats on beating the final boss. You have made everyone proud. Now go on and collect your treasure." << endl;
-    cout << "Thanks for playing, " << player->getName() << "!" << endl;
-    
+    if (stage > 10) {
+        cout << "Congrats on beating the final boss. You have made everyone proud. Now go on and collect your treasure." << endl;
+        cout << "Thanks for playing, " << player->getName() << "!" << endl;
+    }
+
     //save program
     gameInfo->at(0) = to_string(stage);
     gameInfo->at(1) = to_string(player->getXP());
     save(file, gameInfo);
-
-    //exit program (debug until bugs resolved)
-    cout << "Game saved propery and is about to crash. . . " << endl;
-    cout << endl << "Crashing will commence in " << flush;
-    stage = 3;
-    while (stage >= 0) { system("read -t 1"); cout << stage << ' ' << flush; --stage; }
     return 0;
 }
 
