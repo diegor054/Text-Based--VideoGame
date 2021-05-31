@@ -93,7 +93,7 @@ TEST(ninjaTest, testingDamageDone) {
         delete vec.at(i);
         }
 }
-
+/*
 TEST(CriticalTest, testingDamageDone) {
     BaseCharacter* temp = new CriticalDecorator(new Attacker());
     vector<BaseCharacter*>vec{temp, new Zombies()};
@@ -108,7 +108,7 @@ TEST(CriticalTest, testingDamageDone) {
 	delete vec.at(i);
 	}
 }
-
+*/
 TEST(ArmorDecoratorTest, testingDamageTaken) {
     BaseCharacter* temp = new ArmorDecorator(new Attacker());
     vector<BaseCharacter*>vec{temp, new Zombies()};
@@ -193,4 +193,63 @@ TEST(AoeDecoratorTest, testDamageDone){
       delete vec.at(i);
    }
 }
+
+TEST(AbilityDecorator, testingFunctions){
+	BaseCharacter* t = new Attacker();
+	BaseCharacter* temp = new DodgeDecorator(t);
+	EXPECT_EQ(temp->getName(), "Null");
+	EXPECT_EQ(temp->getType(), "Attacker");
+	EXPECT_EQ(temp->getHealth(), 100);
+	EXPECT_EQ(temp->getXP(), 0);
+	EXPECT_EQ(temp->getLatestDamage(), 0);
+	EXPECT_EQ(temp->getAttackStrength(), 10);
+  	EXPECT_EQ(temp->getLevel(), 0);
+	EXPECT_EQ(temp->getHealthBar(), "[||||||||||]");
+	delete t;
+	delete temp;
+}
+TEST(AbilityDecorator, testingSetters){
+	BaseCharacter* t = new Attacker();
+        BaseCharacter* temp = new DodgeDecorator(t);
+       	temp->setName("B");
+        temp->setXP(10);
+        temp->setHealth(23);
+        temp->setType("Ninja");	
+	EXPECT_EQ(temp->getName(), "B");
+        EXPECT_EQ(temp->getType(), "Ninja");
+        EXPECT_EQ(temp->getHealth(), 23);
+        EXPECT_EQ(temp->getXP(), 10);
+	delete t;
+	delete temp;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
