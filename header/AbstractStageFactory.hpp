@@ -7,9 +7,9 @@ using namespace std;
 
 #include "Player.hpp"
 #include "Opponent.hpp"
-#include "Zombies.hpp"
-#include "Goblins.hpp"
-#include "Fairies.hpp"
+#include "Zombie.hpp"
+#include "Goblin.hpp"
+#include "Fairy.hpp"
 
 class AbstractStageFactory {
  protected:
