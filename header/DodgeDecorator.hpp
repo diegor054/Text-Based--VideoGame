@@ -13,14 +13,28 @@ class DodgeDecorator : public AbilityDecorator {
             if (!(rand() % 3)) {
                 charList.at(attackerIndex)->setOutputStatus(false);
                 int dmg = this->character->defend(charList, attackerIndex, 0);
+                int rand = (rand() % 3) + 1;
+                if(rand == 1){
                 addAbilityMessage(charList.at(attackerIndex)->getName() + " slipped on a banana while trying to hurt " + this->character->getName());
+                } else if(rand == 2){
+                addAbilityMessage(charList.at(attackerIndex)->getName() + " completely missed while trying to hurt " + this->character->getName());
+                } else{
+                addAbilityMessage(charList.at(attackerIndex)->getName() + " missed and could not hurt " + this->character->getName());
+                }
                 cout << this->currentMessage << endl;
                 this->currentMessage = "";
                 return dmg;
             }
             else {
                 int dmg = this->character->defend(charList, attackerIndex, damage / 2);
+                int rand2 = (rand() % 3) + 1;
+                if(rand2 == 1){
                 addAbilityMessage(charList.at(attackerIndex)->getName() + " slipped on a puddle and barely scraped " + this->character->getName());
+                }else if(rand2 == 2){
+                addAbilityMessage(charList.at(attackerIndex)->getName() + " tripped and could only do half damage " + this->character->getName());
+                }else{
+                addAbilityMessage(charList.at(attackerIndex)->getName() + " could only do half damage due to a dodge by  " + this->character->getName());
+                }
                 cout << this->currentMessage << endl;
                 this->currentMessage = "";
                 return dmg;
