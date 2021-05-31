@@ -11,6 +11,10 @@
 #include "../header/Goblins.hpp"
 #include "../header/Fairies.hpp"
 #include "../header/BaseCharacter.hpp"
+#include "../header/LeftPathFactory.hpp"
+#include "../header/AttackerFactory.hpp"
+#include "../header/AbstractPlayerFactory.hpp"
+
 
 #include <vector>
 using namespace std;
@@ -222,26 +226,27 @@ TEST(AbilityDecorator, testingSetters){
 	delete t;
 	delete temp;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+TEST(StageFactories, testSize){
+	BaseCharacter* temp = new Attacker();
+	AbstractStageFactory* l = new LeftPathFactory(temp);
+	vector<BaseCharacter*> vec = l->getStage10();
+	EXPECT_EQ(vec.size(), 2);
+	for(int i = 0; i < vec.size(); i++){
+      	   delete vec.at(i);
+       }
+	delete l;
+}
+TEST(PlayerFactories, testInfo){
+	AbstractPlayerFactory* a = new AttackerFactory();
+	AbstractPlayerFactory* n = new NinjaFactory();
+	AbstractPlayerFactory* h = new HealerFactory();
+	EXPECT_EQ(a->getPlayerInfo(), "You are the Attacker. You are strong, and have the chance to deal extra damage on the opponent. You also have armor which will protect you from your opponents.");
+	EXPECT_EQ(n->getPlayerInfo(),"You are the Ninja. Your agility helps you to stealthily avoid some of the enemies attacks. You also have shurikens which can damage multiple opponents at once.");
+	EXPECT_EQ(h->getPlayerInfo(),"You are the Healer. Your magical abilities allow you to drain the opponent of their health while healing yours. You also have spikes which will damage the opponent when they attack you.");
+	delete a;
+	delete n;
+	delete h;
+}
 
 
 
