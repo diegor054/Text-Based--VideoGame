@@ -138,8 +138,11 @@ TEST(DrainDecoratorTest, testingDamageTaken) {
 TEST(SpikesDecoratorTest, testingDamageTaken) {
     BaseCharacter* temp = new SpikesDecorator(new Attacker());
     vector<BaseCharacter*>vec{temp, new Zombies()};
+    while(vec.at(1)->getHealth() == 100){
+    temp->refresh(true);
     vec.at(1)->attack(vec, 1);
-    int result = (vec.at(1)->getHealth() - (vec.at(1)->getLatestDamage() / 5));
+    }
+    int result = (vec.at(1)->getHealth() - vec.at(1)->defend(vec,1, vec.at(1)->getAttackStrength()));
     EXPECT_EQ(vec.at(1)->getHealth(), result);
     for(int i = 0; i < vec.size(); i++){
 	delete vec.at(i);
