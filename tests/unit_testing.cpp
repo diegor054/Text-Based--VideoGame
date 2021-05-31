@@ -126,9 +126,12 @@ TEST(ArmorDecoratorTest, testingDamageTaken) {
 TEST(DrainDecoratorTest, testingDamageTaken) {
     BaseCharacter* temp = new DrainDecorator(new Attacker());
     vector<BaseCharacter*>vec{temp, new Zombies()};
-    vec.at(1)->attack(vec, 1);
-    int result = (temp->getHealth() + (vec.at(1)->getLatestDamage() / 5));
-    temp->attack(vec, 0);
+    int current = temp->getHealth();
+    while(temp->getHealth() == current){
+    temp->attack(vec, 1);
+    vec.at(1)->refresh(true);
+    }
+    int result = (temp->getHealth() + ((vec.at(1)->getLatestDamage() * (0.1492 + sqrt(0.02512 * temp->getLevel() + 0.00573168)) / 0.01256) / 100));
     EXPECT_EQ(temp->getHealth(), result);
     for(int i = 0; i < vec.size(); i++){
 	delete vec.at(i);
