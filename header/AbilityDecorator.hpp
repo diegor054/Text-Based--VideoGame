@@ -17,6 +17,7 @@ class AbilityDecorator : public BaseCharacter {
     void setHealth(int h) override { return this->character->setHealth(h); }
     void setXP(int x) override { return this->character->setXP(x); }
     void setOutputStatus(bool o) override { return this->character->setOutputStatus(o); }
+    void setAttackStrength(int a) override { return this->character->setAttackStrength(a); }
     string getName() override { return this->character->getName(); }
     string getType() override { return this->character->getType(); }
     int getHealth() override { return this->character->getHealth(); }
