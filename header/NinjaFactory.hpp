@@ -24,6 +24,7 @@ class NinjaFactory : public AbstractPlayerFactory {
         n->setXP(xp);
         return addDecorators(n);
     }
+    virtual string getPlayerInfo()override{ return playerInfo; }
 };
 
 #endif

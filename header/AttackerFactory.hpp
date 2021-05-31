@@ -24,6 +24,7 @@ class AttackerFactory : public AbstractPlayerFactory {
         a->setXP(xp);
         return addDecorators(a);
     }
+     virtual string getPlayerInfo()override{ return playerInfo; }
 };
 
 #endif
