@@ -99,7 +99,7 @@ TEST(ninjaTest, testingDamageDone) {
         delete vec.at(i);
         }
 }
-/*
+
 TEST(CriticalTest, testingDamageDone) {
     BaseCharacter* temp = new CriticalDecorator(new Attacker());
     vector<BaseCharacter*>vec{temp, new Zombies()};
@@ -114,7 +114,7 @@ TEST(CriticalTest, testingDamageDone) {
 	delete vec.at(i);
 	}
 }
-*/
+
 TEST(ArmorDecoratorTest, testingDamageTaken) {
     BaseCharacter* temp = new ArmorDecorator(new Attacker());
     vector<BaseCharacter*>vec{temp, new Zombies()};
@@ -180,7 +180,6 @@ TEST(DodgeDecoratorTest, testDamageDodged){
         delete vec.at(i);
         }
 }
-   
 
 TEST(AoeDecoratorTest, testDamageDone){
     BaseCharacter* temp = new AoeDecorator(new Attacker());
