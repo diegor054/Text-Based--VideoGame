@@ -1,16 +1,16 @@
-#ifndef __ZOMBIES_HPP__
-#define __ZOMBIES_HPP__
+#ifndef __ZOMBIE_HPP__
+#define __ZOMBIE_HPP__
 
 #include <iostream>
 #include <cstdlib>
 
 #include "Opponent.hpp"
 
-class Zombies : public Opponent {
+class Zombie : public Opponent {
  private:
     
  public:
-    Zombies() {
+    Zombie() {
         name = characterType = "Zombie"; 
         health = maxHealth = baseHealth = 25;
         attackStrength = baseAttackStrength = 5;
@@ -18,7 +18,7 @@ class Zombies : public Opponent {
         refresh(false);
         attackStyle = "Teeth";
     }
-    Zombies(int level) {
+    Zombie(int level) {
         name = characterType = "Zombie"; 
         baseHealth = 25;
         baseAttackStrength = 5;

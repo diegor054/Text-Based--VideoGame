@@ -1,16 +1,16 @@
-#ifndef __FAIRIES_HPP__
-#define __FAIRIES_HPP__
+#ifndef __FAIRY_HPP__
+#define __FAIRY_HPP__
 
 #include <iostream>
 #include <cstdlib>
 
 #include "Opponent.hpp"
 
-class Fairies: public Opponent {
+class Fairy: public Opponent {
  private:
 
  public:
-    Fairies() {
+    Fairy() {
         name = characterType = "Fairy";
         health = maxHealth = baseHealth = 50;
         attackStrength = baseAttackStrength = 3;
@@ -18,7 +18,7 @@ class Fairies: public Opponent {
         refresh(false);
         attackStyle = "Pixie dust";
     }
-    Fairies(int level) {
+    Fairy(int level) {
         name = characterType = "Fairy";
         baseHealth = 50;
         baseAttackStrength = 3;

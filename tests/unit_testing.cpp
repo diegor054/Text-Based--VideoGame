@@ -7,9 +7,9 @@
 #include "../header/DodgeDecorator.hpp"
 #include "../header/DrainDecorator.hpp"
 #include "../header/SpikesDecorator.hpp"
-#include "../header/Zombies.hpp"
-#include "../header/Goblins.hpp"
-#include "../header/Fairies.hpp"
+#include "../header/Zombie.hpp"
+#include "../header/Goblin.hpp"
+#include "../header/Fairy.hpp"
 #include "../header/BaseCharacter.hpp"
 #include "../header/LeftPathFactory.hpp"
 #include "../header/AttackerFactory.hpp"
@@ -50,7 +50,7 @@ TEST(NinjaTest, defaultNinja) {
 }
 
 TEST(FairyTest, defaultFairy) {
-    Fairies* temp = new Fairies();
+    Fairy* temp = new Fairy();
     EXPECT_EQ(temp->getHealth(), 50);
     EXPECT_EQ(temp->getXP() , 0);
     EXPECT_EQ(temp->getAttackStrength(), 3);
@@ -58,7 +58,7 @@ TEST(FairyTest, defaultFairy) {
     delete temp;
 }
 TEST(GoblinTest, defaultGoblin) {
-    Goblins* temp = new Goblins();
+    Goblin* temp = new Goblin();
     EXPECT_EQ(temp->getHealth(), 50);
     EXPECT_EQ(temp->getXP() , 0);
     EXPECT_EQ(temp->getAttackStrength(), 2);
@@ -66,7 +66,7 @@ TEST(GoblinTest, defaultGoblin) {
     delete temp;
 }
 TEST(ZombieTest, defaultZombie) {
-    Zombies* temp = new Zombies();
+    Zombie* temp = new Zombie();
     EXPECT_EQ(temp->getHealth(), 25);
     EXPECT_EQ(temp->getXP() , 0);
     EXPECT_EQ(temp->getAttackStrength(), 5);
@@ -75,7 +75,7 @@ TEST(ZombieTest, defaultZombie) {
 }
 TEST(AttackerTest, testingDamageDone) {
     BaseCharacter* temp = new Attacker();
-    vector<BaseCharacter*>vec{temp, new Zombies()};
+    vector<BaseCharacter*>vec{temp, new Zombie()};
      temp->attack(vec, 0);
     EXPECT_EQ(vec.at(1)->getHealth(), 15);
     for(int i = 0; i < vec.size(); i++){
@@ -85,7 +85,7 @@ TEST(AttackerTest, testingDamageDone) {
 
 TEST(HealerTest, testingDamageDone) {
     BaseCharacter* temp = new Healer();
-    vector<BaseCharacter*>vec{temp, new Zombies()};
+    vector<BaseCharacter*>vec{temp, new Zombie()};
      temp->attack(vec, 0);
     EXPECT_EQ(vec.at(1)->getHealth(), 17);
     for(int i = 0; i < vec.size(); i++){
@@ -95,7 +95,7 @@ TEST(HealerTest, testingDamageDone) {
 
 TEST(ninjaTest, testingDamageDone) {
     BaseCharacter* temp = new Ninja();
-    vector<BaseCharacter*>vec{temp, new Zombies()};
+    vector<BaseCharacter*>vec{temp, new Zombie()};
      temp->attack(vec, 0);
     EXPECT_EQ(vec.at(1)->getHealth(), 17);
     for(int i = 0; i < vec.size(); i++){
@@ -105,7 +105,7 @@ TEST(ninjaTest, testingDamageDone) {
 
 TEST(CriticalTest, testingDamageDone) {
     BaseCharacter* temp = new CriticalDecorator(new Attacker());
-    vector<BaseCharacter*>vec{temp, new Zombies()};
+    vector<BaseCharacter*>vec{temp, new Zombie()};
      BaseCharacter* victim;
      victim = vec.at(0)->attack(vec, 0);
     while(victim->getLatestDamage() == (vec.at(0)->getAttackStrength())){
@@ -120,7 +120,7 @@ TEST(CriticalTest, testingDamageDone) {
 
 TEST(ArmorDecoratorTest, testingDamageTaken) {
     BaseCharacter* temp = new ArmorDecorator(new Attacker());
-    vector<BaseCharacter*>vec{temp, new Zombies()};
+    vector<BaseCharacter*>vec{temp, new Zombie()};
     while(temp->getLatestDamage() == vec.at(1)->getAttackStrength()){
              temp->refresh(true);
               vec.at(1)->attack(vec, 1);
@@ -134,7 +134,7 @@ TEST(ArmorDecoratorTest, testingDamageTaken) {
 
 TEST(DrainDecoratorTest, testingDamageTaken) {
     BaseCharacter* temp = new DrainDecorator(new Attacker());
-    vector<BaseCharacter*>vec{temp, new Zombies()};
+    vector<BaseCharacter*>vec{temp, new Zombie()};
     int current = temp->getHealth();
     while(temp->getHealth() == current){
     temp->attack(vec, 1);
@@ -149,7 +149,7 @@ TEST(DrainDecoratorTest, testingDamageTaken) {
 
 TEST(SpikesDecoratorTest, testingDamageTaken) {
     BaseCharacter* temp = new SpikesDecorator(new Attacker());
-    vector<BaseCharacter*>vec{temp, new Zombies()};
+    vector<BaseCharacter*>vec{temp, new Zombie()};
     while(vec.at(1)->getHealth() == 100){
     temp->refresh(true);
     vec.at(1)->attack(vec, 1);
@@ -163,7 +163,7 @@ TEST(SpikesDecoratorTest, testingDamageTaken) {
 
 TEST(DodgeDecoratorTest, testDamageDodged){
     BaseCharacter* temp = new DodgeDecorator(new Attacker());
-    vector<BaseCharacter*>vec{temp, new Zombies()};
+    vector<BaseCharacter*>vec{temp, new Zombie()};
     bool dodgeFull = false;
     bool dodgeHalf = false; 
     vec.at(1)->attack(vec, 1);
@@ -186,7 +186,7 @@ TEST(DodgeDecoratorTest, testDamageDodged){
 
 TEST(AoeDecoratorTest, testDamageDone){
     BaseCharacter* temp = new AoeDecorator(new Attacker());
-    vector<BaseCharacter*>vec{temp, new Zombies(), new Zombies(), new Zombies(), new Zombies()};
+    vector<BaseCharacter*>vec{temp, new Zombie(), new Zombie(), new Zombie(), new Zombie()};
     bool attackLanded = false;
     int health = vec.at(2)->getHealth();
     while(!attackLanded){
@@ -270,7 +270,7 @@ TEST(PlayerClass, testingFunctions){
 }	
 
 TEST(OpponentClass, testingFunctions){
-        Opponent* temp = new Zombies();
+        Opponent* temp = new Zombie();
         temp->setXP(4000);
         temp->refresh(true);
         EXPECT_EQ(temp->getAttackStrength(), 5);
