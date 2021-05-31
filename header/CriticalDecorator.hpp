@@ -15,6 +15,8 @@ class CriticalDecorator : public AbilityDecorator {
             cout << this->currentMessage << endl;
             this->currentMessage = "";
             setAttackStrength(temp);
+	    return victim;
+
         }
         return this->character->attack(charList, attackerIndex);
     }

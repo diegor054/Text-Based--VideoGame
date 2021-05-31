@@ -188,11 +188,12 @@ TEST(AoeDecoratorTest, testDamageDone){
     BaseCharacter* temp = new AoeDecorator(new Attacker());
     vector<BaseCharacter*>vec{temp, new Zombies(), new Zombies(), new Zombies(), new Zombies()};
     bool attackLanded = false;
+    int health = vec.at(2)->getHealth();
     while(!attackLanded){
 	 temp->attack(vec, 0);
          for(int i = 1; i < vec.size();i++){
-	 if(vec.at(i)->getLatestDamage() != 0){
-	   EXPECT_EQ(vec.at(i)->getHealth(), vec.at(i)->getHealth() - (temp->getAttackStrength() /3));
+	 if(vec.at(i)->getLatestDamage() != 0 && vec.at(i)->getLatestDamage() != temp->getAttackStrength()){
+	   EXPECT_EQ(vec.at(i)->getHealth(), health  - (temp->getAttackStrength() /3));
 	attackLanded = true;
         }
         }
