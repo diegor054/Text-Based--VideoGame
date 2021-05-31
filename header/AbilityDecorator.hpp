@@ -7,7 +7,13 @@ class AbilityDecorator : public BaseCharacter {
  protected:
     BaseCharacter* character;
  public:
-    AbilityDecorator(BaseCharacter* c) : BaseCharacter(), character(c) { }
+    AbilityDecorator(BaseCharacter* c) : BaseCharacter(), character(c) { 
+        name = "dec_name";
+        characterType = "dec_type";
+        health = maxHealth = baseHealth = attackStrength = baseAttackStrength = xp = latestDamage = 0;
+        currentMessage = "dec_null";
+        outputMessages = true;
+    }
     ~AbilityDecorator() override { delete this->character; }
     virtual BaseCharacter* attack(vector<BaseCharacter*> charList, int attackerIndex) = 0;
     virtual int defend(vector<BaseCharacter*> charList, int attackerIndex, int damage) = 0;
