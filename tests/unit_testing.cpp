@@ -161,11 +161,11 @@ TEST(DodgeDecoratorTest, testDamageDodged){
     while(!dodgeFull && !dodgeHalf){ 
     temp->refresh(true);
     vec.at(1)->attack(vec, 1);
-    if(temp->getLatestDamage() != vec.at(1)->getAttackStrength() && temp->getLatestDamage()){
+    if(temp->getLatestDamage() != vec.at(1)->getAttackStrength() && temp->getLatestDamage() && !dodgeHalf){
       EXPECT_EQ(temp->getLatestDamage(), vec.at(1)->getAttackStrength() /2 );
       dodgeHalf = true;
     }
-   else if(temp->getLatestDamage() == 0){
+   else if(temp->getLatestDamage() == 0 && !dodgeFull){
 	EXPECT_EQ(temp->getLatestDamage(), 0);
 	dodgeFull = true;
    }
