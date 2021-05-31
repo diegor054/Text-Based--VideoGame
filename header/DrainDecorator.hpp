@@ -6,6 +6,7 @@
 class DrainDecorator : public AbilityDecorator {
  public:
     DrainDecorator(BaseCharacter* c) : AbilityDecorator(c) { }
+    ~DrainDecorator() = default;
     BaseCharacter* attack(vector<BaseCharacter*> charList, int attackerIndex) override {
         BaseCharacter* victim = this->character->attack(charList, attackerIndex);
         if (!(rand() % 3)) {
