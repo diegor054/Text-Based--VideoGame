@@ -93,7 +93,7 @@ TEST(ninjaTest, testingDamageDone) {
         delete vec.at(i);
         }
 }
-
+/*
 TEST(CriticalTest, testingDamageDone) {
     BaseCharacter* temp = new CriticalDecorator(new Attacker());
     vector<BaseCharacter*>vec{temp, new Zombies()};
@@ -108,7 +108,7 @@ TEST(CriticalTest, testingDamageDone) {
 	delete vec.at(i);
 	}
 }
-
+*/
 TEST(ArmorDecoratorTest, testingDamageTaken) {
     BaseCharacter* temp = new ArmorDecorator(new Attacker());
     vector<BaseCharacter*>vec{temp, new Zombies()};
@@ -152,9 +152,30 @@ TEST(SpikesDecoratorTest, testingDamageTaken) {
 	}
 }
 
-
-
-
+TEST(DodgeDecoratorTest, testDamageDodged){
+    BaseCharacter* temp = new DodgeDecorator(new Attacker());
+    vector<BaseCharacter*>vec{temp, new Zombies()};
+    bool dodgeFull = false;
+    bool dodgeHalf = false; 
+    vec.at(1)->attack(vec, 1);
+    while(!dodgeFull && !dodgeHalf){ 
+    temp->refresh(true);
+    vec.at(1)->attack(vec, 1);
+    if(temp->getLatestDamage() != vec.at(1)->getAttackStrength() && temp->getLatestDamage()){
+      EXPECT_EQ(temp->getLatestDamage(), vec.at(1)->getAttackStrength() /2 );
+      dodgeHalf = true;
+    }
+   else if(temp->getLatestDamage() == 0){
+	EXPECT_EQ(temp->getLatestDamage(), 0);
+	dodgeFull = true;
+   }
+  }
+  for(int i = 0; i < vec.size(); i++){
+        delete vec.at(i);
+        }
+}
+   
+   
 
 
 
