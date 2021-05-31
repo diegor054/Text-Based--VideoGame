@@ -11,7 +11,7 @@ class AbilityDecorator : public BaseCharacter {
         name = "dec_name";
         characterType = "dec_type";
         health = maxHealth = baseHealth = attackStrength = baseAttackStrength = xp = latestDamage = 0;
-        currentMessage = "dec_null";
+        currentMessage = "";
         outputMessages = true;
     }
     ~AbilityDecorator() override { delete this->character; }
