@@ -9,12 +9,11 @@
 
 class NinjaFactory : public AbstractPlayerFactory {
  private:
-    string playerInfo = "You are the Ninja. Your agility helps you to stealthily avoid some of the enemies attacks. You also have shurikens which can damage multiple opponents at once.";
     virtual BaseCharacter* addDecorators(Player* p) {
         return new AoeDecorator(new DodgeDecorator(p));
     }
  public:
-    NinjaFactory() { };
+    NinjaFactory() { playerInfo = "You are the Ninja. Your agility helps you to stealthily avoid some of the enemies attacks. You also have shurikens which can damage multiple opponents at once."; }
     virtual BaseCharacter* getDefaultPlayer() override {
         return addDecorators(new Ninja());
     }
@@ -24,7 +23,7 @@ class NinjaFactory : public AbstractPlayerFactory {
         n->setXP(xp);
         return addDecorators(n);
     }
-    virtual string getPlayerInfo()override{ return playerInfo; }
+    virtual string getPlayerInfo() override { return playerInfo; }
 };
 
 #endif

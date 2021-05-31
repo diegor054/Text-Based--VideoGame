@@ -9,12 +9,11 @@
 
 class AttackerFactory : public AbstractPlayerFactory {
  private:
-    string playerInfo = "You are the Attacker. You are strong, and have the chance to deal extra damage on the opponent. You also have armor which will protect you from your opponents.";
     virtual BaseCharacter* addDecorators(Player* p) {
         return new CriticalDecorator(new ArmorDecorator(p));
     }
  public:
-    AttackerFactory() { };
+    AttackerFactory() { playerInfo = "You are the Attacker. You are strong, and have the chance to deal extra damage on the opponent. You also have armor which will protect you from your opponents."; }
     virtual BaseCharacter* getDefaultPlayer() override {
         return addDecorators(new Attacker());
     }
