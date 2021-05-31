@@ -15,7 +15,7 @@ class AbstractPlayerFactory {
     AbstractPlayerFactory() { };
     virtual BaseCharacter* getDefaultPlayer() = 0;
     virtual BaseCharacter* getUpgradedPlayer(const string &, int) = 0;
-    string getPlayerInfo() { return playerInfo; }
+    virtual string getPlayerInfo() = 0;
 };
 
 #endif

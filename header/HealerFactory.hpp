@@ -24,6 +24,8 @@ class HealerFactory : public AbstractPlayerFactory {
         h->setXP(xp);
         return addDecorators(h);
     }
+    virtual string getPlayerInfo()override{ return playerInfo; }
+
 };
 
 #endif
