@@ -102,7 +102,7 @@ TEST(ninjaTest, testingDamageDone) {
         delete vec.at(i);
         }
 }
-/*
+
 TEST(CriticalTest, testingDamageDone) {
     BaseCharacter* temp = new CriticalDecorator(new Attacker());
     vector<BaseCharacter*>vec{temp, new Zombies()};
@@ -110,14 +110,14 @@ TEST(CriticalTest, testingDamageDone) {
      victim = vec.at(0)->attack(vec, 0);
     while(victim->getLatestDamage() == (vec.at(0)->getAttackStrength())){
           victim->refresh(false);
-	 victim = vec.at(0)->attack(vec,0);   
+	 vec.at(0)->attack(vec,0);   
  }
     EXPECT_EQ(victim->getLatestDamage(), temp->getAttackStrength() * (1.5));
     for(int i = 0; i < vec.size(); i++){
 	delete vec.at(i);
 	}
 }
-*/
+
 TEST(ArmorDecoratorTest, testingDamageTaken) {
     BaseCharacter* temp = new ArmorDecorator(new Attacker());
     vector<BaseCharacter*>vec{temp, new Zombies()};
@@ -234,7 +234,7 @@ TEST(StageFactories, testSize){
 	BaseCharacter* temp = new Attacker();
 	AbstractStageFactory* l = new LeftPathFactory(temp);
 	vector<BaseCharacter*> vec = l->getStage10();
-	EXPECT_EQ(vec.size(), 2);
+	EXPECT_EQ(vec.size(), 38);
 	for(int i = 0; i < vec.size(); i++){
       	   delete vec.at(i);
        }
