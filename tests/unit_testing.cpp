@@ -13,6 +13,8 @@
 #include "../header/BaseCharacter.hpp"
 #include "../header/LeftPathFactory.hpp"
 #include "../header/AttackerFactory.hpp"
+#include "../header/HealerFactory.hpp"
+#include "../header/NinjaFactory.hpp"
 #include "../header/AbstractPlayerFactory.hpp"
 
 
