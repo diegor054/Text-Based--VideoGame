@@ -256,6 +256,7 @@ TEST(LevelingSystem, testDamage){
      attack->setXP(4000);
      attack->refresh(true);
      EXPECT_EQ(attack->getAttackStrength(),23);
+     delete attack;
 }
 
 TEST(PlayerClass, testingFunctions){
@@ -264,12 +265,23 @@ TEST(PlayerClass, testingFunctions){
 	temp->refresh(true);
 	EXPECT_EQ(temp->getAttackStrength(), 23);
 	EXPECT_EQ(temp->getLevel(), 5);
+	delete temp;
 }	
 
-
-
-
-
-
-
+TEST(OpponentClass, testingFunctions){
+        Opponent* temp = new Zombies();
+        temp->setXP(4000);
+        temp->refresh(true);
+        EXPECT_EQ(temp->getAttackStrength(), 5);
+        EXPECT_EQ(temp->getLevel(), 0);
+	delete temp;
+}
+TEST(BaseCharacter, testingFunctions){
+	BaseCharacter* temp = new Attacker();
+	EXPECT_EQ(temp->getName() , "Null");
+	EXPECT_EQ(temp->getHealth() , 100);
+	EXPECT_EQ(temp->getHealthBar() , "[||||||||||]");
+	EXPECT_EQ(temp->getType() , "Attacker");
+	delete temp;
+}
 
