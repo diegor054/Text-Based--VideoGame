@@ -6,6 +6,7 @@
 class CriticalDecorator : public AbilityDecorator {
  public:
     CriticalDecorator(BaseCharacter* c) : AbilityDecorator(c) { }
+    ~CriticalDecorator() = default;
     BaseCharacter* attack(vector<BaseCharacter*> charList, int attackerIndex) override {
         if ((rand() % 100 + 1) <= ((0.1492 + sqrt(0.02512 * this->getLevel() + 0.00573168))/0.01256)) {
             int temp = getAttackStrength();

@@ -159,10 +159,13 @@ BaseCharacter* getPlayer(const string &name, const string &type, int xp, bool is
     if (isNew) {
         cout << pf->getPlayerInfo() << endl;
         BaseCharacter* player = pf->getDefaultPlayer();
+        delete pf;
         player->setName(name);
         return player;
     }
-    return pf->getUpgradedPlayer(name, xp);
+    BaseCharacter* player = pf->getUpgradedPlayer(name, xp);
+    delete pf;
+    return player;
 }
 
 void instructions() {
@@ -182,17 +185,18 @@ vector<BaseCharacter*> getStage(BaseCharacter* player, int stage, bool isLeftPat
     AbstractStageFactory *path;
     if (isLeftPath) path = new LeftPathFactory(player);
     else path = new RightPathFactory(player);
+    vector<BaseCharacter*> charList;
     switch(stage) {
-        case 1: return path->getStage1();
-        case 2: return path->getStage2();
-        case 3: return path->getStage3();
-        case 4: return path->getStage4();
-        case 5: return path->getStage5();
-        case 6: return path->getStage6();
-        case 7: return path->getStage7();
-        case 8: return path->getStage8();
-        case 9: return path->getStage9();
-        default: return path->getStage10();
+        case 1: charList = path->getStage1(); delete path; return charList;
+        case 2: charList = path->getStage2(); delete path; return charList;
+        case 3: charList = path->getStage3(); delete path; return charList;
+        case 4: charList = path->getStage4(); delete path; return charList;
+        case 5: charList = path->getStage5(); delete path; return charList;
+        case 6: charList = path->getStage6(); delete path; return charList;
+        case 7: charList = path->getStage7(); delete path; return charList;
+        case 8: charList = path->getStage8(); delete path; return charList;
+        case 9: charList = path->getStage9(); delete path; return charList;
+        default: charList = path->getStage10(); delete path; return charList;
     }
 }
 

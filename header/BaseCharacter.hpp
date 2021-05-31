@@ -24,7 +24,7 @@ class BaseCharacter {
 
  public:
     BaseCharacter() { }
-    ~BaseCharacter() = default; 
+    virtual ~BaseCharacter() = default; 
     virtual BaseCharacter* attack(vector<BaseCharacter*> oppList, int attackerIndex) = 0;
     virtual int defend(vector<BaseCharacter*> charList, int attackerIndex, int damage) { 
         if (health - damage > 0) {

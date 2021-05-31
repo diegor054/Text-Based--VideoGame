@@ -6,6 +6,7 @@
 class AoeDecorator : public AbilityDecorator {
  public:
     AoeDecorator(BaseCharacter* c) : AbilityDecorator(c) { }
+    ~AoeDecorator() = default;
     BaseCharacter* attack(vector<BaseCharacter*> charList, int attackerIndex) override {
         BaseCharacter* opp = this->character->attack(charList, attackerIndex);
         for (vector<BaseCharacter*>::iterator it = charList.begin() + 1; it != charList.end(); ++it) {
