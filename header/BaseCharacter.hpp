@@ -21,7 +21,6 @@ class BaseCharacter {
     int latestDamage;
     string currentMessage;
     bool outputMessages = true;
-    void setAttackStrength(int a) { attackStrength = a; }
 
  public:
     BaseCharacter() { }
@@ -54,6 +53,7 @@ class BaseCharacter {
     virtual void setHealth(int h) { health = h; }
     virtual void setXP(int x) { xp = x; }
     virtual void setOutputStatus(bool o) { outputMessages = o; }
+    virtual void setAttackStrength(int a) { attackStrength = a; }
     virtual string getName() { return name; }
     virtual string getType() { return characterType; }
     virtual int getHealth() { return health; }
