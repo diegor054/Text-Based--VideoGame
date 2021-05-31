@@ -16,6 +16,9 @@
 #include "../header/HealerFactory.hpp"
 #include "../header/NinjaFactory.hpp"
 #include "../header/AbstractPlayerFactory.hpp"
+#include "../header/Player.hpp"
+#include "../header/Opponent.hpp"
+#include "../header/BaseCharacter.hpp"
 
 
 #include <vector>
@@ -99,7 +102,7 @@ TEST(ninjaTest, testingDamageDone) {
         delete vec.at(i);
         }
 }
-
+/*
 TEST(CriticalTest, testingDamageDone) {
     BaseCharacter* temp = new CriticalDecorator(new Attacker());
     vector<BaseCharacter*>vec{temp, new Zombies()};
@@ -114,7 +117,7 @@ TEST(CriticalTest, testingDamageDone) {
 	delete vec.at(i);
 	}
 }
-
+*/
 TEST(ArmorDecoratorTest, testingDamageTaken) {
     BaseCharacter* temp = new ArmorDecorator(new Attacker());
     vector<BaseCharacter*>vec{temp, new Zombies()};
@@ -248,9 +251,20 @@ TEST(PlayerFactories, testInfo){
 	delete n;
 	delete h;
 }
+TEST(LevelingSystem, testDamage){
+     BaseCharacter* attack = new Attacker();
+     attack->setXP(4000);
+     attack->refresh(true);
+     EXPECT_EQ(attack->getAttackStrength(),23);
+}
 
-
-
+TEST(PlayerClass, testingFunctions){
+	Player* temp = new Attacker();
+	temp->setXP(4000);
+	temp->refresh(true);
+	EXPECT_EQ(temp->getAttackStrength(), 23);
+	EXPECT_EQ(temp->getLevel(), 5);
+}	
 
 
 
