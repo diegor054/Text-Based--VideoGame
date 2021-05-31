@@ -200,6 +200,7 @@ TEST(AoeDecoratorTest, testDamageDone) {
                 EXPECT_EQ(vec.at(i)->getHealth(), health  - (temp->getAttackStrength() / 3));
                 attackLanded = true;
             }
+            vec.at(i)->refresh(true);
         }
     }
     for(int i = 0; i < vec.size(); i++) {
