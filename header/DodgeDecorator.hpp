@@ -8,7 +8,7 @@ class DodgeDecorator : public AbilityDecorator {
     DodgeDecorator(BaseCharacter* c) : AbilityDecorator(c) { }
     BaseCharacter* attack(vector<BaseCharacter*> charList, int attackerIndex) override {return this->character->attack(charList, attackerIndex);}
     virtual int defend(vector<BaseCharacter*> charList, int attackerIndex, int damage) {
-        if ((rand() % 100 + 1) <= (1.87 * pow(10, -3) * pow(this->getLevel(), 2.16) + 20)) {
+        if ((rand() % 100 + 1) <= (0.15038 + sqrt(0.01524 * this->getLevel() + 0.00015648))/0.00762) {
             if (!(rand() % 3)) {
                 charList.at(attackerIndex)->setOutputStatus(false);
                 int dmg = this->character->defend(charList, attackerIndex, 0);
