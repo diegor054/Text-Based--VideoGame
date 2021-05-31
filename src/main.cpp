@@ -53,6 +53,7 @@ int main() {
             stageMessages(stage, isLeftPath); 
             vector<BaseCharacter*> opponentsList = getStage(player, stage, isLeftPath);
             stage += fight(opponentsList, stage);
+
         }
     }
     if (stage > 10) {
@@ -64,6 +65,7 @@ int main() {
     gameInfo->at(0) = to_string(stage);
     gameInfo->at(1) = to_string(player->getXP());
     save(file, gameInfo);
+    delete player;
     return 0;
 }
 
@@ -217,6 +219,7 @@ bool fight(vector<BaseCharacter*> charList, int& stage) {
             for (int i = 1; i < charList.size(); ++i) {
                 if (charList.at(i)->getHealth() == 0) {
                     cout << charList.at(i)->getName() + " Has Been Eliminated." << endl;
+                    delete charList.at(i);
                     charList.erase(charList.begin() + i);
                     numLeft -= 1;
                 }
@@ -237,6 +240,10 @@ bool fight(vector<BaseCharacter*> charList, int& stage) {
         }
         else {
             cout << "You have fled the fight." << endl;
+            while (charList.size() > 1) {
+                delete charList.back();
+                charList.pop_back();
+            }
             return false;
         }
     }
