@@ -295,13 +295,14 @@ void stageMessages(int stage, bool &isLeftPath) {
     switch(stage) {
         case 1:
             cout << "You have entered the dungeon. It seems as if this place hasn't  been cleaned in centuries." << endl;
-	    cout << "You heard grand tales of the endless riches contained inside, and now the moment has finally arrived to explore."
-            cout << "You walk down the dungeon for about five minutes until you reach a point where the dungeon splits off" << endl;
+	    cout << "You heard grand tales of the endless riches contained inside, and now the moment has finally arrived to explore." << endl;
+    cout << "You walk down the dungeon for about five minutes until you reach a point where the dungeon splits off" << endl;
             cout << "*thump*" << endl;
             cout << "You see a bright torch and a sign pointing in two directions, Left or Right" << endl;
-	    cout << "In the couragous left path, all you can see is the pitch black tunnel and there is this unnerving smell in the air"
+	    cout << "In the couragous left path, all you can see is the pitch black tunnel and there is this unnerving smell in the air" << endl;
             cout << "In the curious right path, you can see a shiny object glittering in the distance and nothing else" << endl;
-            getPath(isLeftPath);
+            cout << "Which path shall you explore? Enter L or R" << flush;
+	    getPath(isLeftPath);
             if (isLeftPath) {
                 cout << "You walk down the left path and see zombies standing before your eyes! They run towards you and want some fresh meat!" <<endl;
                 cout << "Prepare yourself... you are about to get in a fight." << endl;
@@ -327,7 +328,7 @@ void stageMessages(int stage, bool &isLeftPath) {
 	    cout << "Once again, you walk for about ten minutes and have to choose which path direction to take(Left or Right)." << endl;
             cout << "The intriguing left path, reminds you of the tales about brave people to have fallen here, and there could be loot to gain here." << endl;
 	    cout << "From the whismical right path, you see bright lights and hear fluttering but can't make out anything's presence." << endl;
-            cout << "Which path would you like to take. Enter L or R: " << flush;
+            cout << "Which path shall you explore. Enter L or R: " << flush;
             getPath(isLeftPath);
             if (isLeftPath) {
                 cout << "You walk down the left path and see goblins standing before your eyes! They run towards you with knives" <<endl;
@@ -351,7 +352,7 @@ void stageMessages(int stage, bool &isLeftPath) {
             cout << "You walk more through the dungeon and have to choose which path direction to take(Left or Right) once again." << endl;
             cout << "In the dreadful left path, you see blood and guts trailing further into a darkness, do you dare to venture forward?" << endl;
             cout << "In the simpler right path, there is seemingly nothing to worry about, and it almost seems too peaceful to be true." << endl;
-            cout << "Which path would you like to take. Enter L or R: " << flush;
+            cout << "Which path shall you explore. Enter L or R: " << flush;
             getPath(isLeftPath);
             if (isLeftPath) {
                 cout << "You walk down the left path and see Zombies standing before your eyes! You look like a nice snack to them..." <<endl;
