@@ -307,7 +307,7 @@ void stageMessages(int stage, bool &isLeftPath) {
                 cout << "Prepare yourself... you are about to get in a fight." << endl;
             }
             else {
-                cout << "You walk down the right path and see zombies standing before your eyes! They run towards you ready to eat some fresh meat!." <<endl;
+                cout << "You walk down the right path and see a couple corpses. Wait, there zombies ready to eat some brains!" <<endl;
                 cout << "Prepare yourself... you are about to get in a fight." << endl;
             }
             break;
@@ -330,11 +330,11 @@ void stageMessages(int stage, bool &isLeftPath) {
             cout << "Which path shall you explore. Enter L or R: " << flush;
             getPath(isLeftPath);
             if (isLeftPath) {
-                cout << "You walk down the left path and see many weak zombies standing before your eyes! They run towards you ready to feast" <<endl;
+                cout << "You walk down the left path and see many weak zombies arguing over a couple of bones. They all look at you simultaneously, and run to eat you instead!" <<endl;
                 cout << "Prepare yourself... you are about to get in a fight." << endl;
             }
             else {
-                cout << "You walk down the right path and see giant zombies standing before your eyes! They run towards you to eat some fresh meat!." <<endl;
+                cout << "You walk down the right path and see giant zombies sitting in a circular table using limbs as playing cards. It looks like they've been waiting for a while. They slowly get up, and stubbornly fight you." <<endl;
                 cout << "Prepare yourself... you are about to get in a fight." << endl;
             }
             break;
