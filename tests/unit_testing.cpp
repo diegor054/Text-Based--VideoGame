@@ -96,6 +96,17 @@ TEST(FairyTest, defaultFairy) {
     delete temp;
 }
 
+TEST(FairyTest, constructedFairy) {
+    Fairy* temp = new Fairy(6);
+    EXPECT_EQ(temp->getHealth(), 137);
+    EXPECT_EQ(temp->getXP(), 6);
+    EXPECT_EQ(temp->getLevel(), 6);
+    EXPECT_EQ(temp->getAttackStrength(), 8);
+    EXPECT_EQ(temp->getName(), "Fairy");
+    EXPECT_EQ(temp->getType(), "Fairy");
+    delete temp;
+}
+
 TEST(GoblinTest, defaultGoblin) {
     Goblin* temp = new Goblin();
     EXPECT_EQ(temp->getHealth(), 50);
