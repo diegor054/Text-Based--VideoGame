@@ -45,7 +45,7 @@ int main() {
     //run program
     int stage = stoi(gameInfo->at(0));
     bool isLeftPath = gameInfo->at(4) == "Left" ? true : false;
-    string userInput;
+    string userInput = "X";
     while (toupper(userInput.at(0)) != 'Q' && stage <= 10) {
         cout << "Would you like to continue (C) view stats (S) or exit (Q)? " << flush;
         cin >> userInput;
