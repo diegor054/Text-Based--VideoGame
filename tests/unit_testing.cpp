@@ -54,6 +54,18 @@ TEST(HealerTest, defaultHealer) {
     delete temp;
 }
 
+TEST(HealerTest, constructedHealer) {
+    string name = "Janice";
+    Healer* temp = new Healer(name, 9433);
+    EXPECT_EQ(temp->getName(), name);
+    EXPECT_EQ(temp->getHealth(), 649);
+    EXPECT_EQ(temp->getXP(), 9433);
+    EXPECT_EQ(temp->getLevel(), 7);
+    EXPECT_EQ(temp->getAttackStrength(), 25);
+    EXPECT_EQ(temp->getType(), "Healer");
+    delete temp;
+}
+
 TEST(NinjaTest, defaultNinja) {
     Ninja* temp = new Ninja();
     EXPECT_EQ(temp->getHealth(), 100);
