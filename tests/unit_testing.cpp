@@ -33,6 +33,18 @@ TEST(AttackerTest, defaultAttacker) {
     delete temp;
 }
 
+TEST(AttackerTest, constructedAttacker) {
+    string name = "John";
+    Attacker* temp = new Attacker(name, 4567);
+    EXPECT_EQ(temp->getName(), name);
+    EXPECT_EQ(temp->getHealth(), 231);
+    EXPECT_EQ(temp->getXP(), 4567);
+    EXPECT_EQ(temp->getLevel(), 5);
+    EXPECT_EQ(temp->getAttackStrength(), 23);
+    EXPECT_EQ(temp->getType(), "Attacker");
+    delete temp;
+}
+
 TEST(HealerTest, defaultHealer) {
     Healer* temp = new Healer();
     EXPECT_EQ(temp->getHealth(), 200);
