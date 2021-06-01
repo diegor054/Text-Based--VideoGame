@@ -12,7 +12,15 @@ class CriticalDecorator : public AbilityDecorator {
             int temp = getAttackStrength();
             setAttackStrength(temp * 1.5);
             BaseCharacter* victim = this->character->attack(charList, attackerIndex);
+            int r = (rand() % 3) + 1;
+            if(r == 1){
             addAbilityMessage(this->character->getName() + " critically hit " + victim->getName() + "!");
+            }
+            else if(r == 2){
+            addAbilityMessage(this->character->getName() + " did extra damage to  " + victim->getName() + "!");
+            }else{
+            addAbilityMessage(this->character->getName() + "'s attack hit " + victim->getName() + " hard!");
+            }  
             cout << this->currentMessage << endl;
             this->currentMessage = "";
             setAttackStrength(temp);
