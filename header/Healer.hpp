@@ -32,9 +32,11 @@ class Healer : public Player {
     }
     ~Healer() = default;
     string attackMessage(BaseCharacter* opp) {
-        int r = (rand() % 3);
+        int r = (rand() % 5);
         if (r == 0) return currentMessage = name + " had fun deleting " + opp->getName() + " with their " + wandType + " " + weaponType + damageMessage(opp->getLatestDamage());
         else if (r == 1) return currentMessage = name + " had fun attacking " + opp->getName() + " with their " + wandType + " " + weaponType + damageMessage(opp->getLatestDamage());
+        else if (r == 2) return currentMessage = name + " had fun laughing at " + opp->getName() + " while they suffered from the attack" + damageMessage(opp->getLatestDamage());
+        else if (r == 3) return currentMessage = name + " used their magical powers on " + opp->getName() + " with their " + wandType + " " + weaponType + damageMessage(opp->getLatestDamage());
         else return currentMessage = name + " swished " + opp->getName() + " with their " + wandType + " " + weaponType + damageMessage(opp->getLatestDamage());
     }
 };
