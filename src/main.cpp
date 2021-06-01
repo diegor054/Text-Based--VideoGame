@@ -274,12 +274,13 @@ string getFightOption() {
 void stageMessages(int stage, bool &isLeftPath) {
     switch(stage) {
         case 1:
-            cout << "You have entered the dungeon. It seems as if this place has been cleaned in centuries." << endl;
+            cout << "You have entered the dungeon. It seems as if this place hasn't  been cleaned in centuries." << endl;
+	    cout << "You heard grand tales of the endless riches contained inside, and now the moment has finally arrived to explore."
             cout << "You walk down the dungeon for about five minutes until you reach a point where the dungeon splits off into two paths." << endl;
             cout << "*thump*" << endl;
-            cout << "From the left path you heard a loud thump and start hearing very loud growlings." << endl;
-            cout << "*Green creature is seen from a distance to the right*" << endl;
-            cout << "You notice a green creature standing far away on the right path" << endl;
+            cout << "You see a bright torch and a sign pointing in two directions, Left or Right" << endl;
+	    cout << "In the couragous left path, all you can see is the pitch black tunnel and there god-awful unnerving smell of the air"
+            cout << "In the curious right path, you can see a shiny object glittering in the distance and nothing else" << endl;
             getPath(isLeftPath);
             if (isLeftPath) {
                 cout << "You walk down the left path and see zombies standing before your eyes! They run towards you and want some fresh meat!" <<endl;
