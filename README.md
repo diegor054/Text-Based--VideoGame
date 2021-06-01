@@ -27,12 +27,6 @@
  > 
 ![Screenshot (135)](https://user-images.githubusercontent.com/69490329/120254038-bdeab000-c23d-11eb-86a0-47de9aaf9586.png)
  
- > ## Final deliverable
- > All group members will give a demo to the TA during lab time. The TA will check the demo and the project GitHub repository and ask a few questions to all the team members. 
- > Before the demo, you should do the following:
- > * Complete the sections below (i.e. Screenshots, Installation/Usage, Testing)
- > * Plan one more sprint (that you will not necessarily complete before the end of the quarter). Your In-progress and In-testing columns should be empty (you are not doing more work currently) but your TODO column should have a full sprint plan in it as you have done before. This should include any known bugs (there should be some) or new features you would like to add. These should appear as issues/cards on your Kanban board. 
- 
  ## Screenshots
  > ![image](https://user-images.githubusercontent.com/81644719/120352280-7a338d00-c2b5-11eb-954e-fbec5f0fd9d9.png)
  > ![image](https://user-images.githubusercontent.com/81644719/120353192-5ae92f80-c2b6-11eb-9001-3adbd3763f30.png)
