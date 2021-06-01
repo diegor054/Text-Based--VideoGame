@@ -301,7 +301,6 @@ void stageMessages(int stage, bool &isLeftPath) {
             cout << "You see a bright torch and a sign pointing in two directions, Left or Right" << endl;
 	    cout << "In the left path, you hear lots of noises and see many figures in the distance." << endl;
             cout << "In the right path, you see this giant looming shadow with a deadly presence."<< endl;
-	    //cout << "Which path shall you explore. Enter L or R." << endl;
 	    getPath(isLeftPath);
             if (isLeftPath) {
                 cout << "You walk down the left path and see zombies standing before your eyes! They run towards you and want some fresh meat!" <<endl;
