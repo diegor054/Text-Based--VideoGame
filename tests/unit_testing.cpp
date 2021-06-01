@@ -75,6 +75,18 @@ TEST(NinjaTest, defaultNinja) {
     delete temp;
 }
 
+TEST(NinjaTest, constructedNinja) {
+    string name = "Jacky";
+    Ninja* temp = new Ninja(name, 14725);
+    EXPECT_EQ(temp->getName(), name);
+    EXPECT_EQ(temp->getHealth(), 378);
+    EXPECT_EQ(temp->getXP(), 14725);
+    EXPECT_EQ(temp->getLevel(), 8);
+    EXPECT_EQ(temp->getAttackStrength(), 30);
+    EXPECT_EQ(temp->getType(), "Ninja");
+    delete temp;
+}
+
 TEST(FairyTest, defaultFairy) {
     Fairy* temp = new Fairy();
     EXPECT_EQ(temp->getHealth(), 50);
