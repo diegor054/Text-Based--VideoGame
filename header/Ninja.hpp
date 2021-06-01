@@ -30,8 +30,15 @@ class Ninja : public Player {
     }
     ~Ninja() = default;
     string attackMessage(BaseCharacter* opp) {
-        return currentMessage = name + " had fun yeeting " + opp->getName() + " with their " + knifeType + " " + weaponType + damageMessage(opp->getLatestDamage());
-    }
+     int r = (rand() % 3) + 1;
+     if(r == 1){
+     return currentMessage = name + " had fun yeeting " + opp->getName() + " with their " + knifeType + " " + weaponType + damageMessage(opp->getLatestDamage());
+     }else if(r == 2){    
+     return currentMessage = name + " had fun destroying " + opp->getName() + " with their " + knifeType + " " + weaponType + damageMessage(opp->getLatestDamage());
+     }else{
+     return currentMessage = name + " attacked " + opp->getName() + " with their " + knifeType + " " + weaponType + damageMessage(opp->getLatestDamage());    
+     }
+}
 };
                                                                                                                                    
 #endif

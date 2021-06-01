@@ -38,7 +38,7 @@ class Attacker : public Player {
         }else if(r == 2){
         return currentMessage = name + " slashed  " + opp->getName() + " with their " + SwordType + " " + weaponType + damageMessage(opp->getLatestDamage());
         }else{
-        return currentMessage = name + " attacked  " + opp->getName() + " with their " + SwordType + " " + weaponType + damageMessage(opp->getLatestDamage()) 
+        return currentMessage = name + " attacked  " + opp->getName() + " with their " + SwordType + " " + weaponType + damageMessage(opp->getLatestDamage()); 
        }
        }
 };
