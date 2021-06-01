@@ -135,6 +135,18 @@ TEST(ZombieTest, defaultZombie) {
     EXPECT_EQ(temp->getType(), "Zombie");
     delete temp;
 }
+
+TEST(ZombieTest, constructedZombie) {
+    Zombie* temp = new Zombie(10);
+    EXPECT_EQ(temp->getHealth(), 124);
+    EXPECT_EQ(temp->getXP(), 10);
+    EXPECT_EQ(temp->getLevel(), 10);
+    EXPECT_EQ(temp->getAttackStrength(), 24);
+    EXPECT_EQ(temp->getName(), "Zombie");
+    EXPECT_EQ(temp->getType(), "Zombie");
+    delete temp;
+}
+
 TEST(AttackerTest, testingDamageDone) {
     BaseCharacter* temp = new Attacker();
     vector<BaseCharacter*>vec{temp, new Zombie()};
