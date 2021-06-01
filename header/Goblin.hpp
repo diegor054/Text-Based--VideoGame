@@ -29,9 +29,11 @@ class Goblin : public Opponent {
         attackStyle = "Knife";
     }
     string attackMessage(BaseCharacter* opp) override {
-        int message = rand() % 3;
+        int message = rand() % 5;
         if (message == 0) return currentMessage = name + " knife " + opp->getName() + damageMessage(opp->getLatestDamage());
         else if (message == 1) return currentMessage = name + " hit " + opp->getName() + " hard" + damageMessage(opp->getLatestDamage());
+        else if (message == 2) return currentMessage = name + " wasted no time with " + opp->getName() + damageMessage(opp->getLatestDamage());
+        else if (message == 3) return currentMessage = name + " smashed " + opp->getName() + " with great force" + damageMessage(opp->getLatestDamage());
         else return currentMessage = name + " is very mad at you and attacked " + opp->getName() + damageMessage(opp->getLatestDamage());
     }
 };

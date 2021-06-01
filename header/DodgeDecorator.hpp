@@ -13,28 +13,20 @@ class DodgeDecorator : public AbilityDecorator {
             if (!(rand() % 3)) {
                 charList.at(attackerIndex)->setOutputStatus(false);
                 int dmg = this->character->defend(charList, attackerIndex, 0);
-                int r = (rand() % 3) + 1;
-                if(r == 1){
-                addAbilityMessage(charList.at(attackerIndex)->getName() + " tried to attack  " + this->character->getName() + " but missed.");
-                } else if(r == 2){
-                addAbilityMessage(charList.at(attackerIndex)->getName() + " completely missed while trying to hurt " + this->character->getName());
-                } else{
-                addAbilityMessage(charList.at(attackerIndex)->getName() + " missed and could not hurt " + this->character->getName());
-                }
+                int r = (rand() % 3);
+                if (r == 0) addAbilityMessage(charList.at(attackerIndex)->getName() + " tried to attack  " + this->character->getName() + " but missed.");
+                else if (r == 1) addAbilityMessage(charList.at(attackerIndex)->getName() + " completely missed while trying to hurt " + this->character->getName());
+                else addAbilityMessage(charList.at(attackerIndex)->getName() + " missed and could not hurt " + this->character->getName());
                 cout << this->currentMessage << endl;
                 this->currentMessage = "";
                 return dmg;
             }
             else {
                 int dmg = this->character->defend(charList, attackerIndex, damage / 2);
-                int r2 = (rand() % 3) + 1;
-                if(r2 == 1){
-                addAbilityMessage(charList.at(attackerIndex)->getName() + " only did half damage while trying to attack " + this->character->getName());
-                }else if(r2 == 2){
-                addAbilityMessage(charList.at(attackerIndex)->getName() + " tripped and could only do half damage to " + this->character->getName());
-                }else{
-                addAbilityMessage(charList.at(attackerIndex)->getName() + " could only do half damage due to a dodge by  " + this->character->getName());
-                }
+                int r = (rand() % 3);
+                if (r == 0) addAbilityMessage(charList.at(attackerIndex)->getName() + " only did half damage while trying to attack " + this->character->getName());
+                else if (r == 1) addAbilityMessage(charList.at(attackerIndex)->getName() + " tripped and could only do half damage to " + this->character->getName());
+                else addAbilityMessage(charList.at(attackerIndex)->getName() + " could only do half damage due to a dodge by  " + this->character->getName());
                 cout << this->currentMessage << endl;
                 this->currentMessage = "";
                 return dmg;

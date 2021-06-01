@@ -9,9 +9,11 @@ class Player : public BaseCharacter {
     int playerLevel;
     int currentXP;
     string damageMessage(int damage) {
-        int message = rand() % 2;
+        int message = rand() % 5;
         if (message == 0) return ". They lost " + to_string(damage) + " health!"; 
         else if (message == 1) return " and dealt " + to_string(damage) + " damage!";
+        else if (message == 2) return " and took off " + to_string(damage) + " damage!";
+        else if (message == 3) return ". Only " + to_string(damage) + " health remains.";
         else return ". They only have " + to_string(damage) + " health left."; 
     }
  public:
