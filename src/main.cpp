@@ -307,22 +307,21 @@ string getFightOption() {
 void stageMessages(int stage, bool &isLeftPath) {
     switch(stage) {
         case 1:
-            cout << "You have entered the dungeon. It seems as if this place hasn't  been cleaned in centuries." << endl;
-	    cout << "You heard grand tales of the endless riches contained inside, and now the moment has finally arrived to explore." << endl;
-    cout << "You walk down the dungeon for about five minutes until you reach a point where the dungeon splits off" << endl;
+            cout << "You have entered the dungeon. It seems as if this place hasn't been cleaned in centuries." << endl;
+	        cout << "You heard grand tales of the endless riches contained inside, and now the moment has finally arrived to explore." << endl;
+        cout << "You walk down the dungeon for about five minutes until you reach a point where the dungeon splits off" << endl;
             cout << "*thump*" << endl;
             cout << "You see a bright torch and a sign pointing in two directions, Left or Right" << endl;
-	    cout << "In the left path, you hear lots of noises and see many figures in the distance." << endl;
+	        cout << "In the left path, you hear lots of noises and see many figures in the distance." << endl;
             cout << "In the right path, you see this giant looming shadow with a deadly presence."<< endl;
 	    getPath(isLeftPath);
             if (isLeftPath) {
-                cout << "You walk down the left path and see zombies standing before your eyes! They run towards you and want some fresh meat!" <<endl;
-               cout << "Prepare yourself... you are about to get in a fight." << endl;
+                cout << "You walk down the left path and see zombies standing before your eyes! They run towards you and want some fresh meat!" << endl;
             }
             else {
-                cout << "You walk down the right path and see a couple corpses. Wait, there zombies ready to eat some brains!" <<endl;
-                cout << "Prepare yourself... you are about to get in a fight." << endl;
+                cout << "You walk down the right path and see a couple corpses. Wait, there zombies ready to eat some brains!" << endl;
             }
+            cout << "Prepare yourself... you are about to get in a fight." << endl;
             break;
         case 2:
             cout << "You take a quick break to heal yourself and recover." << endl;
@@ -336,19 +335,18 @@ void stageMessages(int stage, bool &isLeftPath) {
             cout << "After 3 long fights, you take a break and continue to explore the dungeon. " << endl;
             cout << "You find some human skeleton remains and realize that people have died on this exploration before." << endl;
             cout << "You walk past the skeletons to continue your journey and to try to do what no-one else had ever achieved before." << endl;
-	    cout << "*thump*" << endl;
-	    cout << "Once again, you walk for about ten minutes and have to choose which path direction to take(Left or Right)." << endl;
+	        cout << "*thump*" << endl;
+	        cout << "Once again, you walk for about ten minutes and the path ahead of you splits into two paths." << endl;
             cout << "The left path, you notice small shadows and many little noises you can't understand." << endl;
-	    cout << "From the right path, there are a couple gravestones and giant footprints leading into the tunnel " << endl;
+	        cout << "From the right path, there are a couple gravestones and giant footprints leading into the tunnel " << endl;
             getPath(isLeftPath);
             if (isLeftPath) {
-                cout << "You walk down the left path and see many weak zombies arguing over a couple of bones. They all look at you simultaneously, and run to eat you instead!" <<endl;
-                cout << "Prepare yourself... you are about to get in a fight." << endl;
+                cout << "You walk down the left path and see many weak zombies arguing over a couple of bones. They all look at you simultaneously, and run to eat you instead!" << endl;
             }
             else {
-                cout << "You walk down the right path and see giant zombies sitting in a circular table using limbs as playing cards. It looks like they've been waiting for a while. They slowly get up, and stubbornly fight you." <<endl;
-                cout << "Prepare yourself... you are about to get in a fight." << endl;
+                cout << "You walk down the right path and see giant zombies sitting in a circular table using limbs as playing cards. It looks like they've been waiting for a while. They slowly get up, and stubbornly fight you." << endl;
             }
+            cout << "Prepare yourself... you are about to get in a fight." << endl;
             break;
         case 5:
             cout << "You take a quick break to heal yourself and recover." << endl;
@@ -365,13 +363,12 @@ void stageMessages(int stage, bool &isLeftPath) {
             cout << "In the simpler right path, there is seemingly nothing to worry about, and it almost seems too peaceful to be true." << endl;
             getPath(isLeftPath);
             if (isLeftPath) {
-                cout << "You walk down the left path and see zombies, goblins, and fairies all teaming up to finish you off! You look like a nice snack to them..." <<endl;
-                cout << "Prepare yourself... you are about to get in a fight." << endl;
+                cout << "You walk down the left path and see zombies, goblins, and fairies all teaming up to finish you off! You look like a nice snack to them..." << endl;
             }
             else {
-                cout << "You walk down the right path and see a giant zombie, goblin and fairy ready to gang up on you! Your not ready for this dual!" <<endl;
-                cout << "Prepare yourself... you are about to get in a fight." << endl;
+                cout << "You walk down the right path and see a giant zombie, goblin and fairy ready to gang up on you! Your not ready for this dual!" << endl;
             }
+            cout << "Prepare yourself... you are about to get in a fight." << endl;
             break;
         case 8:
             cout << "You take a quick break to heal yourself and recover." << endl;
