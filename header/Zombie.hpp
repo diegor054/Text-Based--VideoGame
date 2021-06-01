@@ -29,9 +29,11 @@ class Zombie : public Opponent {
         attackStyle = "Teeth";
     }
     string attackMessage(BaseCharacter* opp) override {
-        int message = rand() % 3;
+        int message = rand() % 5;
         if (message == 0) return currentMessage = name + " bites " + opp->getName() + damageMessage(opp->getLatestDamage());
         else if (message == 1) return currentMessage = "ERRRR. " + name + " bit " + opp->getName() + " hard" + damageMessage(opp->getLatestDamage());
+        else if (message == 2) return currentMessage = name + " has fun chomping at " + opp->getName() + damageMessage(opp->getLatestDamage());
+        else if (message == 3) return currentMessage = "ERRRR. " + name + " wants " + opp->getName() + "'s brains" + damageMessage(opp->getLatestDamage());
         else return currentMessage = name + " wants some fresh meat. He attacks " + opp->getName() + damageMessage(opp->getLatestDamage());
     }
 };

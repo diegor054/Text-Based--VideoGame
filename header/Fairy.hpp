@@ -29,10 +29,12 @@ class Fairy: public Opponent {
         attackStyle = "Pixie dust";
     }
     string attackMessage(BaseCharacter* opp) override {
-        int message = rand() % 3;
+        int message = rand() % 5;
         if (message == 0) return currentMessage = name + " sprinkles " + opp->getName() + damageMessage(opp->getLatestDamage());
-        else if (message == 1) return currentMessage = "Fairy hit " + opp->getName() + " hard" + damageMessage(opp->getLatestDamage());
-        else return currentMessage = "Fairy is very mad at you and sprinkled " + opp->getName() + damageMessage(opp->getLatestDamage());
+        else if (message == 1) return currentMessage = name + " hit " + opp->getName() + " hard" + damageMessage(opp->getLatestDamage());
+        else if (message == 2) return currentMessage = name + " strikes " + opp->getName() + " with a beam of light" + damageMessage(opp->getLatestDamage());
+        else if (message == 3) return currentMessage = name + " uses magical powers against " + opp->getName() + damageMessage(opp->getLatestDamage());
+        else return currentMessage = name + " is very mad at you and sprinkled " + opp->getName() + damageMessage(opp->getLatestDamage());
     }
 };
 
