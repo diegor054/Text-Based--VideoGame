@@ -44,16 +44,15 @@ int main() {
 
     //run program
     int stage = stoi(gameInfo->at(0));
+    bool isLeftPath = gameInfo->at(4) == "Left" ? true : false;
     string userInput;
     while (userInput != "Q" && stage <= 10) {
         cout << "Would you like to continue (C) or exit (Q)? " << flush;
         cin >> userInput;
         if (userInput == "C") {
-            bool isLeftPath = true;
             stageMessages(stage, isLeftPath); 
             vector<BaseCharacter*> opponentsList = getStage(player, stage, isLeftPath);
             stage += fight(opponentsList, stage);
-
         }
     }
     if (stage > 10) {
@@ -64,6 +63,7 @@ int main() {
     //save program
     gameInfo->at(0) = to_string(stage);
     gameInfo->at(1) = to_string(player->getXP());
+    gameInfo->at(4) = isLeftPath == true ? "Left" : "Right";
     save(file, gameInfo);
     delete player;
     return 0;
@@ -85,11 +85,12 @@ vector<string>* load(const string &file) {
     if (fin.eof()) {
         return nullptr;
     }
-    vector<string>* gameInfo = new vector<string>(4);
+    vector<string>* gameInfo = new vector<string>(5);
     fin >> gameInfo->at(0); //stage
     fin >> temp >> gameInfo->at(1); //points
     fin >> temp >> gameInfo->at(2); //name
     fin >> temp >> gameInfo->at(3); //type
+    fin >> temp >> gameInfo->at(4); //path
     fin.close();
     return gameInfo;
 }
@@ -104,6 +105,7 @@ void save(const string &file, vector<string>* gameInfo) {
     fout << "Points: " << gameInfo->at(1) << endl;
     fout << "Name: " << gameInfo->at(2) << endl;
     fout << "Type: " << gameInfo->at(3) << endl;
+    fout << "Path: " << gameInfo->at(4) << endl;
     fout.close();
     delete gameInfo;
 }
@@ -144,7 +146,7 @@ vector<string>* start() {
             invalidInput = true;
         }
     }
-    return new vector<string>{"1", "0", playerName, playerType};
+    return new vector<string>{"1", "0", playerName, playerType, "Left"};
 }
 
 BaseCharacter* getPlayer(const string &name, const string &type, int xp, bool isNew) {
