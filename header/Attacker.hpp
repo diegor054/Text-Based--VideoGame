@@ -32,8 +32,15 @@ class Attacker : public Player {
     }
     ~Attacker() = default;
     string attackMessage(BaseCharacter* opp) {
+         int r = (rand() % 3) + 1;
+         if(r == 1){
         return currentMessage = name + " had fun destroying " + opp->getName() + " with their " + SwordType + " " + weaponType + damageMessage(opp->getLatestDamage());
-    }
+        }else if(r == 2){
+        return currentMessage = name + " slashed  " + opp->getName() + " with their " + SwordType + " " + weaponType + damageMessage(opp->getLatestDamage());
+        }else{
+        return currentMessage = name + " attacked  " + opp->getName() + " with their " + SwordType + " " + weaponType + damageMessage(opp->getLatestDamage()); 
+       }
+       }
 };
 
 #endif

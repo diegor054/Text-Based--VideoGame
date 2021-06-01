@@ -9,12 +9,11 @@
 
 class HealerFactory : public AbstractPlayerFactory {
  private:
-    string playerInfo = "You are the Healer. Your magical abilities allow you to drain the opponent of their health while healing yours. You also have spikes which will damage the opponent when they attack you.";
     virtual BaseCharacter* addDecorators(Player* p) {
         return new DrainDecorator(new SpikesDecorator(p));
     }
  public:
-    HealerFactory() { };
+    HealerFactory() { playerInfo = "You are the Healer. Your magical abilities allow you to drain the opponent of their health while healing yours. You also have spikes which will damage the opponent when they attack you."; }
     virtual BaseCharacter* getDefaultPlayer() override {
         return addDecorators(new Healer());
     }

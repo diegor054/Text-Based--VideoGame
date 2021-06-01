@@ -44,31 +44,36 @@ int main() {
 
     //run program
     int stage = stoi(gameInfo->at(0));
+    bool isLeftPath = gameInfo->at(4) == "Left" ? true : false;
     string userInput;
-    while (userInput != "Q" && stage <= 10) {
-        cout << "Would you like to continue (C) or exit (Q)? " << flush;
+    while (toupper(userInput.at(0)) != 'Q' && stage <= 10) {
+        cout << "Would you like to continue (C) view stats (S) or exit (Q)? " << flush;
         cin >> userInput;
-        if (userInput == "C") {
-            bool isLeftPath = true;
+        if (toupper(userInput.at(0)) == 'C') {
             stageMessages(stage, isLeftPath); 
             vector<BaseCharacter*> opponentsList = getStage(player, stage, isLeftPath);
             stage += fight(opponentsList, stage);
         }
+        else if (toupper(userInput.at(0)) == 'S') {
+            cout << "Name: " << player->getName() << endl;
+            cout << "Type: " << player->getType() << endl;
+            cout << "Level: " << player->getLevel() << endl;
+            cout << "Points: " << player->getXP() << endl;
+            cout << "Max Health: " << player->getHealth() << endl;
+            cout << "Attack Strength: " << player->getAttackStrength() << endl;
+        }
     }
-   
-    cout << "Congrats on beating the final boss. You have made everyone proud. Now go on and collect your treasure." << endl;
-    cout << "Thanks for playing, " << player->getName() << "!" << endl;
-    
+    if (stage > 10) {
+        cout << "Congrats on beating the final boss. You have made everyone proud. Now go on and collect your treasure." << endl;
+        cout << "Thanks for playing, " << player->getName() << "!" << endl;
+    }
+
     //save program
     gameInfo->at(0) = to_string(stage);
     gameInfo->at(1) = to_string(player->getXP());
+    gameInfo->at(4) = isLeftPath == true ? "Left" : "Right";
     save(file, gameInfo);
-
-    //exit program (debug until bugs resolved)
-    cout << "Game saved propery and is about to crash. . . " << endl;
-    cout << endl << "Crashing will commence in " << flush;
-    stage = 3;
-    while (stage >= 0) { system("read -t 1"); cout << stage << ' ' << flush; --stage; }
+    delete player;
     return 0;
 }
 
@@ -88,11 +93,12 @@ vector<string>* load(const string &file) {
     if (fin.eof()) {
         return nullptr;
     }
-    vector<string>* gameInfo = new vector<string>(4);
+    vector<string>* gameInfo = new vector<string>(5);
     fin >> gameInfo->at(0); //stage
     fin >> temp >> gameInfo->at(1); //points
     fin >> temp >> gameInfo->at(2); //name
     fin >> temp >> gameInfo->at(3); //type
+    fin >> temp >> gameInfo->at(4); //path
     fin.close();
     return gameInfo;
 }
@@ -107,6 +113,7 @@ void save(const string &file, vector<string>* gameInfo) {
     fout << "Points: " << gameInfo->at(1) << endl;
     fout << "Name: " << gameInfo->at(2) << endl;
     fout << "Type: " << gameInfo->at(3) << endl;
+    fout << "Path: " << gameInfo->at(4) << endl;
     fout.close();
     delete gameInfo;
 }
@@ -147,7 +154,7 @@ vector<string>* start() {
             invalidInput = true;
         }
     }
-    return new vector<string>{"1", "0", playerName, playerType};
+    return new vector<string>{"1", "0", playerName, playerType, "Left"};
 }
 
 BaseCharacter* getPlayer(const string &name, const string &type, int xp, bool isNew) {
@@ -159,10 +166,13 @@ BaseCharacter* getPlayer(const string &name, const string &type, int xp, bool is
     if (isNew) {
         cout << pf->getPlayerInfo() << endl;
         BaseCharacter* player = pf->getDefaultPlayer();
+        delete pf;
         player->setName(name);
         return player;
     }
-    return pf->getUpgradedPlayer(name, xp);
+    BaseCharacter* player = pf->getUpgradedPlayer(name, xp);
+    delete pf;
+    return player;
 }
 
 void instructions() {
@@ -182,17 +192,18 @@ vector<BaseCharacter*> getStage(BaseCharacter* player, int stage, bool isLeftPat
     AbstractStageFactory *path;
     if (isLeftPath) path = new LeftPathFactory(player);
     else path = new RightPathFactory(player);
+    vector<BaseCharacter*> charList;
     switch(stage) {
-        case 1: return path->getStage1();
-        case 2: return path->getStage2();
-        case 3: return path->getStage3();
-        case 4: return path->getStage4();
-        case 5: return path->getStage5();
-        case 6: return path->getStage6();
-        case 7: return path->getStage7();
-        case 8: return path->getStage8();
-        case 9: return path->getStage9();
-        default: return path->getStage10();
+        case 1: charList = path->getStage1(); delete path; return charList;
+        case 2: charList = path->getStage2(); delete path; return charList;
+        case 3: charList = path->getStage3(); delete path; return charList;
+        case 4: charList = path->getStage4(); delete path; return charList;
+        case 5: charList = path->getStage5(); delete path; return charList;
+        case 6: charList = path->getStage6(); delete path; return charList;
+        case 7: charList = path->getStage7(); delete path; return charList;
+        case 8: charList = path->getStage8(); delete path; return charList;
+        case 9: charList = path->getStage9(); delete path; return charList;
+        default: charList = path->getStage10(); delete path; return charList;
     }
 }
 
@@ -218,6 +229,7 @@ bool fight(vector<BaseCharacter*> charList, int& stage) {
             for (int i = 1; i < charList.size(); ++i) {
                 if (charList.at(i)->getHealth() == 0) {
                     cout << charList.at(i)->getName() + " Has Been Eliminated." << endl;
+                    delete charList.at(i);
                     charList.erase(charList.begin() + i);
                     numLeft -= 1;
                 }
@@ -238,12 +250,20 @@ bool fight(vector<BaseCharacter*> charList, int& stage) {
         }
         else {
             cout << "You have fled the fight." << endl;
-            return false;
+            while (charList.size() > 1) {
+                delete charList.back();
+                charList.pop_back();
+            }
+            return true;
         }
     }
     cout << "You have been elimated." << endl;
     stage -= 1;
     charList.at(0)->refresh(false);
+    while (charList.size() > 1) {
+        delete charList.back();
+        charList.pop_back();
+    }
     return false;
 }
 
@@ -308,6 +328,9 @@ void stageMessages(int stage, bool &isLeftPath) {
             cout << "The left path, you notice small shadows and many little noises you can't understand." << endl;
 	    cout << "From the right path, you see many creatures fluttering and flying around and this very bright light thats almost blinding." << endl;
             cout << "Which path shall you explore. Enter L or R: " << flush;
+            cout << "The intriguing left path, reminds you of the tales about brave people to have fallen here, and there could be loot to gain here." << endl;
+	    cout << "From the whismical right path, you see bright lights and hear fluttering but can't make out anything's presence." << endl;
+            cout << "Which path shall you explore. Enter L or R: " << endl;
             getPath(isLeftPath);
             if (isLeftPath) {
                 cout << "You walk down the left path and see goblins standing before your eyes! They run towards you with knives" <<endl;
