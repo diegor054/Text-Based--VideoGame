@@ -255,7 +255,8 @@ bool fight(vector<BaseCharacter*> charList, int& stage) {
                 delete charList.back();
                 charList.pop_back();
             }
-            return true;
+            charList.at(0)->refresh(true);
+            return false;
         }
     }
     cout << "You have been elimated." << endl;
