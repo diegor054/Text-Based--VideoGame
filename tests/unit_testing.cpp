@@ -116,6 +116,17 @@ TEST(GoblinTest, defaultGoblin) {
     delete temp;
 }
 
+TEST(GoblinTest, constructedGoblin) {
+    Goblin* temp = new Goblin(8);
+    EXPECT_EQ(temp->getHealth(), 189);
+    EXPECT_EQ(temp->getXP(), 8);
+    EXPECT_EQ(temp->getLevel(), 8);
+    EXPECT_EQ(temp->getAttackStrength(), 7);
+    EXPECT_EQ(temp->getName(), "Goblin");
+    EXPECT_EQ(temp->getType(), "Goblin");
+    delete temp;
+}
+
 TEST(ZombieTest, defaultZombie) {
     Zombie* temp = new Zombie();
     EXPECT_EQ(temp->getHealth(), 25);
