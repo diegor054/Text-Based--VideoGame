@@ -38,5 +38,5 @@
  ## Installation/Usage
  > To install this application, clone this repository onto your local machine that contains CMake. After you call make, run the executable named "dungeon" to play the game. 
  ## Testing
- > How was your project tested/validated? If you used CI, you should have a "build passing" badge in this README.
+ > Our project was tested by using unit tests that we created and then ran by googletest. Our project was also tested for memory leaks by using valgrind.
  
