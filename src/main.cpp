@@ -301,14 +301,14 @@ void stageMessages(int stage, bool &isLeftPath) {
             cout << "You see a bright torch and a sign pointing in two directions, Left or Right" << endl;
 	    cout << "In the left path, you hear lots of noises and see many figures in the distance." << endl;
             cout << "In the right path, you see this giant looming shadow with a deadly presence."<< endl;
-	    cout << "Which path shall you explore. Enter L or R." << endl;
+	    //cout << "Which path shall you explore. Enter L or R." << endl;
 	    getPath(isLeftPath);
             if (isLeftPath) {
                 cout << "You walk down the left path and see zombies standing before your eyes! They run towards you and want some fresh meat!" <<endl;
                 cout << "Prepare yourself... you are about to get in a fight." << endl;
             }
             else {
-                cout << "You walk down the right path and see goblins standing before your eyes! They run towards you with their knives and are wanting to attack you." <<endl;
+                cout << "You walk down the right path and see zombies standing before your eyes! They run towards you ready to eat some fresh meat!." <<endl;
                 cout << "Prepare yourself... you are about to get in a fight." << endl;
             }
             break;
@@ -327,15 +327,15 @@ void stageMessages(int stage, bool &isLeftPath) {
 	    cout << "*thump*" << endl;
 	    cout << "Once again, you walk for about ten minutes and have to choose which path direction to take(Left or Right)." << endl;
             cout << "The left path, you notice small shadows and many little noises you can't understand." << endl;
-	    cout << "From the right path, you see a blinding light and hear giant wings flying around" << endl;
+	    cout << "From the right path, there are a couple gravestones and giant footprints leading into the tunnel " << endl;
             cout << "Which path shall you explore. Enter L or R: " << flush;
             getPath(isLeftPath);
             if (isLeftPath) {
-                cout << "You walk down the left path and see goblins standing before your eyes! They run towards you with knives" <<endl;
+                cout << "You walk down the left path and see many weak zombies standing before your eyes! They run towards you ready to feast" <<endl;
                 cout << "Prepare yourself... you are about to get in a fight." << endl;
             }
             else {
-                cout << "You walk down the right path and see fairies standing before your eyes! They fly to you and swarm you with pixie dust." <<endl;
+                cout << "You walk down the right path and see giant zombies standing before your eyes! They run towards you to eat some fresh meat!." <<endl;
                 cout << "Prepare yourself... you are about to get in a fight." << endl;
             }
             break;
