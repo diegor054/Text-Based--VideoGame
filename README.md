@@ -42,4 +42,8 @@
  > To install this application, clone this repository onto your local machine that contains CMake. After you call make, run the executable named "dungeon" to play the game. 
  ## Testing
  > Our project was tested by using unit tests that we created and then ran by googletest. Our project was also tested for memory leaks by using valgrind.
+ >
+ > ![image](https://user-images.githubusercontent.com/81644719/120354423-43f70d00-c2b7-11eb-91a8-8ead167f97de.png)
+ > ![image](https://user-images.githubusercontent.com/81644719/120356105-d77d0d80-c2b8-11eb-8de5-eb4601838a2e.png)
+
  
