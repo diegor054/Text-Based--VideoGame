@@ -224,7 +224,7 @@ void getPath(bool &isLeftPath) {
         cin >> path;
     }
     cout << endl;
-    if (path.at(0) == 'L') isLeftPath = true;
+    if (toupper(path.at(0)) == 'L') isLeftPath = true;
     else isLeftPath = false;
 }
 
