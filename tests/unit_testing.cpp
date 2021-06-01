@@ -33,11 +33,35 @@ TEST(AttackerTest, defaultAttacker) {
     delete temp;
 }
 
+TEST(AttackerTest, constructedAttacker) {
+    string name = "John";
+    Attacker* temp = new Attacker(name, 4567);
+    EXPECT_EQ(temp->getName(), name);
+    EXPECT_EQ(temp->getHealth(), 231);
+    EXPECT_EQ(temp->getXP(), 4567);
+    EXPECT_EQ(temp->getLevel(), 5);
+    EXPECT_EQ(temp->getAttackStrength(), 23);
+    EXPECT_EQ(temp->getType(), "Attacker");
+    delete temp;
+}
+
 TEST(HealerTest, defaultHealer) {
     Healer* temp = new Healer();
     EXPECT_EQ(temp->getHealth(), 200);
     EXPECT_EQ(temp->getXP(), 0);
     EXPECT_EQ(temp->getAttackStrength(), 8);
+    EXPECT_EQ(temp->getType(), "Healer");
+    delete temp;
+}
+
+TEST(HealerTest, constructedHealer) {
+    string name = "Janice";
+    Healer* temp = new Healer(name, 9433);
+    EXPECT_EQ(temp->getName(), name);
+    EXPECT_EQ(temp->getHealth(), 649);
+    EXPECT_EQ(temp->getXP(), 9433);
+    EXPECT_EQ(temp->getLevel(), 7);
+    EXPECT_EQ(temp->getAttackStrength(), 25);
     EXPECT_EQ(temp->getType(), "Healer");
     delete temp;
 }
@@ -51,11 +75,34 @@ TEST(NinjaTest, defaultNinja) {
     delete temp;
 }
 
+TEST(NinjaTest, constructedNinja) {
+    string name = "Jacky";
+    Ninja* temp = new Ninja(name, 14725);
+    EXPECT_EQ(temp->getName(), name);
+    EXPECT_EQ(temp->getHealth(), 378);
+    EXPECT_EQ(temp->getXP(), 14725);
+    EXPECT_EQ(temp->getLevel(), 8);
+    EXPECT_EQ(temp->getAttackStrength(), 30);
+    EXPECT_EQ(temp->getType(), "Ninja");
+    delete temp;
+}
+
 TEST(FairyTest, defaultFairy) {
     Fairy* temp = new Fairy();
     EXPECT_EQ(temp->getHealth(), 50);
     EXPECT_EQ(temp->getXP(), 0);
     EXPECT_EQ(temp->getAttackStrength(), 3);
+    EXPECT_EQ(temp->getType(), "Fairy");
+    delete temp;
+}
+
+TEST(FairyTest, constructedFairy) {
+    Fairy* temp = new Fairy(6);
+    EXPECT_EQ(temp->getHealth(), 137);
+    EXPECT_EQ(temp->getXP(), 6);
+    EXPECT_EQ(temp->getLevel(), 6);
+    EXPECT_EQ(temp->getAttackStrength(), 8);
+    EXPECT_EQ(temp->getName(), "Fairy");
     EXPECT_EQ(temp->getType(), "Fairy");
     delete temp;
 }
@@ -69,6 +116,17 @@ TEST(GoblinTest, defaultGoblin) {
     delete temp;
 }
 
+TEST(GoblinTest, constructedGoblin) {
+    Goblin* temp = new Goblin(8);
+    EXPECT_EQ(temp->getHealth(), 189);
+    EXPECT_EQ(temp->getXP(), 8);
+    EXPECT_EQ(temp->getLevel(), 8);
+    EXPECT_EQ(temp->getAttackStrength(), 7);
+    EXPECT_EQ(temp->getName(), "Goblin");
+    EXPECT_EQ(temp->getType(), "Goblin");
+    delete temp;
+}
+
 TEST(ZombieTest, defaultZombie) {
     Zombie* temp = new Zombie();
     EXPECT_EQ(temp->getHealth(), 25);
@@ -77,6 +135,18 @@ TEST(ZombieTest, defaultZombie) {
     EXPECT_EQ(temp->getType(), "Zombie");
     delete temp;
 }
+
+TEST(ZombieTest, constructedZombie) {
+    Zombie* temp = new Zombie(10);
+    EXPECT_EQ(temp->getHealth(), 124);
+    EXPECT_EQ(temp->getXP(), 10);
+    EXPECT_EQ(temp->getLevel(), 10);
+    EXPECT_EQ(temp->getAttackStrength(), 24);
+    EXPECT_EQ(temp->getName(), "Zombie");
+    EXPECT_EQ(temp->getType(), "Zombie");
+    delete temp;
+}
+
 TEST(AttackerTest, testingDamageDone) {
     BaseCharacter* temp = new Attacker();
     vector<BaseCharacter*>vec{temp, new Zombie()};
