@@ -27,7 +27,7 @@ void stageMessages(int, bool &);
 
 int main() {
     //load program
-    string file = "../data/savefile.txt";
+    string file = "data/savefile.txt";
     vector<string>* gameInfo = load(file);
     
     //get player
@@ -41,6 +41,7 @@ int main() {
         player = getPlayer(gameInfo->at(2), gameInfo->at(3), stoi(gameInfo->at(1)), false);
         cout << "Welcome back to King of the Dungeon, " << gameInfo->at(2) << "!" << endl;
     }
+    cout << endl;
     player->refresh(true);
 
     //run program
@@ -51,11 +52,14 @@ int main() {
         cout << "Would you like to continue (C) view stats (S) or exit (Q)? " << flush;
         cin >> userInput;
         if (toupper(userInput.at(0)) == 'C') {
+            cout << endl;
             stageMessages(stage, isLeftPath); 
             vector<BaseCharacter*> opponentsList = getStage(player, stage, isLeftPath);
             stage += fight(opponentsList, stage);
+            cout << endl;
         }
         else if (toupper(userInput.at(0)) == 'S') {
+            cout << endl;
             cout << "Name: " << player->getName() << endl;
             cout << "Type: " << player->getType() << endl;
             cout << "Path: " << (isLeftPath == true ? "Left" : "Right") << endl;
@@ -64,12 +68,13 @@ int main() {
             cout << "Points: " << player->getXP() << endl;
             cout << "Max Health: " << player->getHealth() << endl;
             cout << "Attack Strength: " << player->getAttackStrength() << endl;
+            cout << endl;
         }
     }
     if (stage > 10) {
         cout << "Congrats on beating the final boss. You have made everyone proud. Now go on and collect your treasure." << endl;
-        cout << "Thanks for playing, " << player->getName() << "!" << endl;
     }
+    cout << endl << "Thanks for playing, " << player->getName() << "!" << endl;
 
     //save program
     gameInfo->at(0) = to_string(stage);
@@ -167,7 +172,7 @@ BaseCharacter* getPlayer(const string &name, const string &type, int xp, bool is
     else if (type == "Ninja") pf = new NinjaFactory();
     else return nullptr;
     if (isNew) {
-        cout << pf->getPlayerInfo() << endl;
+        cout << endl << pf->getPlayerInfo() << endl;
         BaseCharacter* player = pf->getDefaultPlayer();
         delete pf;
         player->setName(name);
@@ -179,7 +184,7 @@ BaseCharacter* getPlayer(const string &name, const string &type, int xp, bool is
 }
 
 void instructions() {
-    cout << "Would you like to see the instructions before you start? (Y)/(N): " << flush;
+    cout << endl << "Would you like to see the instructions before you start? (Y)/(N): " << flush;
     string userInput;
     cin >> userInput;
     if (toupper(userInput.at(0)) == 'Y') {
@@ -211,21 +216,23 @@ vector<BaseCharacter*> getStage(BaseCharacter* player, int stage, bool isLeftPat
 }
 
 void getPath(bool &isLeftPath) {
-    cout << "Which path would you like to take. Enter L or R: " << flush;
+    cout << endl << "Which path would you like to take. Enter L or R: " << flush;
     string path;
     cin >> path;
     while (toupper(path.at(0)) != 'L' && toupper(path.at(0)) != 'R') {
         cout << "This is not a valid choice. Enter L or R: " << flush;
         cin >> path;
     }
+    cout << endl;
     if (path.at(0) == 'L') isLeftPath = true;
     else isLeftPath = false;
 }
 
 bool fight(vector<BaseCharacter*> charList, int& stage) {
-    cout << "Round " << stage << " has begun!" << endl;
+    cout << endl << "Round " << stage << " has begun!" << endl << endl;
     while (charList.at(0)->getHealth() > 0) {
         string option = getFightOption();
+        cout << endl;
         if (option == "A") {
             int numLeft = charList.size() - 1;
             charList.at(0)->attack(charList, 0);
@@ -245,11 +252,13 @@ bool fight(vector<BaseCharacter*> charList, int& stage) {
             int numOpponents = charList.size() - 1;
             int opponentIndex = rand() % numOpponents + 1;
             charList.at(opponentIndex)->attack(charList, opponentIndex);
+            cout << endl;
         }
         else if (option == "V") {
             for (int i = 0; i < charList.size(); ++i) {
                 cout << charList.at(i)->getName() << ": " << charList.at(i)->getHealth() << " health. " << charList.at(i)->getHealthBar() << endl;
             }
+            cout << endl;
         }
         else {
             cout << "You have fled the fight." << endl;
