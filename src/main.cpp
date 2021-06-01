@@ -41,7 +41,7 @@ int main() {
         player = getPlayer(gameInfo->at(2), gameInfo->at(3), stoi(gameInfo->at(1)), false);
         cout << "Welcome back to King of the Dungeon, " << gameInfo->at(2) << "!" << endl;
     }
-    player->refresh();
+    player->refresh(true);
 
     //run program
     int stage = stoi(gameInfo->at(0));
