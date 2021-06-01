@@ -27,15 +27,15 @@ void stageMessages(int, bool &);
 
 int main() {
     //load program
-    string file = "data/savefile.txt";
+    string file = "../data/savefile.txt";
     vector<string>* gameInfo = load(file);
     
     //get player
     BaseCharacter* player;
     if (gameInfo == nullptr) {
         gameInfo = start();
-        instructions();
         player = getPlayer(gameInfo->at(2), gameInfo->at(3), stoi(gameInfo->at(1)), true);
+        instructions();
     }
     else {
         player = getPlayer(gameInfo->at(2), gameInfo->at(3), stoi(gameInfo->at(1)), false);
