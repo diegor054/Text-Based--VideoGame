@@ -16,7 +16,7 @@ class AoeDecorator : public AbilityDecorator {
                 if(r == 1){
                 addAbilityMessage(this->character->getName() + " managed to also hit " + (*it)->getName() + " and deal " + to_string((*it)->getLatestDamage()) + " damage.");
                 }else if(r == 2){
-                addAbilityMessage(this->character->getName() + " managed attack " + (*it)->getName() + " and deal " + to_string((*it)->getLatestDamage()) + " damage too."); 
+                addAbilityMessage(this->character->getName() + " managed to attack " + (*it)->getName() + " and deal " + to_string((*it)->getLatestDamage()) + " damage too."); 
                }else{
                 addAbilityMessage(this->character->getName() + " also hit " + (*it)->getName() + " and dealt " + to_string((*it)->getLatestDamage()) + " damage.");
                }

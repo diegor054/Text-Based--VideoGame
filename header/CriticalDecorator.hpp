@@ -19,7 +19,7 @@ class CriticalDecorator : public AbilityDecorator {
             else if(r == 2){
             addAbilityMessage(this->character->getName() + " did extra damage to  " + victim->getName() + "!");
             }else{
-            addAbilityMessage(this->character->getName() + "'s hit " + victim->getName() + " hard!");
+            addAbilityMessage(this->character->getName() + "'s attack hit " + victim->getName() + " hard!");
             }  
             cout << this->currentMessage << endl;
             this->currentMessage = "";

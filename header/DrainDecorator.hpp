@@ -15,9 +15,9 @@ class DrainDecorator : public AbilityDecorator {
             if(r == 1){
             addAbilityMessage(this->character->getName() + " managed to gain " + to_string(static_cast<int>((victim->getLatestDamage() * (0.1492 + sqrt(0.02512 * this->getLevel() + 0.00573168))/0.01256) / 100)) + " from " + victim->getName());
             }else if(r == 2){
-            addAbilityMessage(this->character->getName() + " stole  " + to_string(static_cast<int>((victim->getLatestDamage() * (0.1492 + sqrt(0.02512 * this->getLevel() + 0.00573168))/0.01256) / 100)) + " health from " + victim->getName());
+            addAbilityMessage(this->character->getName() + " stole " + to_string(static_cast<int>((victim->getLatestDamage() * (0.1492 + sqrt(0.02512 * this->getLevel() + 0.00573168))/0.01256) / 100)) + " health from " + victim->getName());
             }else{
-            addAbilityMessage(this->character->getName() + " took  " + to_string(static_cast<int>((victim->getLatestDamage() * (0.1492 + sqrt(0.02512 * this->getLevel() + 0.00573168))/0.01256) / 100)) + " health from " + victim->getName());
+            addAbilityMessage(this->character->getName() + " took " + to_string(static_cast<int>((victim->getLatestDamage() * (0.1492 + sqrt(0.02512 * this->getLevel() + 0.00573168))/0.01256) / 100)) + " health from " + victim->getName());
             }
             cout << this->currentMessage << endl;
             this->currentMessage = "";
