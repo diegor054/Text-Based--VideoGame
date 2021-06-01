@@ -34,7 +34,10 @@
  > * Plan one more sprint (that you will not necessarily complete before the end of the quarter). Your In-progress and In-testing columns should be empty (you are not doing more work currently) but your TODO column should have a full sprint plan in it as you have done before. This should include any known bugs (there should be some) or new features you would like to add. These should appear as issues/cards on your Kanban board. 
  
  ## Screenshots
- > Screenshots of the input/output after running your application
+ > ![image](https://user-images.githubusercontent.com/81644719/120352280-7a338d00-c2b5-11eb-954e-fbec5f0fd9d9.png)
+ > ![image](https://user-images.githubusercontent.com/81644719/120353192-5ae92f80-c2b6-11eb-9001-3adbd3763f30.png)
+ > ![image](https://user-images.githubusercontent.com/81644719/120353795-c501d480-c2b6-11eb-8d9e-d62fc5b7353a.png)
+
  ## Installation/Usage
  > To install this application, clone this repository onto your local machine that contains CMake. After you call make, run the executable named "dungeon" to play the game. 
  ## Testing
