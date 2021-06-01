@@ -46,13 +46,21 @@ int main() {
     int stage = stoi(gameInfo->at(0));
     bool isLeftPath = gameInfo->at(4) == "Left" ? true : false;
     string userInput;
-    while (userInput != "Q" && stage <= 10) {
-        cout << "Would you like to continue (C) or exit (Q)? " << flush;
+    while (toupper(userInput.at(0)) != 'Q' && stage <= 10) {
+        cout << "Would you like to continue (C) view stats (S) or exit (Q)? " << flush;
         cin >> userInput;
-        if (userInput == "C") {
+        if (toupper(userInput.at(0)) == 'C') {
             stageMessages(stage, isLeftPath); 
             vector<BaseCharacter*> opponentsList = getStage(player, stage, isLeftPath);
             stage += fight(opponentsList, stage);
+        }
+        else if (toupper(userInput.at(0)) == 'S') {
+            cout << "Name: " << player->getName() << endl;
+            cout << "Type: " << player->getType() << endl;
+            cout << "Level: " << player->getLevel() << endl;
+            cout << "Points: " << player->getXP() << endl;
+            cout << "Max Health: " << player->getHealth() << endl;
+            cout << "Attack Strength: " << player->getAttackStrength() << endl;
         }
     }
     if (stage > 10) {
