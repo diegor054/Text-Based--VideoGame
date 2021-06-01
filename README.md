@@ -39,7 +39,14 @@
  > ![image](https://user-images.githubusercontent.com/81644719/120353795-c501d480-c2b6-11eb-8d9e-d62fc5b7353a.png)
 
  ## Installation/Usage
- > To install this application, clone this repository onto your local machine that contains CMake. After you call make, run the executable named "dungeon" to play the game. 
+ > To install this application, clone this repository onto your local machine that contains CMake. After you call make, run the executable named "dungeon" to play the game.
+ > 
+ > * git clone --recursive https://github.com/cs100/final-project-drive043_zdamm001_echur002.git
+ > * cd final-project-drive043_zdamm001_echur002/
+ > * cmake3 .
+ > * make
+ > * ./dungeon
+
  ## Testing
  > Our project was tested by using unit tests that we created and then ran by googletest. Our project was also tested for memory leaks by using valgrind.
  >
