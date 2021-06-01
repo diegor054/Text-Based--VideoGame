@@ -34,39 +34,47 @@ int main() {
     BaseCharacter* player;
     if (gameInfo == nullptr) {
         gameInfo = start();
-        instructions();
         player = getPlayer(gameInfo->at(2), gameInfo->at(3), stoi(gameInfo->at(1)), true);
+        instructions();
     }
     else {
         player = getPlayer(gameInfo->at(2), gameInfo->at(3), stoi(gameInfo->at(1)), false);
         cout << "Welcome back to King of the Dungeon, " << gameInfo->at(2) << "!" << endl;
     }
+    cout << endl;
+    player->refresh(true);
 
     //run program
     int stage = stoi(gameInfo->at(0));
     bool isLeftPath = gameInfo->at(4) == "Left" ? true : false;
-    string userInput;
+    string userInput = "X";
     while (toupper(userInput.at(0)) != 'Q' && stage <= 10) {
         cout << "Would you like to continue (C) view stats (S) or exit (Q)? " << flush;
         cin >> userInput;
         if (toupper(userInput.at(0)) == 'C') {
+            cout << endl;
             stageMessages(stage, isLeftPath); 
             vector<BaseCharacter*> opponentsList = getStage(player, stage, isLeftPath);
             stage += fight(opponentsList, stage);
+            cout << endl;
         }
         else if (toupper(userInput.at(0)) == 'S') {
+            cout << endl;
             cout << "Name: " << player->getName() << endl;
             cout << "Type: " << player->getType() << endl;
+            cout << "Path: " << (isLeftPath == true ? "Left" : "Right") << endl;
+            cout << "Stage: " << stage << endl;
             cout << "Level: " << player->getLevel() << endl;
             cout << "Points: " << player->getXP() << endl;
             cout << "Max Health: " << player->getHealth() << endl;
             cout << "Attack Strength: " << player->getAttackStrength() << endl;
+            cout << endl;
         }
     }
     if (stage > 10) {
         cout << "Congrats on beating the final boss. You have made everyone proud. Now go on and collect your treasure." << endl;
-        cout << "Thanks for playing, " << player->getName() << "!" << endl;
     }
+    cout << endl << "Thanks for playing, " << player->getName() << "!" << endl;
 
     //save program
     gameInfo->at(0) = to_string(stage);
@@ -164,7 +172,7 @@ BaseCharacter* getPlayer(const string &name, const string &type, int xp, bool is
     else if (type == "Ninja") pf = new NinjaFactory();
     else return nullptr;
     if (isNew) {
-        cout << pf->getPlayerInfo() << endl;
+        cout << endl << pf->getPlayerInfo() << endl;
         BaseCharacter* player = pf->getDefaultPlayer();
         delete pf;
         player->setName(name);
@@ -176,7 +184,7 @@ BaseCharacter* getPlayer(const string &name, const string &type, int xp, bool is
 }
 
 void instructions() {
-    cout << "Would you like to see the instructions before you start? (Y)/(N): " << flush;
+    cout << endl << "Would you like to see the instructions before you start? (Y)/(N): " << flush;
     string userInput;
     cin >> userInput;
     if (toupper(userInput.at(0)) == 'Y') {
@@ -208,21 +216,23 @@ vector<BaseCharacter*> getStage(BaseCharacter* player, int stage, bool isLeftPat
 }
 
 void getPath(bool &isLeftPath) {
-    cout << "Which path would you like to take. Enter L or R: " << flush;
+    cout << endl << "Which path would you like to take. Enter L or R: " << flush;
     string path;
     cin >> path;
     while (toupper(path.at(0)) != 'L' && toupper(path.at(0)) != 'R') {
         cout << "This is not a valid choice. Enter L or R: " << flush;
         cin >> path;
     }
+    cout << endl;
     if (path.at(0) == 'L') isLeftPath = true;
     else isLeftPath = false;
 }
 
 bool fight(vector<BaseCharacter*> charList, int& stage) {
-    cout << "Round " << stage << " has begun!" << endl;
+    cout << endl << "Round " << stage << " has begun!" << endl << endl;
     while (charList.at(0)->getHealth() > 0) {
         string option = getFightOption();
+        cout << endl;
         if (option == "A") {
             int numLeft = charList.size() - 1;
             charList.at(0)->attack(charList, 0);
@@ -242,11 +252,13 @@ bool fight(vector<BaseCharacter*> charList, int& stage) {
             int numOpponents = charList.size() - 1;
             int opponentIndex = rand() % numOpponents + 1;
             charList.at(opponentIndex)->attack(charList, opponentIndex);
+            cout << endl;
         }
         else if (option == "V") {
             for (int i = 0; i < charList.size(); ++i) {
                 cout << charList.at(i)->getName() << ": " << charList.at(i)->getHealth() << " health. " << charList.at(i)->getHealthBar() << endl;
             }
+            cout << endl;
         }
         else {
             cout << "You have fled the fight." << endl;
@@ -254,7 +266,8 @@ bool fight(vector<BaseCharacter*> charList, int& stage) {
                 delete charList.back();
                 charList.pop_back();
             }
-            return true;
+            charList.at(0)->refresh(true);
+            return false;
         }
     }
     cout << "You have been elimated." << endl;
@@ -301,6 +314,9 @@ void stageMessages(int stage, bool &isLeftPath) {
             cout << "You see a bright torch and a sign pointing in two directions, Left or Right" << endl;
 	    cout << "In the left path, you hear lots of noises and see many figures in the distance." << endl;
             cout << "In the right path, you see this giant looming shadow with a deadly presence."<< endl;
+	    cout << "In the couragous left path, all you can see is the pitch black tunnel and there is this unnerving smell in the air" << endl;
+            cout << "In the curious right path, you can see a shiny object glittering in the distance and nothing else" << endl;
+            cout << "Which path shall you explore? Enter L or R" << endl;
 	    getPath(isLeftPath);
             if (isLeftPath) {
                 cout << "You walk down the left path and see zombies standing before your eyes! They run towards you and want some fresh meat!" <<endl;
@@ -327,6 +343,9 @@ void stageMessages(int stage, bool &isLeftPath) {
 	    cout << "Once again, you walk for about ten minutes and have to choose which path direction to take(Left or Right)." << endl;
             cout << "The left path, you notice small shadows and many little noises you can't understand." << endl;
 	    cout << "From the right path, there are a couple gravestones and giant footprints leading into the tunnel " << endl;
+            cout << "The intriguing left path, reminds you of the tales about brave people to have fallen here, and there could be loot to gain here." << endl;
+	    cout << "From the whismical right path, you see bright lights and hear fluttering but can't make out anything's presence." << endl;
+            cout << "Which path shall you explore. Enter L or R: " << flush;
             getPath(isLeftPath);
             if (isLeftPath) {
                 cout << "You walk down the left path and see many weak zombies arguing over a couple of bones. They all look at you simultaneously, and run to eat you instead!" <<endl;
