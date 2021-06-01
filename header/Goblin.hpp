@@ -1,16 +1,16 @@
-#ifndef __GOBLINS_HPP__
-#define __GOBLINS_HPP__
+#ifndef __GOBLIN_HPP__
+#define __GOBLIN_HPP__
 
 #include <iostream>
 #include <cstdlib>
 
 #include "Opponent.hpp"
 
-class Goblins : public Opponent {
+class Goblin : public Opponent {
  private:
 
  public:
-    Goblins() {
+    Goblin() {
         name = characterType = "Goblin";
         health = maxHealth = baseHealth = 50;
         attackStrength = baseAttackStrength = 2;
@@ -18,7 +18,7 @@ class Goblins : public Opponent {
         refresh(false);
         attackStyle = "Knife";
     }
-    Goblins(int level) {
+    Goblin(int level) {
         name = characterType = "Goblin";
         baseHealth = 50;
         baseAttackStrength = 2;

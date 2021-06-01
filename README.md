@@ -25,17 +25,8 @@
 ## Class Diagram
  > This OMT describes how each class is going to be implemented. There will be a class called character where the opponents and user characters will inherit functions and characteristics from it. There will also be an array of opponents that will be composed of opponent members that the user will have to eliminate. There will be various types of opponents and user characters and they will share similar traits. The decorator pattern is used to add abilities to the player or the opponents, and these abilities can be added at run time. There will be a player factory class which chooses which type of player based on user input. There will also be an abstract stage factory which will add different opponents to each stage based on which path they take.
  > 
-![OMT](https://user-images.githubusercontent.com/81644719/118717710-3d5a9700-b7db-11eb-8cf5-80be6ab2477c.png)
+![Screenshot (135)](https://user-images.githubusercontent.com/69490329/120254038-bdeab000-c23d-11eb-86a0-47de9aaf9586.png)
  
- > ## Phase III
- > You will need to schedule a check-in with the TA (during lab hours or office hours). Your entire team must be present. 
- > * Before the meeting you should perform a sprint plan like you did in Phase II
- > * In the meeting with your TA you will discuss: 
- >   - How effective your last sprint was (each member should talk about what they did)
- >   - Any tasks that did not get completed last sprint, and how you took them into consideration for this sprint
- >   - Any bugs you've identified and created issues for during the sprint. Do you plan on fixing them in the next sprint or are they lower priority?
- >   - What tasks you are planning for this next sprint.
-
  > ## Final deliverable
  > All group members will give a demo to the TA during lab time. The TA will check the demo and the project GitHub repository and ask a few questions to all the team members. 
  > Before the demo, you should do the following:
