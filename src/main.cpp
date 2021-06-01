@@ -58,6 +58,8 @@ int main() {
         else if (toupper(userInput.at(0)) == 'S') {
             cout << "Name: " << player->getName() << endl;
             cout << "Type: " << player->getType() << endl;
+            cout << "Path: " << (isLeftPath == true ? "Left" : "Right") << endl;
+            cout << "Stage: " << stage << endl;
             cout << "Level: " << player->getLevel() << endl;
             cout << "Points: " << player->getXP() << endl;
             cout << "Max Health: " << player->getHealth() << endl;
