@@ -13,8 +13,8 @@ class Player : public BaseCharacter {
         if (message == 0) return ". They lost " + to_string(damage) + " health!"; 
         else if (message == 1) return " and dealt " + to_string(damage) + " damage!";
         else if (message == 2) return " and took off " + to_string(damage) + " damage!";
-        else if (message == 3) return ". Only " + to_string(damage) + " health remains.";
-        else return ". They only have " + to_string(damage) + " health left."; 
+        else if (message == 3) return ". Only " + to_string(damage) + " health was lost.";
+        else return ". They have " + to_string(damage) + " less health."; 
     }
  public:
     Player() { }
