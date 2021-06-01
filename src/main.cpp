@@ -27,7 +27,7 @@ void stageMessages(int, bool &);
 
 int main() {
     //load program
-    string file = "../data/savefile.txt";
+    string file = "data/savefile.txt";
     vector<string>* gameInfo = load(file);
     
     //get player
